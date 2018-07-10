@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: React Native Testing
-email: josh@reactnativetesting.org
+email: josh@reactnativetesting.io
 description: >-
   Comprehensive resources on how to do unit, component, and end-to-end testing
   in React Native
