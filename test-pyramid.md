@@ -8,4 +8,7 @@ End-to-end tests give you the greatest confidence that your app is working, beca
 
 Unit and component tests have the opposite tradeoff. They don't prove your app is working for the end user; instead they prove that the individual pieces that you are plugging together work the way you expect. This allows you to test more of the edge cases at a unit and component level, and let end-to-end tests focus on the main cases: maybe the happy path and one error path. Unit and component tests are much faster, so they can better handle thoroughly testing all your edge cases. They also provide better error localization, so that when something goes wrong you can see *which* function or component failed.
 
-This view corresponds to the “test pyramid”. You can learn more about it on [Martin Fowler’s Test Pyramid page](https://martinfowler.com/bliki/TestPyramid.html).
+# Learning More
+
+- This view corresponds to the “test pyramid”. You can learn more about it on [Martin Fowler’s Test Pyramid page](https://martinfowler.com/bliki/TestPyramid.html).
+- Learn about the testing pyramid and React Native in [Testing & React Native: Lessons from the Battlefield], a talk by by Aaron Greenwald
