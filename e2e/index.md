@@ -4,7 +4,7 @@ title: End-to-End Tests
 
 End-to-end tests exercise your entire application the way a user would, simulating taps and checking for components on the screen. [Detox][detox] is an excellent tool for end-to-end testing React Native apps.
 
-## Installing Detox
+## Setting Up Detox
 
 First, let's install the global Detox CLI tool:
 
@@ -47,7 +47,7 @@ After this, we need to add some extra config for Detox to our `package.json`. Be
 
 ## Setting Up Linting
 
-If you're using ESLint (and you should be), here are steps to set it up to recognize Detox code.
+If you're using ESLint (and you probably should be!), here are steps to set it up to recognize Detox code.
 
 ```
 # yarn add --dev eslint-plugin-detox
@@ -83,7 +83,7 @@ If ESLint reports that Detox should be listed in your `dependencies` instead of 
 ...
 ```
 
-## Setting Up a Hello World Test
+## Smoke Test
 
 Detox installs a sample test for you that you can tweak. If you are installing Detox into a brand-new React Native app, you can make a passing test doing the following.
 
