@@ -16,9 +16,9 @@ To get Enzyme installed, add the following three packages:
 
 Here's what these do:
 
-- `enzyme` is the core Enzyme library.
-- `enzyme-adapter-react-16` sets Enzyme up to work with React 16's API. There's a separate adapter for React 15.
-- `@jonny/react-native-mock` mocks out React Native to make it easier to test React Native components.
+- [`enzyme`][enzyme] is the core Enzyme library.
+- [`enzyme-adapter-react-16`](http://airbnb.io/enzyme/docs/installation/react-16.html) sets Enzyme up to work with React 16's API. There's a separate adapter for React 15.
+- [`@jonny/react-native-mock`](https://github.com/JonnyBurger/react-native-mock/) mocks out React Native to make it easier to test React Native components.
 
 Now that these packages are installed, we need to configure Enzyme to use the adapter we installed. Create a `tests/setup.js` script and add the following:
 
