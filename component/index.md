@@ -79,6 +79,6 @@ Ran all test suites matching /tests\/components\/smoke.spec.js/i.
 ## Learning More
 
 - For more details on how to use Enzyme, check out [the Enzyme web site][enzyme].
-- Jack Franklin has an excellent [video course on Testing React with Enzyme and Jest](https://javascriptplayground.com/testing-react-enzyme-jest/). The first five videos are free.
+- Jack Franklin has an excellent [video course on Testing React with Enzyme and Jest](https://javascriptplayground.com/testing-react-enzyme-jest/). It's for React Web, but the principles apply exactly to React Native as well. The first five videos are free.
 
 [enzyme]: http://airbnb.io/enzyme/
