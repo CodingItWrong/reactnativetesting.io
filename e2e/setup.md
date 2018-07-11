@@ -66,20 +66,6 @@ Then add the detox plugin and environment to your ESLint config:
 ...
 ```
 
-If ESLint reports that Detox should be listed in your `dependencies` instead of `devDependencies`, add this rule to let it know that your `e2e` tests are supposed to use `devDependencies`:
-
-```diff
-...
-   rules: {
-+    'import/no-extraneous-dependencies': ['error', {
-+      devDependencies: [
-+        'e2e/*.js',
-+        'tests/**/*.js',
-+      ],
-+    }],
-...
-```
-
 ## Smoke Test
 
 Detox installs a sample test for you that you can tweak. If you are installing Detox into a brand-new React Native app, you can make a passing test doing the following.
