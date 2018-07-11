@@ -14,3 +14,4 @@ Learn how to test your React Native app with a combination of unit, component, a
 
 - [Which types of test should I write?](/test-pyramid)
 - [Test-Driven Development](https://learntdd.in/react-native)
+- [What about snapshot tests?](/snapshot-tests)
