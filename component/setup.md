@@ -5,7 +5,7 @@ title: Enzyme Setup
 To get Enzyme installed, add the following three packages:
 
 ```bash
-# yarn add -D enzyme enzyme-adapter-react-16 @jonny/react-native-mock
+# yarn add --dev enzyme enzyme-adapter-react-16 @jonny/react-native-mock
 ```
 
 Here's what these do:
