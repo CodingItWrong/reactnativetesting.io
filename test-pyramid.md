@@ -11,4 +11,4 @@ Unit and component tests have the opposite tradeoff. They don't prove your app i
 # Learning More
 
 - This view corresponds to the “test pyramid”. You can learn more about it on [Martin Fowler’s Test Pyramid page](https://martinfowler.com/bliki/TestPyramid.html).
-- Learn about the testing pyramid and React Native in [Testing & React Native: Lessons from the Battlefield], a talk by by Aaron Greenwald
+- Learn about the testing pyramid and React Native in [Testing & React Native: Lessons from the Battlefield](https://www.youtube.com/watch?v=cUSUJXAvt6k), a talk by by Aaron Greenwald
