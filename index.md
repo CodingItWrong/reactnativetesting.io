@@ -6,9 +6,38 @@ Learn how to test your React Native app with a combination of unit, component, a
 
 ## Types of Test
 
-- [Unit](/unit) tests for individual functions and plain JavaScript objects, using Jest
-- [Component](/component) tests for React Native components, using Enzyme
-- [End-to-End](/e2e) tests to confirm your whole app is working together, using Detox
+<div class="row">
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="/unit">Unit Tests</a>
+        </h5>
+        <div>Individual functions and plain JavaScript objects, using Jest</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="/component">Component Tests</a>
+        </h5>
+        <div>For React Native components, using Enzyme</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="/e2e">End-to-End Tests</a>
+        </h5>
+        <div>Confirm your whole app is working together, using Detox</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ## Other Resources
 
