@@ -7,6 +7,7 @@ Component tests are tests of individual React Native components apart from where
 [Enzyme][enzyme] is a library allows you to test React and React Native components, verifying the component tree they render and allowing you to interact with them.
 
 - [Setting Up Enzyme](setup)
+- [Testing Components](testing)
 
 ## Learning More
 
