@@ -4,7 +4,7 @@ title: Enzyme Setup
 
 To get Enzyme installed, add the following three packages:
 
-```
+```bash
 # yarn add -D enzyme enzyme-adapter-react-16 @jonny/react-native-mock
 ```
 
@@ -54,7 +54,7 @@ describe('Text', () => {
 
 Run your tests with `yarn test`. You should see the following output:
 
-```
+```bash
 # yarn test
 yarn run v1.7.0
 $ jest tests/**/*.spec.js

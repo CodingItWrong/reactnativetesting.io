@@ -70,7 +70,7 @@ This works, but it's a bit fragile. Say we start rendering add an additional Tex
 
 If we rerun our test, we get this error:
 
-```
+```bash
 Method “props” is only meant to be run on a single node. 2 found instead.
 
    7 |   it('displays the passed-in name', () => {

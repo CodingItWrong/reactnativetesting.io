@@ -4,20 +4,21 @@ title: Setting Up Detox
 
 First, let's install the global Detox CLI tool:
 
-```
+```bash
 # brew tap wix/brew
 # brew install --HEAD applesimutils
 # yarn global add detox-cli
 ```
 
 Next, we need to add Detox as a dependency to our project.
-```
+
+```bash
 # yarn add --dev detox
 ```
 
 Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner.
 
-```
+```bash
 # detox init -r jest
 ```
 
@@ -45,7 +46,7 @@ After this, we need to add some extra config for Detox to our `package.json`. Be
 
 If you're using ESLint (and you probably should be!), here are steps to set it up to recognize Detox code.
 
-```
+```bash
 # yarn add --dev eslint-plugin-detox
 ```
 
@@ -111,19 +112,19 @@ describe('App', () => {
 
 To run this test, start the Metro packager as usual:
 
-```
+```bash
 # react-native start
 ```
 
 In another terminal window, run the detox tests with:
 
-```
+```bash
 # detox test
 ```
 
 You should see the following output:
 
-```
+```bash
 # detox test
 node_modules/.bin/jest e2e --config=e2e/config.json --maxWorkers=1 --testNamePattern='^((?!:android:).)*$'
  server listening on localhost:56132...
