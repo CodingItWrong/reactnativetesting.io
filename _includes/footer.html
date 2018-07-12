@@ -1,4 +1,4 @@
-<footer class="h-card bg-light py-5">
+<footer class="h-card bg-light py-5 text-muted">
   <data class="u-url" href="{{ "/" | relative_url }}"></data>
 
   <div class="container">
@@ -13,7 +13,7 @@
             {%- endif -%}
             </li>
             {%- if site.email -%}
-            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            <li><a class="u-email text-muted" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
             {%- endif -%}
         </ul>
       </div>
