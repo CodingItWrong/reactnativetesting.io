@@ -5,7 +5,9 @@ title: Enzyme Setup
 To get Enzyme installed, add the following three packages:
 
 ```bash
-# yarn add --dev enzyme enzyme-adapter-react-16 @jonny/react-native-mock
+$ yarn add --dev enzyme \
+                 enzyme-adapter-react-16 \
+                 @jonny/react-native-mock
 ```
 
 Here's what these do:
@@ -33,6 +35,13 @@ Then instruct Jest to load this file upon startup by adding the following to `pa
 +      "./tests/setup.js"
 +    ]
    },
+```
+
+If you are also [setting up Detox for end-to-end testing](/e2e/setup), then you will want to configure your Jest command to not run Detox tests. Make the following change in `package.json`:
+
+```diff
+-    "test": "jest"
++    "test": "jest tests/**/*.spec.js",
 ```
 
 ## Smoke Test

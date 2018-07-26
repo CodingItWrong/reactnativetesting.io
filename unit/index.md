@@ -16,7 +16,7 @@ Another popular unit testing option is Mocha. The component and end-to-end testi
 React Native apps created with React Native CLI have an NPM script pre-configured to run Jest:
 
 ```bash
-# yarn test
+$ yarn test
 ```
 
 ## Smoke Test
@@ -34,7 +34,7 @@ describe('truth', () => {
 Run the tests with `yarn test`. You should see output like the following:
 
 ```bash
-# yarn test
+$ yarn test
 yarn run v1.7.0
 $ jest
  PASS  tests/unit/smoke.spec.js
