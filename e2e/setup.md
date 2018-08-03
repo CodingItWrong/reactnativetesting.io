@@ -10,16 +10,16 @@ $ brew install --HEAD applesimutils
 $ yarn global add detox-cli
 ```
 
-Next, we need to add Detox as a dependency to our project.
+Next, we need to add Detox as a dependency to our project. Detox can use either Jest or Mocha as a test runner. I recommend Mocha because it allows you to limit test runs to just one test.
 
 ```bash
-$ yarn add --dev detox
+$ yarn add --dev detox mocha
 ```
 
 Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner.
 
 ```bash
-$ detox init -r jest
+$ detox init -r mocha
 ```
 
 After this, we need to add some extra config for Detox to our `package.json`. Be sure to substitute your app's name for `MyAppName` everywhere it appears:
@@ -28,8 +28,8 @@ After this, we need to add some extra config for Detox to our `package.json`. Be
  {
    ...
    "detox": {
--    "test-runner": "jest"
-+    "test-runner": "jest",
+-    "test-runner": "mocha"
++    "test-runner": "mocha",
 +    "configurations": {
 +      "ios.sim.debug": {
 +        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/MyAppName.app",
