@@ -112,16 +112,13 @@ You should see the following output:
 
 ```bash
 $ detox test
-node_modules/.bin/jest e2e --config=e2e/config.json --maxWorkers=1 --testNamePattern='^((?!:android:).)*$'
- server listening on localhost:56132...
-*snip*
- PASS  e2e/firstTest.spec.js (82.163s)
-  Example
-    ✓ should have welcome screen (505ms)
+node_modules/.bin/mocha e2e --opts e2e/mocha.opts --configuration ios.sim.debug     --grep :android: --invert     --artifacts-location "artifacts/ios.sim.debug.2018-08-03 11:09:13Z"
 
-Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
-Snapshots:   0 total
-Time:        115.651s
-Ran all test suites matching /e2e/i with tests matching "^((?!:android:).)*$".
+*snip*
+
+Example
+  ✓ should show the welcome message (264ms)
+
+
+1 passing (1m)
 ```
