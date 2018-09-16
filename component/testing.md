@@ -33,9 +33,14 @@ import { shallow } from 'enzyme';
 import Hello from '../../Hello';
 
 describe('Hello', () => {
+  function testID(id) {
+    return cmp => cmp.props().testID === id;
+  }
+
   it('displays the passed-in name', () => {
     const wrapper = shallow(<Hello name="world" />);
-    expect(wrapper.find('Text').props().children.join('')).toEqual('Hello, world!');
+    const greeting = wrapper.findWhere(testID('greeting'));
+    expect(greeting.props().children.join('')).to.equal('Hello, world!');
   });
 });
 ```
@@ -43,81 +48,10 @@ describe('Hello', () => {
 Here's what's going on:
 
 - `shallow()` renders the component to an in-memory representation that doesn't require an iOS or Android environment
-- `find('Text')` finds a child component with the component name "Text".
+- `findWhere()` finds a child component for which a passed-in function returns true.
+- `testID(id)` returns a function that matches elements with the provided test ID.
 - `props().children` returns the children of the component, which in this case all happen to be text strings. Because there is a dynamic portion in the middle, we get an array of three elements: `["Hello, ", "world", "!"]`. `join('')` combines it into a single string, the way we see it on the screen.
-- `expect()` creates a Jest expectation to check a condition. `.toEqual()` checks that the two values are equal; in this case, that the element really does contain the string we expect.
-
-## Test IDs
-
-This works, but it's a bit fragile. Say we start rendering add an additional Text child component:
-
-```diff
- import React from 'react';
- import {
-   Text,
-   View,
- } from 'react-native';
-
- const Hello = ({ name }) => (
-   <View>
-     <Text>Hello, {name}!</Text>
-+    <Text>It's nice to see you!</Text>
-   </View>
- );
-
- export default Hello;
-```
-
-If we rerun our test, we get this error:
-
-```bash
-Method “props” is only meant to be run on a single node. 2 found instead.
-
-   7 |   it('displays the passed-in name', () => {
-   8 |     const wrapper = shallow(<Hello name="world" />);
->  9 |     expect(wrapper.find('Text').props().children.join('')).toEqual('Hello, world!');
-     |                                 ^
-  10 |   });
-  11 | });
-```
-
-Our test was coupled to the fact that there would only be one Test element, so now that we added another one, it broke.
-
-This isn't something our test should care about. Really, it just wants to be able to find the hello message. We can accomplish this by adding a `testID` prop to the element:
-
-```diff
-   <View>
--    <Text>Hello, {name}!</Text>
-+    <Text testID="greeting">Hello, {name}!</Text>
-     <Text>It's nice to see you!</Text>
-   </View>
-```
-
-Next, we change our test to find a component by `testID`:
-
-```diff
- it('displays the passed-in name', () => {
-   const wrapper = shallow(<Hello name="world" />);
-+  const greeting = wrapper.findWhere(cmp => cmp.props().testID === 'greeting');
-+  expect(greeting.props().children.join('')).toEqual('Hello, world!');
--  expect(wrapper.find('Text').props().children.join('')).toEqual('Hello, world!');
- });
-```
-
-To make our test easier to read, we can extract this lookup function:
-
-```diff
-+function testID(id) {
-+  return cmp => cmp.props().testID === id;
-+}
-
- it('displays the passed-in name', () => {
-   const wrapper = shallow(<Hello name="world" />);
--  const greeting = wrapper.findWhere(cmp => cmp.props().testID === 'greeting');
-+  const greeting = wrapper.findWhere(testID('greeting'));
-   expect(greeting.props().children.join('')).toEqual('Hello, world!');
- });
-```
+- `expect()` creates a Chai expectation to check a condition. `.to.equal()` checks that the two values are equal; in this case, that the element really does contain the string we expect.
 
 ## Interaction
 
