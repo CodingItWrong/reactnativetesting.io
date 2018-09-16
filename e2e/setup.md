@@ -55,14 +55,12 @@ Then add the detox plugin and environment to your ESLint config:
 ```diff
  module.exports = {
    extends: 'airbnb',
-   plugins: [
++  plugins: [
 +    'detox',
-     'jest',
-   ],
-   env: {
++  ],
++  env: {
 +    'detox/detox': true,
-     'jest/globals': true,
-   },
++  },
 ...
 ```
 
