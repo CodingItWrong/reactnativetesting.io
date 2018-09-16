@@ -80,7 +80,7 @@ To confirm it's working, let's write a trivial component and test it.
 
 At the root of your project, create a `Hello.js` file and enter the following contents:
 
-```javascript
+```jsx
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 
@@ -91,7 +91,7 @@ export default Hello;
 
 Next, create a `tests/components` folder, then add a `Hello.spec.js` file in it with the following contents:
 
-```javascript
+```jsx
 import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';

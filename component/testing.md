@@ -26,7 +26,7 @@ export default Hello;
 
 Let's test that it displays the right message when a name is passed in as a prop. Create a file `tests/components/Hello.spec.js` and add the following:
 
-```javascript
+```jsx
 import React from 'react';
 import { shallow } from 'enzyme';
 
@@ -174,7 +174,7 @@ export default class NewMessageForm extends Component {
 
 Let's start by simulating entering text and pressing the button:
 
-```javascript
+```jsx
 import React from 'react';
 import {
   Button,
@@ -218,7 +218,7 @@ The `value` prop of the `TextInput` is what it displays, so we can check that pr
 
 The other thing we want to confirm is that the `onSave` action is called. We can do this using a Jest mock function. A mock function allows us to inspect whether it has been called, and with what arguments.
 
-```javascript
+```jsx
 it('calls the save handler', () => {
   const saveHandler = jest.fn();
   const wrapper = shallow(<NewMessageForm onSave={saveHandler} />);
@@ -232,7 +232,7 @@ it('calls the save handler', () => {
 
 There's a good amount of duplication between our two tests. Let's extract the common setup to a `beforeEach()`. Here's the complete file:
 
-```javascript
+```jsx
 import React from 'react';
 import { shallow } from 'enzyme';
 import NewMessageForm from '../../NewMessageForm';
