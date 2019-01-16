@@ -169,6 +169,31 @@ Run the tests again and they should pass.
 
 For more practice, try writing another `it()` that specifies what happens when there is no street2 value. Try writing another for what the function _should_ do if there is no street1 _or_ street2, to see the tests fail. Update the code to handle that case, rerun the tests, and watch them pass.
 
+## Configuring ESLint
+
+TODO: instructions on installing ESLint
+
+Mocha has a number of globally-available functions, and we've set up Chai and Sinon to use globals as well, so ESLint will complain about these. We can fix this by adding them to the list of globals ESLint will accept:
+
+```diff
+   'es6': true,
+     'node': true,
+   },
++  globals: {
++    'after': true,
++    'afterEach': true,
++    'before': true,
++    'beforeEach': true,
++    'describe': true,
++    'expect': true,
++    'it': true,
++    'sinon': true
++  },
+   rules: {
+     'react/prop-types': 'off',
+   }
+```
+
 ## Learning More
 
 For more details on how to use Mocha, check out the documentation for each of the libraries:

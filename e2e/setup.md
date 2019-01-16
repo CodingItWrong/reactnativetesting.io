@@ -81,15 +81,16 @@ $ yarn add --dev eslint-plugin-detox
 Then add the detox plugin and environment to your ESLint config:
 
 ```diff
- module.exports = {
-   extends: 'airbnb',
+   parser: 'babel-eslint',
 +  plugins: [
 +    'detox',
 +  ],
-+  env: {
+   env: {
+     'browser': true,
 +    'detox/detox': true,
-+  },
-...
+     'es6': true,
+     'node': true,
+   },
 ```
 
 ## Smoke Test
