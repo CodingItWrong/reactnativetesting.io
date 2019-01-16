@@ -12,7 +12,7 @@ $ yarn add --dev enzyme \
                  @jonny/react-native-mock
 ```
 
-Now that these packages are installed, we need to configure them to work together. In your `tests/setup.js` file, add the following:
+Now that these packages are installed, we need to configure them to work together. In your `test/setup.js` file, add the following:
 
 ```diff
  import chai from 'chai';

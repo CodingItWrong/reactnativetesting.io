@@ -142,7 +142,7 @@ function formatAddress(address) {
 export default formatAddress;
 ```
 
-Create a `tests/unit/formatAddress.spec.js` file and add the following:
+Create a `test/unit/formatAddress.spec.js` file and add the following:
 
 ```javascript
 import formatAddress from "../../formatAddress";
@@ -170,8 +170,6 @@ Run the tests again and they should pass.
 For more practice, try writing another `it()` that specifies what happens when there is no street2 value. Try writing another for what the function _should_ do if there is no street1 _or_ street2, to see the tests fail. Update the code to handle that case, rerun the tests, and watch them pass.
 
 ## Configuring ESLint
-
-TODO: instructions on installing ESLint
 
 Mocha has a number of globally-available functions, and we've set up Chai and Sinon to use globals as well, so ESLint will complain about these. We can fix this by adding them to the list of globals ESLint will accept:
 

@@ -24,7 +24,7 @@ const Hello = ({ name }) => (
 export default Hello;
 ```
 
-Let's test that it displays the right message when a name is passed in as a prop. Create a file `tests/components/Hello.spec.js` and add the following:
+Let's test that it displays the right message when a name is passed in as a prop. Create a file `test/components/Hello.spec.js` and add the following:
 
 ```jsx
 import React from 'react';
@@ -142,7 +142,7 @@ Now we need to actually check that the message field is cleared.
    wrapper.findWhere(testID('messageText')).simulate('changeText', 'Hello world');
    wrapper.findWhere(testID('saveButton')).simulate('press');
 +
-+  expect(wrapper.findWhere(testID('messageText')).props().value).toEqual('');
++  expect(wrapper.findWhere(testID('messageText')).props().value).to.equal('');
  });
 ```
 
