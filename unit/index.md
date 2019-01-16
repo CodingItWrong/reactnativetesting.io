@@ -6,13 +6,13 @@ The phrase "unit testing" is used to mean a lot of different things by a lot of 
 
 React Native CLI installs the Jest testing framework by default, but in the last few versions of React Native it's had some stability issues.
 
-Instead, we'll use the Mocha test framework. Its syntax is very similar to Jest. It takes a little work to set up, but it's worth it!
+Instead, we'll use the [Mocha][mocha] test framework. Its syntax is very similar to Jest. It takes a little work to set up, but it's worth it!
 
 ## Removing Jest
 
 First, let's remove Jest since we won't be using it. If you're using Expo Jest is not installed by default. If you're using React Native CLI, run the following:
 
-```
+```sh
 $ yarn remove jest babel-jest
 ```
 
@@ -20,8 +20,7 @@ Then, remove the following config and script from `package.json`:
 
 ```diff
    "scripts": {
--    "start": "node node_modules/react-native/local-cl
-i/cli.js start",
+-    "start": "node node_modules/react-native/local-cli/cli.js start",
 -    "test": "jest"
 +    "start": "node node_modules/react-native/local-cli/cli.js start"
    },
@@ -38,14 +37,14 @@ i/cli.js start",
 
 Mocha's ecosystem is split into several separate packages. We'll install the following, which are typically used together:
 
-- Mocha, the test runner
-- Chai, the assertion library
-- Sinon, the test double library
+- [Mocha][mocha], the test runner
+- [Chai][chai], the assertion library
+- [Sinon][sinon], the test double library
 - `sinon-chai`, which allows for running more readable expectations against Sinon test doubles
 
 Install all of them:
 
-```
+```sh
 $ yarn add --dev mocha \
                  chai \
                  sinon \
@@ -172,4 +171,12 @@ For more practice, try writing another `it()` that specifies what happens when t
 
 ## Learning More
 
-For more details on how to use Jest, check out [the Jest web site][jest].
+For more details on how to use Mocha, check out the documentation for each of the libraries:
+
+- [Mocha][mocha]
+- [Chai][chai]
+- [Sinon][sinon]
+
+[mocha]: https://mochajs.org/#table-of-contents
+[chai]: https://www.chaijs.com/guide/
+[sinon]: https://sinonjs.org/#get-started
