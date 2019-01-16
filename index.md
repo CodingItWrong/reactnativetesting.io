@@ -13,7 +13,7 @@ Learn how to test your React Native app with a combination of unit, component, a
         <h5 class="card-title">
           <a href="/unit">Unit Tests</a>
         </h5>
-        <div>Individual functions and plain JavaScript objects, using Jest</div>
+        <div>Individual functions and plain JavaScript objects, using Mocha</div>
       </div>
     </div>
   </div>
