@@ -2,43 +2,9 @@
 title: Enzyme Setup
 ---
 
-To use Enzyme with React Native 0.56, we need to switch from the Jest test runner that comes pre-installed with React Native to another test runner, Mocha. Jest has some issues that prevent it from running in React Native 0.56.
+We'll be using Enzyme with the Mocha test runner. If you haven't already, [install Mocha](/unit).
 
-So let's uninstall Jest:
-
-```bash
-$ yarn remove jest babel-jest
-```
-
-Let's also remove Jest-related configuration from `package.json`:
-
-```diff
-   "scripts": {
--    "start": "node node_modules/react-native/local-cli/cli.js start",
--    "test": "jest"
-+    "start": "node node_modules/react-native/local-cli/cli.js start"
-   },
-   "dependencies": {
-     "react": "16.4.1",
-     "react-native": "0.56.1"
-   },
-   "devDependencies": {
-     "babel-preset-react-native": "^5",
-     "react-test-renderer": "16.4.1"
--  },
--  "jest": {
--    "preset": "react-native"
-   }
- }
-```
-
-Next, let's install Mocha and its related testing packages:
-
-```bash
-$ yarn add --dev mocha chai sinon sinon-chai
-```
-
-Now we'll add Enzyme to enable component testing:
+Now we'll add Enzyme and a few related packages to enable component testing:
 
 ```bash
 $ yarn add --dev enzyme \
@@ -46,33 +12,24 @@ $ yarn add --dev enzyme \
                  @jonny/react-native-mock
 ```
 
-Now that these packages are installed, we need to configure them to work together. Create a tests/setup.js script and add the following:
+Now that these packages are installed, we need to configure them to work together. In your `tests/setup.js` file, add the following:
 
-```javascript
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import '@jonny/react-native-mock/mock';
-import chai from 'chai';
-import sinonChai from 'sinon-chai';
+```diff
+ import chai from 'chai';
+ import sinon from 'sinon';
+ import sinonChai from 'sinon-chai';
++import Enzyme from 'enzyme';
++import Adapter from 'enzyme-adapter-react-16';
++import '@jonny/react-native-mock/mock';
 
-Enzyme.configure({ adapter: new Adapter() });
-chai.use(sinonChai);
+ global.sinon = sinon;
+ chai.use(sinonChai);
++Enzyme.configure({ adapter: new Adapter() });
 ```
 
 This does the following:
 - Loads `@jonny/react-native-mock` so we can access React Native APIs in component tests
-- Configure Enzyme to work with React 16
-- Configure Chai to use the sinon-chai assertion library
-
-Next, we'll set up a `test` command that will run Mocha with the appropriate setup:
-
-```diff
-   "scripts": {
--    "start": "node node_modules/react-native/local-cli/cli.js start"
-+    "start": "node node_modules/react-native/local-cli/cli.js start",
-+    "test": "mocha --require @babel/register --require tests/setup.js tests/**/*.spec.js"
-   },
-```
+- Configures Enzyme to work with React 16
 
 ## Smoke Test
 
@@ -89,10 +46,9 @@ const Hello = () => <Text>Hello, world!</Text>;
 export default Hello;
 ```
 
-Next, create a `tests/components` folder, then add a `Hello.spec.js` file in it with the following contents:
+Next, create a `test/components` folder, then add a `Hello.spec.js` file in it with the following contents:
 
 ```jsx
-import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
 import Hello from '../../Hello';
@@ -105,21 +61,23 @@ describe('Hello', () => {
 });
 ```
 
-Run your tests with `yarn test`. You should see the following output:
+Run your tests with `yarn test`. If you added the unit smoke test as well as the component smoke test, you should see the following output:
 
 ```bash
 $ yarn test
-yarn run v1.9.4
-$ mocha --require @babel/register --require tests/setup.js tests/**/*.spec.js
+yarn run v1.13.0
+$ mocha "test/**/*.spec.js"
 
 
   Hello
+
     ✓ renders the correct message
 
+  truth
+    ✓ is true
 
-  1 passing (16ms)
 
-✨  Done in 1.26s.
+  2 passing (32ms)
 ```
 
 [enzyme]: http://airbnb.io/enzyme/
