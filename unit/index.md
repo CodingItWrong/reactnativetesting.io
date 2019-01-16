@@ -122,9 +122,9 @@ $ mocha "test/**/*.spec.js"
 
 ## Testing a Function
 
-TODO: update to Mocha
-
 Let's create a more realistic example. Say we need to format a US address. Instead of putting this function directly in a React Native component, we can make it a standalone function. This will keep our component source code simpler, and it will also make the function easier to test.
+
+Create a `formatAddress.js` at the root of your project and add the following:
 
 ```javascript
 function formatAddress(address) {
@@ -160,7 +160,7 @@ describe("formatAddress", () => {
     const result = formatAddress(addressObject);
     const expected = "123 Main Street\nApartment 456\nAtlanta, GA 30307";
 
-    expect(result).toEqual(expected);
+    expect(result).to.equal(expected);
   });
 });
 ```
