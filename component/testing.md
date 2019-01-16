@@ -125,7 +125,7 @@ describe('NewMessageForm', () => {
 
   describe('clicking save', () => {
     it('clears the message field', () => {
-      const wrapper = shallow(<NewMessageForm onSave={saveHandler} />);
+      const wrapper = shallow(<NewMessageForm />);
 
       wrapper.findWhere(testID('messageText')).simulate('changeText', 'Hello world');
       wrapper.findWhere(testID('saveButton')).simulate('press');
@@ -154,13 +154,13 @@ The other thing we want to confirm is that the `onSave` action is called. We can
 
 ```jsx
 it('calls the save handler', () => {
-  const saveHandler = jest.fn();
+  const saveHandler = sinon.spy();
   const wrapper = shallow(<NewMessageForm onSave={saveHandler} />);
 
   wrapper.findWhere(testID('messageText')).simulate('changeText', messageText);
   wrapper.findWhere(testID('saveButton')).simulate('press');
 
-  expect(saveHandler).toHaveBeenCalledWith(messageText);
+  expect(saveHandler).to.have.been.calledWith(messageText);
 });
 ```
 
@@ -183,7 +183,7 @@ describe('NewMessageForm', () => {
     let saveHandler;
 
     beforeEach(() => {
-      saveHandler = jest.fn();
+      saveHandler = sinon.spy();
       wrapper = shallow(<NewMessageForm onSave={saveHandler} />);
 
       wrapper.findWhere(testID('messageText')).simulate('changeText', messageText);
@@ -191,11 +191,11 @@ describe('NewMessageForm', () => {
     });
 
     it('clears the message field', () => {
-      expect(wrapper.findWhere(testID('messageText')).props().value).toEqual('');
+      expect(wrapper.findWhere(testID('messageText')).props().value).to.equal('');
     });
 
     it('calls the save handler', () => {
-      expect(saveHandler).toHaveBeenCalledWith(messageText);
+      expect(saveHandler).to.have.been.calledWith(messageText);
     });
   });
 });
