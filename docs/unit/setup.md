@@ -142,3 +142,7 @@ Mocha has a number of globally-available functions, and we've set up Chai and Si
      'react/prop-types': 'off',
    }
 ```
+
+[mocha]: https://mochajs.org/#table-of-contents
+[chai]: https://www.chaijs.com/guide/
+[sinon]: https://sinonjs.org/#get-started
