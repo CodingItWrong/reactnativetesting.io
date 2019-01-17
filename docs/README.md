@@ -1,7 +1,7 @@
 ---
 home: true
 actionText: Get Started →
-actionLink: /unit/setup
+actionLink: /unit/intro.html
 features:
 - title: Unit Tests
   details: Individual functions and plain JavaScript objects, using Mocha.
