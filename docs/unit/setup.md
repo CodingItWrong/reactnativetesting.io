@@ -122,7 +122,55 @@ $ mocha "test/**/*.spec.js"
 
 ## Configuring ESLint
 
-Mocha has a number of globally-available functions, and we've set up Chai and Sinon to use globals as well, so ESLint will complain about these. We can fix this by adding them to the list of globals ESLint will accept:
+Mocha has a number of globally-available functions, and we've set up Chai and Sinon to use globals as well, so ESLint will complain about these. We need to configure ESLint to accept them.
+
+If you aren't already using ESLint in your project, it's easy to install in a React Native project. Add the following packages:
+
+```sh
+yarn add -D eslint \
+            babel-eslint \
+            eslint-config-codingitwrong \
+            eslint-plugin-import \
+            eslint-plugin-jsx-a11y \
+            eslint-plugin-react
+```
+
+Then create an `.eslintrc.js` file at the root of your project and add the following:
+
+```js
+module.exports = {
+  extends: [
+    'plugin:react/recommended',
+    'codingitwrong',
+  ],
+  settings: {
+    react: {
+      version: '16.5',
+    },
+  },
+  parser: 'babel-eslint',
+  env: {
+    'browser': true,
+    'es6': true,
+    'node': true,
+  },
+  rules: {
+    'react/prop-types': 'off',
+  }
+};
+```
+
+Most code editors can be configured to run ESLint rules as you edit. You can also add an NPM script to do so:
+
+```diff
+   "scripts": {
+     "start": "node node_modules/react-native/local-cli/cli.js start",
++    "lint": "eslint \"**/*.js\"",
+     "test": "jest"
+   },
+```
+
+To configure ESLint to allow Mocha's globals, add them to the list of globals ESLint will accept:
 
 ```diff
    'es6': true,
