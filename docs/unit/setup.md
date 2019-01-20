@@ -173,7 +173,7 @@ Most code editors can be configured to run ESLint rules as you edit. You can als
 To configure ESLint to allow Mocha's globals, add them to the list of globals ESLint will accept:
 
 ```diff
-   'es6': true,
+     'es6': true,
      'node': true,
    },
 +  globals: {
