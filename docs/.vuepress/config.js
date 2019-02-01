@@ -28,6 +28,7 @@ module.exports = {
           '/e2e/intro',
           '/e2e/setup',
           '/e2e/testing',
+          '/e2e/external-services',
           '/e2e/learning-more',
         ],
       },
