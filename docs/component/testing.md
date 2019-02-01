@@ -2,6 +2,8 @@
 title: Testing Components
 ---
 
+# Testing Components
+
 Let's talk about the different features Enzyme offers for testing components.
 
 ## Testing Text

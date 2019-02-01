@@ -2,6 +2,8 @@
 title: Setting Up Enzyme
 ---
 
+# Setting Up Enzyme
+
 ## Installing Enzyme
 
 We'll be using Enzyme with the Mocha test runner. If you haven't already, [install Mocha](/unit/setup.html).

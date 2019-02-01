@@ -2,6 +2,8 @@
 title: Setting Up Detox
 ---
 
+# Setting Up Detox
+
 ## Installing Detox
 
 First, let's install the global Detox CLI tool:
