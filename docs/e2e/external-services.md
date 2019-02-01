@@ -15,9 +15,7 @@ So how can you gain confidence that your app works against the real service? Her
 
 ## Faking External Services
 
-We don't need to rely on any special libraries to fake external connections; it's easy to write ourselves.
-
-To create a fake, we just create functions or objects that expose the same interface to the rest of the app, but use hard-coded in-memory data instead.
+We don't need to rely on any special libraries to fake external connections; it's easy to write ourselves. As an additional benefit, this approach nudges our app to be less coupled to specifics of third-party libraries. Let's see how.
 
 Say our app has an `api.js` file that configures an instance of [Axios][axios], a popular HTTP client:
 
@@ -49,7 +47,7 @@ class WidgetContainer extends React.Component {
 }
 ```
 
-How can we fake this out?
+How can we fake out this client? We just create another module that exposes the same interface to the rest of the app, but uses hard-coded in-memory data instead. Let's see how.
 
 First let's create a fake, then wire it up. Make an `api` folder and create a `fake.js` in it. Add the following:
 
