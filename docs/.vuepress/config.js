@@ -27,6 +27,7 @@ module.exports = {
         children: [
           '/e2e/intro',
           '/e2e/setup',
+          '/e2e/testing',
           '/e2e/learning-more',
         ],
       },
