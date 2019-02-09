@@ -85,7 +85,9 @@ OK, now if we hook up this fake service it will return hard-coded data instead o
 
 Next, how can we hook our fake up to our app? We need some way to use our real service during development and production, but our fake service during testing. Let's set up the plumbing for that first, then figure out how to set that flag.
 
-Move `api.js` into the api folder and rename it to `remote.js`. Now in api create an `index.js` and add the following:
+Move `api.js` into the api folder and rename it to `remote.js`. Now in api create an `index.js` in it. Metro Bundler handles index files the way many other bundlers do: the import path `./api` will match either `./api.js` or `./api/index.js`. This means you don't even need to make changes to the import statements in the rest of your app; you can just expand the one `api.js` file into a directory.
+
+In `index.js`, add the following:
 
 ```js
 import fake from './fake';
