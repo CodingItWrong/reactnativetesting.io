@@ -1,106 +1,46 @@
 ---
-title: Setting Up Mocha
+title: Setting Up Jest
 ---
 
-# Setting Up Mocha
+# Setting Up Jest
 
-React Native CLI installs the Jest testing framework by default, but in the last few versions of React Native it's had some stability issues.
+React Native CLI installs the [Jest][jest] testing framework by default, but if you're using [Expo][expo] we need to install it manually.
 
-Instead, we'll use the [Mocha][mocha] test framework. Its syntax is very similar to Jest. It takes a little work to set up, but it's worth it!
+## Installing Jest
 
-## Removing Jest
+There is an Expo-specific Jest package we can use:
 
-First, let's remove Jest since we won't be using it. If you're using Expo Jest is not installed by default. If you're using React Native CLI, run the following:
-
-```sh
-$ yarn remove jest babel-jest
+```bash
+$ yarn add --dev jest-expo
 ```
 
-Then, remove the following config and script from `package.json`:
+Add the following to `package.json`:
 
 ```diff
-   "scripts": {
--    "start": "node node_modules/react-native/local-cli/cli.js start",
--    "test": "jest"
-+    "start": "node node_modules/react-native/local-cli/cli.js start"
+     "android": "expo start --android",
+     "ios": "expo start --ios",
++    "test": "jest",
+     "eject": "expo eject"
    },
 ...
-     "metro-react-native-babel-preset": "0.51.1",
-     "react-test-renderer": "16.6.3"
--  },
--  "jest": {
--    "preset": "react-native"
-   }
-```
-
-## Installing Mocha
-
-Mocha's ecosystem is split into several separate packages. We'll install the following, which are typically used together:
-
-- [Mocha][mocha], the test runner
-- [Chai][chai], the assertion library
-- [Sinon][sinon], the test double library
-- `sinon-chai`, which allows for running more readable expectations against Sinon test doubles
-
-Install all of them:
-
-```sh
-$ yarn add --dev mocha \
-                 chai \
-                 sinon \
-                 sinon-chai
-```
-
-Next, add an NPM script to run mocha:
-
-```diff
-   "scripts": {
--    "start": "node node_modules/react-native/local-cli/cli.js start"
-+    "start": "node node_modules/react-native/local-cli/cli.js start",
-+    "test": "mocha \"test/**/*.spec.js\""
+     "jest-expo": "^31.0.0"
    },
++  "jest": {
++    "preset": "jest-expo"
++  },
+   "private": true
 ```
-
-Create a `test` folder at the root of your project, then add a `mocha.opts` file to configure mocha. Add the following to it:
-
-```sh
---require @babel/register
---require chai/register-expect
---require test/setup
-```
-
-These flags do the following:
-
-- Enables Babel transpilation so you can use modern JS features
-- Sets up the `expect()` function so you can use it in any file without importing it
-- Loads a custom `setup.js` file you'll create for additional setup
-
-Let's create that `test/setup.js` file now and add the following:
-
-```js
-import chai from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
-
-global.sinon = sinon;
-chai.use(sinonChai);
-```
-
-This does the following:
-
-- Makes `sinon` available globally so you don't need to import it
-- Loads `sinon-chai` so you can do more readable assertions against Sinon test doubles
 
 With this, our setup should be done.
 
 ## Smoke Test
 
-To confirm Mocha is working, create a `test/unit` folder, then create a `test/unit/smoke.spec.js` file. Add the following contents:
+To confirm Jest is working, create a `__tests__/unit` folder, then create a `__tests__/unit/smoke.spec.js` file. Add the following contents:
 
 ```javascript
-describe("truth", () => {
-  it("is true", () => {
-    expect(true).to.equal(true);
+describe('truth', () => {
+  it('is true', () => {
+    expect(true).toEqual(true);
   });
 });
 ```
@@ -108,31 +48,35 @@ describe("truth", () => {
 Run the tests with `yarn test`. You should see output like the following:
 
 ```bash
-$ yarn test
+# yarn test
 yarn run v1.13.0
-$ mocha "test/**/*.spec.js"
-
-
+$ jest
+ PASS  __tests__/unit/smoke.spec.js
   truth
-    ✓ is true
+    ✓ is true (3ms)
 
-
-  1 passing (29ms)
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        3.662s
+Ran all test suites matching /__tests__\/unit\/smoke.spec.js/i.
+✨  Done in 9.35s.
 ```
 
 ## Configuring ESLint
 
-Mocha has a number of globally-available functions, and we've set up Chai and Sinon to use globals as well, so ESLint will complain about these. We need to configure ESLint to accept them.
+Jest has a number of globally-available functions, so if you're using [ESLint][eslint], it will complain about these. We need to configure ESLint to accept them.
 
 If you aren't already using ESLint in your project, it's easy to install in a React Native project. Add the following packages:
 
 ```sh
-yarn add -D eslint \
-            babel-eslint \
-            eslint-config-codingitwrong \
-            eslint-plugin-import \
-            eslint-plugin-jsx-a11y \
-            eslint-plugin-react
+yarn add --dev eslint \
+               babel-eslint \
+               eslint-config-codingitwrong \
+               eslint-plugin-import \
+               eslint-plugin-jest \
+               eslint-plugin-jsx-a11y \
+               eslint-plugin-react
 ```
 
 Then create an `.eslintrc.js` file at the root of your project and add the following:
@@ -149,9 +93,13 @@ module.exports = {
     },
   },
   parser: 'babel-eslint',
+  plugins: [
+    'jest',
+  ],
   env: {
     'browser': true,
     'es6': true,
+    'jest/globals': true,
     'node': true,
   },
   rules: {
@@ -170,27 +118,6 @@ Most code editors can be configured to run ESLint rules as you edit. You can als
    },
 ```
 
-To configure ESLint to allow Mocha's globals, add them to the list of globals ESLint will accept:
-
-```diff
-     'es6': true,
-     'node': true,
-   },
-+  globals: {
-+    'after': true,
-+    'afterEach': true,
-+    'before': true,
-+    'beforeEach': true,
-+    'describe': true,
-+    'expect': true,
-+    'it': true,
-+    'sinon': true
-+  },
-   rules: {
-     'react/prop-types': 'off',
-   }
-```
-
-[mocha]: https://mochajs.org/#table-of-contents
-[chai]: https://www.chaijs.com/guide/
-[sinon]: https://sinonjs.org/#get-started
+[eslint]: https://eslint.org/
+[expo]: https://expo.io/
+[jest]: https://jestjs.io/

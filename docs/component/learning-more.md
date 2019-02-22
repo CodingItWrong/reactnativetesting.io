@@ -4,8 +4,6 @@ title: Learning More
 
 # Learning More
 
-- For more details on how to use Enzyme, check out [the Enzyme web site][enzyme].
-- Jack Franklin has an excellent [video course on Testing React with Enzyme and Jest][testing-react-enzyme]. It's for React Web, but the principles apply exactly to React Native as well. The first five videos are free.
+To learn more about how to use react-native-testing-library, check out [the react-native-testing-library web site][react-native-testing-library].
 
-[enzyme]: http://airbnb.io/enzyme/
-[testing-react-enzyme]: https://javascriptplayground.com/testing-react-enzyme-jest/
+[react-native-testing-library]: https://github.com/callstack/react-native-testing-library

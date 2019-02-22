@@ -27,10 +27,10 @@ $ yarn add --dev detox-expo-helpers \
                  expo-detox-hook
 ```
 
-Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Mocha as the test runner.
+Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner.
 
 ```bash
-$ detox init -r mocha
+$ detox init -r jest
 ```
 
 After this, we need to add some extra config for Detox to our `package.json`. If using Expo, use the following:
@@ -39,8 +39,8 @@ After this, we need to add some extra config for Detox to our `package.json`. If
  {
    ...
    "detox": {
--    "test-runner": "mocha"
-+    "test-runner": "mocha",
+-    "test-runner": "jest"
++    "test-runner": "jest",
 +    "configurations": {
 +      "ios.sim": {
 +        "binaryPath": "bin/Exponent.app",
@@ -58,8 +58,8 @@ If using React Native CLI, use the following, replacing `YourAppName` with the n
  {
    ...
    "detox": {
--    "test-runner": "mocha"
-+    "test-runner": "mocha",
+-    "test-runner": "jest"
++    "test-runner": "jest",
 +    "configurations": {
 +      "ios.sim.debug": {
 +        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YourAppName.app",
@@ -86,13 +86,15 @@ Then add the detox plugin and environment to your ESLint config:
 
 ```diff
    parser: 'babel-eslint',
-+  plugins: [
+   plugins: [
 +    'detox',
-+  ],
+     'jest',
+   ],
    env: {
      'browser': true,
 +    'detox/detox': true,
      'es6': true,
+     'jest/globals': true,
      'node': true,
    },
 ```
@@ -116,13 +118,13 @@ First, add a `testID` prop to an element in `App.js` so Detox can find it:
 Then open the `firstTest.spec.js` that `detox init` generated. Replace the contents with the following:
 
 ```javascript
-describe("App", () => {
+describe('App', () => {
   beforeEach(async () => {
     await device.reloadReactNative();
   });
 
-  it("should show the welcome message", async () => {
-    await expect(element(by.id("welcome"))).toBeVisible();
+  it('should show the welcome message', async () => {
+    await expect(element(by.id('welcome'))).toBeVisible();
   });
 });
 ```
@@ -154,14 +156,17 @@ $ detox test
 You should see the following output:
 
 ```bash
-$ detox test
-node_modules/.bin/mocha e2e --opts e2e/mocha.opts --configuration ios.sim.debug     --grep :android: --invert     --artifacts-location "artifacts/ios.sim.debug.2018-08-03 11:09:13Z"
+detox[87254] INFO:  [DetoxServer.js] server listening on localhost:63646...
+detox[87254] INFO:  [AppleSimUtils.js] org.reactjs.native.example.CLIJestTest launched. The stdout and stderr logs were recreated, you can watch them with:
+        tail -F /Users/josh/Library/Developer/CoreSimulator/Devices/638CF558-A2B2-4C27-9C8D-7DB5E348E5D8/data/tmp/detox.last_launch_app_log.{out,err}
+ PASS  e2e/firstTest.spec.js (13.513s)
+  App
 
-*snip*
+    ✓ should show the welcome message (930ms)
 
-Example
-  ✓ should show the welcome message (264ms)
-
-
-1 passing (1m)
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        13.646s, estimated 55s
+Ran all test suites matching /e2e/i with tests matching "^((?!:android:).)*$".
 ```

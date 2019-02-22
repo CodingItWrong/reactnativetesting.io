@@ -1,39 +1,19 @@
 ---
-title: Setting Up Enzyme
+title: Setting Up React-Native-Testing-Library
 ---
 
-# Setting Up Enzyme
+# Setting Up React-Native-Testing-Library
 
-## Installing Enzyme
+## Installing React-Native-Testing-Library
 
-We'll be using Enzyme with the Mocha test runner. If you haven't already, [install Mocha](/unit/setup.html).
+We'll be using react-native-testing-library with the Jest test runner. If you haven't already, [set up Jest](/unit/setup.html).
 
-Now we'll add Enzyme and a few related packages to enable component testing:
+Now we'll add react-native-testing-library and one dependency:
 
 ```bash
-$ yarn add --dev enzyme \
-                 enzyme-adapter-react-16 \
-                 @jonny/react-native-mock
+$ yarn add --dev react-native-testing-library \
+                 react-test-renderer
 ```
-
-Now that these packages are installed, we need to configure them to work together. In your `test/setup.js` file, add the following:
-
-```diff
- import chai from 'chai';
- import sinon from 'sinon';
- import sinonChai from 'sinon-chai';
-+import Enzyme from 'enzyme';
-+import Adapter from 'enzyme-adapter-react-16';
-+import '@jonny/react-native-mock/mock';
-
- global.sinon = sinon;
- chai.use(sinonChai);
-+Enzyme.configure({ adapter: new Adapter() });
-```
-
-This does the following:
-- Loads `@jonny/react-native-mock` so we can access React Native APIs in component tests
-- Configures Enzyme to work with React 16
 
 ## Smoke Test
 
@@ -50,17 +30,17 @@ const Hello = () => <Text>Hello, world!</Text>;
 export default Hello;
 ```
 
-Next, create a `test/components` folder, then add a `Hello.spec.js` file in it with the following contents:
+Next, create a `__tests__/components` folder, then add a `Hello.spec.js` file in it with the following contents:
 
 ```jsx
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-native-testing-library';
 import Hello from '../../Hello';
 
 describe('Hello', () => {
   it('renders the correct message', () => {
-    const wrapper = shallow(<Hello />);
-    expect(wrapper.contains('Hello, world!')).to.be.true;
+    const { queryByText } = render(<Hello />);
+    expect(queryByText('Hello, world!')).not.toBeNull();
   });
 });
 ```
@@ -68,20 +48,16 @@ describe('Hello', () => {
 Run your tests with `yarn test`. If you added the unit smoke test as well as the component smoke test, you should see the following output:
 
 ```bash
-$ yarn test
-yarn run v1.13.0
-$ mocha "test/**/*.spec.js"
+jest
+ PASS  __tests__/unit/smoke.spec.js
+ PASS  __tests__/unit/formatAddress.spec.js
+ PASS  __tests__/App.js
+ PASS  __tests__/components/Hello.spec.js
 
-
-  Hello
-
-    ✓ renders the correct message
-
-  truth
-    ✓ is true
-
-
-  2 passing (32ms)
+Test Suites: 4 passed, 4 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        3.781s
+Ran all test suites.
+✨  Done in 4.70s.
 ```
-
-[enzyme]: http://airbnb.io/enzyme/

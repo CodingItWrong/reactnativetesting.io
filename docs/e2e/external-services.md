@@ -162,7 +162,7 @@ When running your app, the `.env` file will be used by default, which will load 
 
 ```diff
  "detox": {
-   "test-runner": "mocha",
+   "test-runner": "jest",
    "configurations": {
      "ios.sim.debug": {
        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/MyApp.app",

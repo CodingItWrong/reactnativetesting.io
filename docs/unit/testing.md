@@ -24,25 +24,25 @@ function formatAddress(address) {
 export default formatAddress;
 ```
 
-Create a `test/unit/formatAddress.spec.js` file and add the following:
+Create a `__tests__/unit/formatAddress.spec.js` file and add the following:
 
 ```javascript
-import formatAddress from "../../formatAddress";
+import formatAddress from '../../formatAddress';
 
-describe("formatAddress", () => {
-  it("returns the formatted address", () => {
+describe('formatAddress', () => {
+  it('returns the formatted address', () => {
     const addressObject = {
-      street1: "123 Main Street",
-      street2: "Apartment 456",
-      city: "Atlanta",
-      state: "GA",
-      zip: "30307"
+      street1: '123 Main Street',
+      street2: 'Apartment 456',
+      city: 'Atlanta',
+      state: 'GA',
+      zip: '30307',
     };
 
     const result = formatAddress(addressObject);
-    const expected = "123 Main Street\nApartment 456\nAtlanta, GA 30307";
+    const expected = '123 Main Street\nApartment 456\nAtlanta, GA 30307';
 
-    expect(result).to.equal(expected);
+    expect(result).toEqual(expected);
   });
 });
 ```
