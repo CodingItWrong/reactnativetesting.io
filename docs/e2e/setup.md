@@ -45,7 +45,7 @@ After this, we need to add some extra config for Detox to our `package.json`. If
 +      "ios.sim": {
 +        "binaryPath": "bin/Exponent.app",
 +        "type": "ios.simulator",
-+        "name": "iPhone 7"
++        "name": "iPhone 8"
 +      }
 +    }
    }
