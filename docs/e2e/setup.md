@@ -4,6 +4,8 @@ title: Setting Up Detox
 
 # Setting Up Detox
 
+These instructions will cover setting up Detox with React Native CLI. If you're using Expo, Detox does provide [instructions for using Detox with Expo](https://github.com/wix/Detox/blob/master/docs/Guide.Expo.md), but I've had inconsistent results getting it to work.
+
 ## Installing Detox
 
 First, let's install the global Detox CLI tool:
@@ -20,39 +22,13 @@ Next, we need to add Detox as a dependency to our project. Detox can use either 
 $ yarn add --dev detox
 ```
 
-If your app is an Expo app, a few other packages are also needed for Detox to work with it:
-
-```bash
-$ yarn add --dev detox-expo-helpers \
-                 expo-detox-hook
-```
-
 Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner.
 
 ```bash
 $ detox init -r jest
 ```
 
-After this, we need to add some extra config for Detox to our `package.json`. If using Expo, use the following:
-
-```diff
- {
-   ...
-   "detox": {
--    "test-runner": "jest"
-+    "test-runner": "jest",
-+    "configurations": {
-+      "ios.sim": {
-+        "binaryPath": "bin/Exponent.app",
-+        "type": "ios.simulator",
-+        "name": "iPhone 8"
-+      }
-+    }
-   }
- }
-```
-
-If using React Native CLI, use the following, replacing `YourAppName` with the name of the app you entered:
+After this, we need to add some extra config for Detox to our `package.json`. Add the following, replacing `YourAppName` with the name of the app you entered:
 
 ```diff
  {
@@ -63,7 +39,7 @@ If using React Native CLI, use the following, replacing `YourAppName` with the n
 +    "configurations": {
 +      "ios.sim.debug": {
 +        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YourAppName.app",
-+        "build": "xcodebuild -project ios/YourAppName.xcodeproj -scheme YourAppName -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
++        "build": "xcodebuild -project ios/YourAppName.xcodeproj -scheme YourAppName -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
 +        "type": "ios.simulator",
 +        "name": "iPhone 8"
 +      }
@@ -71,8 +47,6 @@ If using React Native CLI, use the following, replacing `YourAppName` with the n
    }
  }
 ```
-
-Finally, if you're using Expo, you need to download a built version of Expo that Detox can use to hook into. Go to [the Expo Tools page](https://expo.io/tools#client) and click the "Download IPA" link. Expand the downloaded archive, then change the name of the folder to "Exponent.app". Create a `bin` folder in your project and move "Exponent.app" into it.
 
 ## Configuring ESLint
 
@@ -127,18 +101,6 @@ describe('App', () => {
     await expect(element(by.id('welcome'))).toBeVisible();
   });
 });
-```
-
-If you're using Expo, you'll need to make a slight tweak to the file to get it to load properly:
-
-```diff
-+ const { reloadApp } = require('detox-expo-helpers');
-+
- describe("App", () => {
-   beforeEach(async () => {
--    await device.reloadReactNative();
-+    await reloadApp();
-   });
 ```
 
 To run this test, start the Metro packager as usual:

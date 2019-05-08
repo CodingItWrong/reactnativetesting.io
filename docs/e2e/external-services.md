@@ -110,11 +110,9 @@ export default api;
 
 If the driver variable is set to "remote" we export the real Axios client; if it's set to "fake" we export the fake one.
 
-Now, how can we switch without having to edit this file? There are two ways to do it, depending on whether you're using React Native CLI or Expo.
+Now, how can we switch without having to edit this file? A package called `react-native-config` will help us set config values.
 
-## CLI: react-native-config
-
-If you're using React Native CLI, you can use a package called [`react-native-config`][react-native-config] to set config values.
+## react-native-config
 
 Install `react-native-config`:
 
@@ -167,7 +165,7 @@ When running your app, the `.env` file will be used by default, which will load 
      "ios.sim.debug": {
        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/MyApp.app",
 -      "build": "xcodebuild -project ios/MyApp.xcodeproj -scheme MyApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
-+      "build": "ENVFILE=.env.detox xcodebuild -project ios/MyApp.xcodeproj -scheme MyApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
++      "build": "ENVFILE=.env.detox xcodebuild -project ios/MyApp.xcodeproj -scheme MyApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
        "type": "ios.simulator",
        "name": "iPhone 8"
     }
@@ -176,43 +174,6 @@ When running your app, the `.env` file will be used by default, which will load 
 ```
 
 Note that, unlike JS files, you can't just reload the app when you change a `.env` file; you need to rebuild the app.
-
-## Expo: manual env file
-
-`react-native-config` doesn't work with Expo because it requires access to the native project. Instead, we'll do something similar manually.
-
-At the root of your project create an `env.js` file:
-
-```js
-export default {
-  apiDriver: 'remote',
-};
-```
-
-Now update `api/index.js` to import that driver value:
-
-```diff
-+import env from '../env';
- import fake from './fake';
- import remote from './remote';
-
--const apiDriver = 'fake';
-+const { apiDriver } = env;
- let api;
-
- switch (apiDriver) {
-   case 'remote':
-     api = remote;
-     break;
-   case 'fake':
-     api = fake;
-     break;
- }
-
- export default api;
-```
-
-To switch between remote and fake APIs, you will need to manually update `env.js`. You may want to add it to your `.gitignore` to prevent committing changes; that way you will need to manually set it up before running.
 
 [axios]: https://github.com/axios/axios
 [react-native-config]: https://github.com/luggit/react-native-config
