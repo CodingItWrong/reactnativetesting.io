@@ -16,7 +16,7 @@ $ brew install --HEAD applesimutils
 $ yarn global add detox-cli
 ```
 
-Next, we need to add Detox as a dependency to our project. Detox can use either Jest or Mocha as a test runner, but we'll use Mocha since we've used it for our other types of test.
+Next, we need to add Detox as a dependency to our project. Detox can use either Jest or Mocha as a test runner, but we'll use Jest since we've used it for our other types of test.
 
 ```bash
 $ yarn add --dev detox
