@@ -109,9 +109,10 @@ To run this test, start the Metro packager as usual:
 $ react-native start
 ```
 
-In another terminal window, run the detox tests with:
+In another terminal window, build the Detox version of the binary, and run the tests:
 
 ```bash
+$ detox build
 $ detox test
 ```
 
