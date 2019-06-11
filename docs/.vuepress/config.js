@@ -1,7 +1,11 @@
 module.exports = {
   title: 'ReactNativeTesting.io',
   description: 'Learn how to test your React Native app with a combination of unit, component, and end-to-end tests.',
-  ga: 'UA-122337453-1',
+  plugins: [
+    ['@vuepress/google-analytics', {
+      ga: 'UA-122337453-1',
+    }],
+  ],
   themeConfig: {
     sidebar: [
       {
