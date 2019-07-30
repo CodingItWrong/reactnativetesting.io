@@ -23,6 +23,7 @@ module.exports = {
           '/component/intro',
           '/component/setup',
           '/component/testing',
+          '/component/lifecycle-and-external-services',
           '/component/learning-more',
         ],
       },
