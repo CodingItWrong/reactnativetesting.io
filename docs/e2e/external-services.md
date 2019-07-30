@@ -2,7 +2,7 @@
 title: External Services
 ---
 
-# Testing with External Services
+# E2E Testing with External Services
 
 **Generally it's better not to hit external services in end-to-end tests**, even external services you own. Instead, **create a fake version of the external services for your tests.** We'll see how to do this below.
 
