@@ -38,6 +38,15 @@ module.exports = {
         ],
       },
       {
+        title: 'Continuous Integration',
+        children: [
+          '/ci/intro',
+          '/ci/github-actions',
+          '/ci/travis-ci',
+          '/ci/circleci',
+        ],
+      },
+      {
         title: 'More Resources',
         children: [
           '/resources/test-pyramid',
