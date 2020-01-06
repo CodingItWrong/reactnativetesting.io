@@ -41,7 +41,9 @@ After this, we need to add some extra config for Detox to our `package.json`. Ad
 +        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YourAppName.app",
 +        "build": "xcodebuild -workspace ios/YourAppName.xcworkspace -scheme YourAppName -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
 +        "type": "ios.simulator",
-+        "name": "iPhone 8"
++        "device": {
++          "type": "iPhone 11 Pro"
++        }
 +      }
 +    }
    }
