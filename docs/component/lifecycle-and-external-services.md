@@ -197,19 +197,24 @@ The logged component tree we get is simply:
 <View />
 ```
 
-Why would that be? Our API is being called and is responding. This is because our test runs on the same tick of the event loop, so React doesn't have time to get the response and render. We need to wait for the next tick. We can do this with `flushMicrotasksQueue()`:
+Why would that be? Our API is being called and is responding. This is because our test runs on the same tick of the event loop, so React doesn't have time to get the response and render. We need to wait for the rerender for the element to be displayed on the screen. We can do this with `waitForElement()` in conjunction with `getByText()`:
 
 ```diff
  import React from 'react';
 -import { render } from 'react-native-testing-library';
-+import { render, flushMicrotasksQueue } from 'react-native-testing-library';
++import { render, waitForElement } from 'react-native-testing-library';
  import WidgetContainer from '../WidgetContainer';
 ...
 
- const { queryByText, debug } = render(<WidgetContainer />);
+-const { queryByText, debug } = render(<WidgetContainer />);
++const { getByText, debug } = render(<WidgetContainer />);
 
-+await flushMicrotasksQueue();
  debug();
+
+-expect(queryByText('Widget 1')).not.toBeNull();
+-expect(queryByText('Widget 2')).not.toBeNull();
++await waitForElement(() => getByText('Widget 1'));
++await waitForElement(() => getByText('Widget 2'));
 ```
 
 To use `await` we also need to change the test function to be an `async` function:
@@ -226,11 +231,10 @@ Now the tests passes. And we can see the output.
 Now that our test is passing we can remove debug and log statements to keep our test output clean.
 
 ```diff
--const { queryByText, debug } = render(<WidgetContainer />);
-+const { queryByText } = render(<WidgetContainer />);
+-const { getByText, debug } = render(<WidgetContainer />);
++const { getByText } = render(<WidgetContainer />);
 
- await flushMicrotasksQueue();
 -debug();
 
- expect(queryByText('Widget 1')).not.toBeNull();
+ await waitForElement(() => getByText('Widget 1'));
 ```
