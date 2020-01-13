@@ -29,12 +29,12 @@ const Hello = () => <Text>Hello, world!</Text>;
 export default Hello;
 ```
 
-Next, create a `__tests__/components` folder, then add a `Hello.spec.js` file in it with the following contents:
+Next, create a `__tests__` folder, then add a `Hello.spec.js` file in it with the following contents:
 
 ```jsx
 import React from 'react';
 import {render} from 'react-native-testing-library';
-import Hello from '../../Hello';
+import Hello from '../Hello';
 
 describe('Hello', () => {
   it('renders the correct message', () => {
@@ -48,10 +48,10 @@ Run your tests with `yarn test`. If you added the unit smoke test as well as the
 
 ```bash
 jest
- PASS  __tests__/unit/smoke.spec.js
- PASS  __tests__/unit/formatAddress.spec.js
+ PASS  __tests__/smoke.spec.js
+ PASS  __tests__/formatAddress.spec.js
  PASS  __tests__/App.js
- PASS  __tests__/components/Hello.spec.js
+ PASS  __tests__/Hello.spec.js
 
 Test Suites: 4 passed, 4 total
 Tests:       4 passed, 4 total

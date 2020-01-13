@@ -29,12 +29,12 @@ const Hello = ({name}) => {
 export default Hello;
 ```
 
-Let's test that it displays the right message when a name is passed in as a prop. Create a file `__tests__/components/Hello.spec.js` and add the following:
+Let's test that it displays the right message when a name is passed in as a prop. Create a file `__tests__/Hello.spec.js` and add the following:
 
 ```jsx
 import React from 'react';
 import {render} from 'react-native-testing-library';
-import Hello from '../../Hello';
+import Hello from '../Hello';
 
 describe('Hello', () => {
   it('displays the passed-in name', () => {
@@ -108,7 +108,7 @@ Let's start by simulating entering text and pressing the button:
 ```jsx
 import React from 'react';
 import {render, fireEvent} from 'react-native-testing-library';
-import NewMessageForm from '../../NewMessageForm';
+import NewMessageForm from '../NewMessageForm';
 
 describe('NewMessageForm', () => {
   describe('clicking send', () => {
@@ -158,7 +158,7 @@ There's a good amount of duplication between our two tests. Let's extract the co
 ```jsx
 import React from 'react';
 import {render, fireEvent} from 'react-native-testing-library';
-import NewMessageForm from '../../NewMessageForm';
+import NewMessageForm from '../NewMessageForm';
 
 describe('NewMessageForm', () => {
   describe('clicking send', () => {
