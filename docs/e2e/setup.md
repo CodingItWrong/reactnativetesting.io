@@ -4,7 +4,7 @@ title: Setting Up Detox
 
 # Setting Up Detox
 
-These instructions will cover setting up Detox with React Native CLI. If you're using Expo, Detox does provide [instructions for using Detox with Expo](https://github.com/wix/Detox/blob/master/docs/Guide.Expo.md), but I've had inconsistent results getting it to work.
+These instructions will cover setting up Detox with React Native CLI. [Detox does not officially support Expo](https://github.com/wix/Detox/blob/master/docs/Guide.Expo.md).
 
 ## Installing Detox
 
