@@ -134,8 +134,6 @@ TypeError: Cannot read property 'then' of undefined
        9 |
       10 |   componentDidMount() {
     > 11 |     return api.get('/widgets').then(response =>
-
- {
 ```
 
 So our call to api.get() returns undefined. This is because `jest.mock()` replaces each functions in the default export object with a mock function that by default returns `undefined`. Since the real `api` returns a promise that resolves, we should set the mocked function to resolve as well.
