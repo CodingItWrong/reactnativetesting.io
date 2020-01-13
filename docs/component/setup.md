@@ -21,8 +21,8 @@ To confirm it's working, let's write a trivial component and test it.
 At the root of your project, create a `Hello.js` file and enter the following contents:
 
 ```jsx
-import React, { Component } from 'react';
-import { Text } from 'react-native';
+import React, {Component} from 'react';
+import {Text} from 'react-native';
 
 const Hello = () => <Text>Hello, world!</Text>;
 
@@ -33,12 +33,12 @@ Next, create a `__tests__/components` folder, then add a `Hello.spec.js` file in
 
 ```jsx
 import React from 'react';
-import { render } from 'react-native-testing-library';
+import {render} from 'react-native-testing-library';
 import Hello from '../../Hello';
 
 describe('Hello', () => {
   it('renders the correct message', () => {
-    const { queryByText } = render(<Hello />);
+    const {queryByText} = render(<Hello />);
     expect(queryByText('Hello, world!')).not.toBeNull();
   });
 });

@@ -9,16 +9,16 @@ We don't test lifecycle methods directly; we test the user-visible results they 
 Say have a component that loads some data from a web service upon mount and displays it:
 
 ```jsx
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {Text, View} from 'react-native';
 import api from './api';
 
 export default class WidgetContainer extends Component {
-  state = { widgets: [] }
+  state = {widgets: []}
 
   componentDidMount() {
     return api.get('/widgets').then(response => {
-      this.setState({ widgets: response.data });
+      this.setState({widgets: response.data});
     });
   }
 
@@ -38,12 +38,12 @@ Here's our initial attempt at a test:
 
 ```js
 import React from 'react';
-import { render } from 'react-native-testing-library';
+import {render} from 'react-native-testing-library';
 import WidgetContainer from '../WidgetContainer';
 
 describe('WidgetContainer', () => {
   it('loads widgets upon mount', () => {
-    const { queryByText } = render(<WidgetContainer />);
+    const {queryByText} = render(<WidgetContainer />);
 
     expect(queryByText('Widget 1')).not.toBeNull();
     expect(queryByText('Widget 2')).not.toBeNull();
@@ -60,7 +60,7 @@ We can confirm this by adding console.log statements:
 +  console.log('sent request');
    return api.get('/widgets').then(response => {
 +    console.log('got response');
-     this.setState({ widgets: response.data });
+     this.setState({widgets: response.data});
    });
  }
 ```
@@ -74,7 +74,7 @@ One way is to make the test wait for some time before it checks:
 ```diff
 -it('loads widgets upon mount', () => {
 +it('loads widgets upon mount', async () => {
-   const { queryByText, debug } = render(<WidgetContainer />);
+   const {queryByText, debug} = render(<WidgetContainer />);
 
 -  expect(queryByText('Widget 1')).not.toBeNull();
 -  expect(queryByText('Widget 2')).not.toBeNull();
@@ -102,12 +102,12 @@ First let's restore our test to before we added the Promise:
 
 ```js
 import React from 'react';
-import { render } from 'react-native-testing-library';
+import {render} from 'react-native-testing-library';
 import WidgetContainer from '../WidgetContainer';
 
 describe('WidgetContainer', () => {
   it('loads widgets upon mount', () => {
-    const { queryByText } = render(<WidgetContainer />);
+    const {queryByText} = render(<WidgetContainer />);
 
     expect(queryByText('Widget 1')).not.toBeNull();
     expect(queryByText('Widget 2')).not.toBeNull();
@@ -144,7 +144,7 @@ So our call to api.get() returns undefined. This is because `jest.mock()` replac
  it('loads widgets upon mount', () => {
 +  api.get.mockResolvedValue();
 +
-   const { queryByText } = render(<WidgetContainer />);
+   const {queryByText} = render(<WidgetContainer />);
 ```
 
 Now our test no longer errors out, but we still get expectation failures that our results are `null`. This is because api.get() is now returning a promise that resolves. We also get a warning about an unhandled promise rejection:
@@ -159,7 +159,7 @@ This refers to where we handle the data:
 ```js
 componentDidMount() {
   return api.get('/widgets').then(response => {
-    this.setState({ widgets: response.data });
+    this.setState({widgets: response.data});
   });
 }
 ```
@@ -170,8 +170,8 @@ So we want to resolve to data that the component expects.
 -api.get.mockResolvedValue();
 +api.get.mockResolvedValue({
 +  data: [
-+    { id: 1, name: 'Widget 1' },
-+    { id: 2, name: 'Widget 2' },
++    {id: 1, name: 'Widget 1'},
++    {id: 2, name: 'Widget 2'},
 +  ],
 +});
 ```
@@ -183,8 +183,8 @@ Now the promise is no longer rejecting, but we are still getting null outputted.
 We can find out by using `debug()`, which will output a representation of our component tree to the test logs:
 
 ```diff
--const { queryByText } = render(<WidgetContainer />);
-+const { queryByText, debug } = render(<WidgetContainer />);
+-const {queryByText} = render(<WidgetContainer />);
++const {queryByText, debug} = render(<WidgetContainer />);
 +
 +debug()
 
@@ -201,13 +201,13 @@ Why would that be? Our API is being called and is responding. This is because ou
 
 ```diff
  import React from 'react';
--import { render } from 'react-native-testing-library';
-+import { render, waitForElement } from 'react-native-testing-library';
+-import {render} from 'react-native-testing-library';
++import {render, waitForElement} from 'react-native-testing-library';
  import WidgetContainer from '../WidgetContainer';
 ...
 
--const { queryByText, debug } = render(<WidgetContainer />);
-+const { getByText, debug } = render(<WidgetContainer />);
+-const {queryByText, debug} = render(<WidgetContainer />);
++const {getByText, debug} = render(<WidgetContainer />);
 
  debug();
 
@@ -231,8 +231,8 @@ Now the tests passes. And we can see the output.
 Now that our test is passing we can remove debug and log statements to keep our test output clean.
 
 ```diff
--const { getByText, debug } = render(<WidgetContainer />);
-+const { getByText } = render(<WidgetContainer />);
+-const {getByText, debug} = render(<WidgetContainer />);
++const {getByText} = render(<WidgetContainer />);
 
 -debug();
 

@@ -36,12 +36,12 @@ import React from 'react';
 import api from './api';
 
 class WidgetContainer extends React.Component {
-  state = { widgets: [] }
+  state = {widgets: []};
 
   componentDidMount() {
     api.get('widgets')
       .then(response => {
-        this.setState({ widgets: response.data });
+        this.setState({widgets: response.data});
       });
   }
 }
@@ -71,8 +71,8 @@ Now let's add some fake data to it:
 -    return Promise.resolve();
 +    return Promise.resolve({
 +      data: [
-+        { id: 1, name: 'Widget 1' },
-+        { id: 2, name: 'Widget 2' },
++        {id: 1, name: 'Widget 1'},
++        {id: 2, name: 'Widget 2'},
 +      ]
 +    });
    },

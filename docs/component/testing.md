@@ -17,7 +17,7 @@ import {
   View,
 } from 'react-native';
 
-const Hello = ({ name }) => {
+const Hello = ({name}) => {
   const message =`Hello, ${name}!`;
   return (
     <View>
@@ -33,12 +33,12 @@ Let's test that it displays the right message when a name is passed in as a prop
 
 ```jsx
 import React from 'react';
-import { render } from 'react-native-testing-library';
+import {render} from 'react-native-testing-library';
 import Hello from '../../Hello';
 
 describe('Hello', () => {
   it('displays the passed-in name', () => {
-    const { queryByText } = render(<Hello name="Josh" />);
+    const {queryByText} = render(<Hello name="Josh" />);
     expect(queryByText('Hello, Josh!')).not.toBeNull();
   });
 });
@@ -55,7 +55,7 @@ Here's what's going on:
 We've tested the rendering of a component; now let's test out interacting with a component. Here's a simple form component for sending a message to a chat system:
 
 ```jsx
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Button,
   TextInput,
@@ -65,26 +65,26 @@ import {
 export default class NewMessageForm extends Component {
   constructor(params) {
     super(params);
-    this.state = { inputText: '' };
+    this.state = {inputText: ''};
   }
 
   handleChangeText(text) {
-    this.setState({ inputText: text });
+    this.setState({inputText: text});
   }
 
   handleSend() {
-    const { inputText } = this.state;
-    const { onSend } = this.props;
+    const {inputText} = this.state;
+    const {onSend} = this.props;
 
     if (onSend) {
       onSend(inputText);
     }
 
-    this.setState({ inputText: '' });
+    this.setState({inputText: ''});
   }
 
   render() {
-    const { inputText } = this.state;
+    const {inputText} = this.state;
     return (
       <View>
         <TextInput
@@ -107,13 +107,13 @@ Let's start by simulating entering text and pressing the button:
 
 ```jsx
 import React from 'react';
-import { render, fireEvent } from 'react-native-testing-library';
+import {render, fireEvent} from 'react-native-testing-library';
 import NewMessageForm from '../../NewMessageForm';
 
 describe('NewMessageForm', () => {
   describe('clicking send', () => {
     it('clears the message field', () => {
-      const { getByTestId } = render(<NewMessageForm />);
+      const {getByTestId} = render(<NewMessageForm />);
 
       fireEvent.changeText(getByTestId('messageText'), 'Hello world');
       fireEvent.press(getByTestId('sendButton'));
@@ -144,7 +144,7 @@ The other thing we want to confirm is that the `onSend` action is called. We can
 it('calls the send handler', () => {
   const messageText = 'Hello world';
   const sendHandler = jest.fn();
-  const { getByTestId } = render(<NewMessageForm onSend={sendHandler} />);
+  const {getByTestId} = render(<NewMessageForm onSend={sendHandler} />);
 
   fireEvent.changeText(getByTestId('messageText'), messageText);
   fireEvent.press(getByTestId('sendButton'));
@@ -157,7 +157,7 @@ There's a good amount of duplication between our two tests. Let's extract the co
 
 ```jsx
 import React from 'react';
-import { render, fireEvent } from 'react-native-testing-library';
+import {render, fireEvent} from 'react-native-testing-library';
 import NewMessageForm from '../../NewMessageForm';
 
 describe('NewMessageForm', () => {
@@ -168,7 +168,7 @@ describe('NewMessageForm', () => {
 
     beforeEach(() => {
       sendHandler = jest.fn();
-      ({ getByTestId } = render(<NewMessageForm onSend={sendHandler} />));
+      ({getByTestId} = render(<NewMessageForm onSend={sendHandler} />));
 
       fireEvent.changeText(getByTestId('messageText'), 'Hello world');
       fireEvent.press(getByTestId('sendButton'));
