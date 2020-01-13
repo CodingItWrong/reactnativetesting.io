@@ -8,11 +8,10 @@ title: Setting Up React-Native-Testing-Library
 
 We'll be using react-native-testing-library with the Jest test runner. If you haven't already, [set up Jest](/unit/setup.html).
 
-Now we'll add react-native-testing-library and one dependency:
+Now we'll add react-native-testing-library:
 
 ```bash
-$ yarn add --dev react-native-testing-library \
-                 react-test-renderer
+$ yarn add --dev react-native-testing-library
 ```
 
 ## Smoke Test
