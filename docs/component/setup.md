@@ -21,7 +21,7 @@ To confirm it's working, let's write a trivial component and test it.
 At the root of your project, create a `Hello.js` file and enter the following contents:
 
 ```jsx
-import React, {Component} from 'react';
+import React from 'react';
 import {Text} from 'react-native';
 
 const Hello = () => <Text>Hello, world!</Text>;
