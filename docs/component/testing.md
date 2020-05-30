@@ -12,19 +12,13 @@ Create a file `Hello.js` in the root of your project and enter the following:
 
 ```jsx
 import React from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
+import {Text, View} from 'react-native';
 
-const Hello = ({name}) => {
-  const message =`Hello, ${name}!`;
-  return (
-    <View>
-      <Text testID="greeting">{message}</Text>
-    </View>
-  );
-}
+const Hello = ({name}) => (
+  <View>
+    <Text testID="greeting">Hello, {name}!</Text>
+  </View>
+);
 
 export default Hello;
 ```
@@ -46,7 +40,7 @@ describe('Hello', () => {
 
 Here's what's going on:
 
-- `render()` renders the component to an in-memory representation that doesn't require an iOS or Android environment
+- `render()` renders the component to an in-memory representation that doesn't require an iOS or Android environment.
 - `queryByText()` finds a child component that contains the passed-in text.
 - `expect()` creates a Jest expectation to check a condition. `.not.toBeNull()` checks that the value is not null, which means that an element with that text was found.
 
@@ -55,52 +49,32 @@ Here's what's going on:
 We've tested the rendering of a component; now let's test out interacting with a component. Here's a simple form component for sending a message to a chat system:
 
 ```jsx
-import React, {Component} from 'react';
-import {
-  Button,
-  TextInput,
-  View,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Button, TextInput, View} from 'react-native';
 
-export default class NewMessageForm extends Component {
-  constructor(params) {
-    super(params);
-    this.state = {inputText: ''};
-  }
+const NewMessageForm = ({onSend}) => {
+  const [inputText, setInputText] = useState('');
 
-  handleChangeText(text) {
-    this.setState({inputText: text});
-  }
-
-  handleSend() {
-    const {inputText} = this.state;
-    const {onSend} = this.props;
-
+  const handleSend = () => {
     if (onSend) {
       onSend(inputText);
     }
+    setInputText('');
+  };
 
-    this.setState({inputText: ''});
-  }
+  return (
+    <View>
+      <TextInput
+        value={inputText}
+        testID="messageText"
+        onChangeText={setInputText}
+      />
+      <Button title="Send" testID="sendButton" onPress={handleSend} />
+    </View>
+  );
+};
 
-  render() {
-    const {inputText} = this.state;
-    return (
-      <View>
-        <TextInput
-          value={inputText}
-          testID="messageText"
-          onChangeText={text => this.handleChangeText(text)}
-        />
-        <Button
-          title="Send"
-          testID="sendButton"
-          onPress={() => this.handleSend()}
-        />
-      </View>
-    );
-  }
-}
+export default NewMessageForm;
 ```
 
 Let's start by simulating entering text and pressing the button:
@@ -122,7 +96,7 @@ describe('NewMessageForm', () => {
 });
 ```
 
-`getByTestId` lets us retrieve an element by the `testID` prop. `fireEvent` lets us fire an event on an element; specifically here we want the `changeText` event on the text field, and the `press` event on the button.
+`getByTestId()` lets us retrieve an element by the `testID` prop. `fireEvent` lets us fire an event on an element; specifically here we want the `changeText` event on the text field, and the `press` event on the button.
 
 Now we need to actually check that the message field is cleared.
 

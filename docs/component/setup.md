@@ -29,7 +29,7 @@ const Hello = () => <Text>Hello, world!</Text>;
 export default Hello;
 ```
 
-Next, create a `__tests__` folder, then add a `Hello.spec.js` file in it with the following contents:
+Next, create a `__tests__` folder if there isn't one already, then add a `Hello.spec.js` file in it with the following contents:
 
 ```jsx
 import React from 'react';
