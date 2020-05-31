@@ -86,7 +86,7 @@ Next, how can we hook our fake up to our app? We need some way to use our real s
 
 Move `api.js` into the api folder and rename it to `remote.js`. Now in api create an `index.js` in it. Metro Bundler handles index files the way many other bundlers do: the import path `./api` will match either `./api.js` or `./api/index.js`. This means you don't even need to make changes to the import statements in the rest of your app; you can just expand the one `api.js` file into a directory.
 
-In `index.js`, add the following:
+In `api/index.js`, add the following:
 
 ```js
 import fake from './fake';
