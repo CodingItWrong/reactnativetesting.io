@@ -50,11 +50,10 @@ Run your tests with `yarn test`. If you added the unit smoke test as well as the
 jest
  PASS  __tests__/smoke.spec.js
  PASS  __tests__/formatAddress.spec.js
- PASS  __tests__/App.js
  PASS  __tests__/Hello.spec.js
 
-Test Suites: 4 passed, 4 total
-Tests:       4 passed, 4 total
+Test Suites: 3 passed, 3 total
+Tests:       3 passed, 3 total
 Snapshots:   0 total
 Time:        3.781s
 Ran all test suites.
