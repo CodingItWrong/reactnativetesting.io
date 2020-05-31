@@ -23,7 +23,7 @@ Say our app has an `api.js` file that configures an instance of [Axios][axios], 
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://api.reactnativetesting.io',
 });
 
 export default api;
