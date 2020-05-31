@@ -12,40 +12,47 @@ First, let's install the global Detox CLI tool:
 
 ```bash
 $ brew tap wix/brew
-$ brew install --HEAD applesimutils
-$ yarn global add detox-cli
+$ brew install applesimutils
+$ npm install -g detox-cli
 ```
 
-Next, we need to add Detox as a dependency to our project. Detox can use either Jest or Mocha as a test runner, but we'll use Jest since we've used it for our other types of test.
+Next, we need to add Detox as a dependency to our project.
 
 ```bash
 $ yarn add --dev detox
 ```
 
-Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner.
+Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner. If you're using Mocha in place of Jest, Detox can also be used with Mocha instead.
 
 ```bash
 $ detox init -r jest
 ```
 
-After this, we need to add some extra config for Detox to our `package.json`. Add the following, replacing `YourAppName` with the name of the app you entered:
+This creates several files, including `.detoxrc.json`.
+
+After this, we need to add some extra config to `.detoxrc.json`. Add the following, replacing `YourAppName` with the name of the app you entered:
 
 ```diff
  {
-   ...
-   "detox": {
--    "test-runner": "jest"
-+    "test-runner": "jest",
-+    "configurations": {
-+      "ios.sim.debug": {
-+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YourAppName.app",
-+        "build": "xcodebuild -workspace ios/YourAppName.xcworkspace -scheme YourAppName -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
-+        "type": "ios.simulator",
-+        "device": {
-+          "type": "iPhone 11 Pro"
-+        }
-+      }
-+    }
+   "testRunner": "jest",
+   "runnerConfig": "e2e/config.json",
+   "configurations": {
+     "ios": {
+       "type": "ios.simulator",
+-      "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY",
++      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YourAppName.app",
++      "build": "xcodebuild -workspace ios/YourAppName.xcworkspace -scheme YourAppName -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+       "device": {
+         "type": "iPhone 11"
+       }
+     },
+     "android": {
+       "type": "android.emulator",
+       "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY",
+       "device": {
+         "avdName": "Pixel_2_API_29"
+       }
+     }
    }
  }
 ```
@@ -61,18 +68,14 @@ $ yarn add --dev eslint-plugin-detox
 Then add the detox plugin and environment to your ESLint config:
 
 ```diff
-   parser: 'babel-eslint',
-   plugins: [
-+    'detox',
-     'jest',
-   ],
-   env: {
-     'browser': true,
+ module.exports = {
+   root: true,
+   extends: '@react-native-community',
++  plugins: ['detox'],
++  env: {
 +    'detox/detox': true,
-     'es6': true,
-     'jest/globals': true,
-     'node': true,
-   },
++  },
+ };
 ```
 
 ## Smoke Test
