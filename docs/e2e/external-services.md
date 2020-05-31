@@ -32,19 +32,21 @@ export default api;
 This file is required throughout our app. For example, here's a component where we do a GET request to load widgets:
 
 ```jsx
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {Text, View} from 'react-native';
 import api from './api';
 
-class WidgetContainer extends React.Component {
-  state = {widgets: []};
+const WidgetContainer = () => {
+  const [widgets, setWidgets] = useState([]);
 
-  componentDidMount() {
-    api.get('widgets')
-      .then(response => {
-        this.setState({widgets: response.data});
-      });
-  }
-}
+  useEffect(() => {
+    api.get('/widgets').then(response => {
+      setWidgets(response.data);
+    });
+  }, []);
+
+  //...
+};
 ```
 
 How can we fake out this client? We just create another module that exposes the same interface to the rest of the app, but uses hard-coded in-memory data instead. Let's see how.
