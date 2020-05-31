@@ -85,13 +85,13 @@ Detox installs a sample test for you that you can tweak. If you are installing D
 First, add a `testID` prop to an element in `App.js` so Detox can find it:
 
 ```diff
-   render() {
-     return (
-       <View style={styles.container}>
--        <Text style={styles.welcome}>
-+        <Text style={styles.welcome} testID="welcome">
-           Welcome to React Native!
-         </Text>
+ <View style={styles.body}>
+   <View style={styles.sectionContainer}>
+-    <Text style={styles.sectionTitle}>Step One</Text>
++    <Text style={styles.sectionTitle} testID="stepOne">
++      Step One
++    </Text>
+    <Text style={styles.sectionDescription}>
 ```
 
 Then open the `firstTest.spec.js` that `detox init` generated. Replace the contents with the following:
@@ -102,8 +102,8 @@ describe('App', () => {
     await device.reloadReactNative();
   });
 
-  it('should show the welcome message', async () => {
-    await expect(element(by.id('welcome'))).toBeVisible();
+  it('should show the step one message', async () => {
+    await expect(element(by.id('stepOne'))).toBeVisible();
   });
 });
 ```
@@ -111,30 +111,23 @@ describe('App', () => {
 To run this test, start the Metro packager as usual:
 
 ```bash
-$ react-native start
+$ yarn start
 ```
 
 In another terminal window, build the Detox version of the binary, and run the tests:
 
 ```bash
-$ detox build
-$ detox test
+$ detox build -c ios
+$ detox test -c ios
 ```
 
 You should see the following output:
 
 ```bash
-detox[87254] INFO:  [DetoxServer.js] server listening on localhost:63646...
-detox[87254] INFO:  [AppleSimUtils.js] org.reactjs.native.example.CLIJestTest launched. The stdout and stderr logs were recreated, you can watch them with:
-        tail -F /Users/josh/Library/Developer/CoreSimulator/Devices/638CF558-A2B2-4C27-9C8D-7DB5E348E5D8/data/tmp/detox.last_launch_app_log.{out,err}
- PASS  e2e/firstTest.spec.js (13.513s)
+detox[5950] INFO:  App: should show the step one message
+detox[5950] INFO:  App: should show the step one message [OK]
+
+ PASS  e2e/firstTest.spec.js (12.943s)
   App
-
-    ✓ should show the welcome message (930ms)
-
-Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
-Snapshots:   0 total
-Time:        13.646s, estimated 55s
-Ran all test suites matching /e2e/i with tests matching "^((?!:android:).)*$".
+    ✓ should show the step one message (1813ms)
 ```
