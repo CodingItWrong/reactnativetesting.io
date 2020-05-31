@@ -4,7 +4,7 @@ title: Setting Up Jest
 
 # Setting Up Jest
 
-React Native CLI installs the [Jest][jest] testing framework by default, but if you're using [Expo][expo] we need to install it manually.
+React Native CLI installs the [Jest][jest] testing framework by default, but if you're using [Expo][expo] or have an older project created by React Native CLI before Jest was added, we need to install it manually.
 
 ## Installing Jest
 
@@ -35,7 +35,7 @@ With this, our setup should be done.
 
 ## Smoke Test
 
-To confirm Jest is working, create a `__tests__` folder, then create a `__tests__/smoke.spec.js` file. Add the following contents:
+To confirm Jest is working, create a `__tests__` folder if it doesn't already exist. If it does exist, delete any existing files in it. Then create a `__tests__/smoke.spec.js` file. Add the following contents:
 
 ```javascript
 describe('truth', () => {
@@ -65,57 +65,51 @@ Ran all test suites matching /__tests__\/smoke.spec.js/i.
 
 ## Configuring ESLint
 
-Jest has a number of globally-available functions, so if you're using [ESLint][eslint], it will complain about these. We need to configure ESLint to accept them.
+Jest has a number of globally-available functions, so if you're using [ESLint][eslint], it may complain about these.
+
+For React Native projects, I recommend using [`@react-native-community/eslint-config`](https://www.npmjs.com/package/@react-native-community/eslint-config) for consistency with the majority of the React Native community. New React Native CLI projects come preconfigured with `@react-native-community/eslint-config`. It includes support for Jest globals.
+
+If you're using a different ESLint config, check out [`eslint-plugin-jest`](https://github.com/jest-community/eslint-plugin-jest) to add support for Jest globals.
 
 If you aren't already using ESLint in your project, it's easy to install in a React Native project. Add the following packages:
 
 ```sh
 yarn add --dev eslint \
                babel-eslint \
-               eslint-config-codingitwrong \
-               eslint-plugin-import \
-               eslint-plugin-jest \
-               eslint-plugin-jsx-a11y \
-               eslint-plugin-react
+               @react-native-community/eslint-config
 ```
 
 Then create an `.eslintrc.js` file at the root of your project and add the following:
 
 ```js
 module.exports = {
-  extends: [
-    'plugin:react/recommended',
-    'codingitwrong',
-  ],
-  settings: {
-    react: {
-      version: '16.5',
-    },
-  },
-  parser: 'babel-eslint',
-  plugins: [
-    'jest',
-  ],
-  env: {
-    'browser': true,
-    'es6': true,
-    'jest/globals': true,
-    'node': true,
-  },
-  rules: {
-    'react/prop-types': 'off',
-  }
+  root: true,
+  extends: '@react-native-community',
+};
+```
+
+Then add a `.prettierrc.js` file with the following:
+
+```js
+module.exports = {
+  bracketSpacing: false,
+  jsxBracketSameLine: true,
+  singleQuote: true,
+  trailingComma: 'all',
 };
 ```
 
 Most code editors can be configured to run ESLint rules as you edit. You can also add an NPM script to do so:
 
 ```diff
-   "scripts": {
-     "start": "node node_modules/react-native/local-cli/cli.js start",
-+    "lint": "eslint \"**/*.js\"",
-     "test": "jest"
-   },
+ "scripts": {
+   "start": "expo start",
+   "android": "expo start --android",
+   "ios": "expo start --ios",
+   "web": "expo start --web",
++  "lint": "eslint .",
+   "eject": "expo eject"
+ },
 ```
 
 [eslint]: https://eslint.org/
