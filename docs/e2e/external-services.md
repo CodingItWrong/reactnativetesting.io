@@ -117,7 +117,7 @@ Install `react-native-config`:
 
 ```sh
 $ yarn add react-native-config
-$ react-native link react-native-config
+$ (cd ios; pod install)
 ```
 
 Create an `.env` file at the root of your project:
@@ -155,21 +155,19 @@ Now update your `api/index.js` file to read the config value:
  export default api;
 ```
 
-When running your app, the `.env` file will be used by default, which will load the real API client. We can update the detox command to tell it to load `.env.detox` instead by adding `ENVFILE=.env.detox` to the front of the detox `build` config property in `package.json`:
+When running your app, the `.env` file will be used by default, which will load the real API client. We can update the detox command to tell it to load `.env.detox` instead by adding `ENVFILE=.env.detox` to the front of the detox `build` config property in `.detoxrc.json`:
 
 ```diff
- "detox": {
-   "test-runner": "jest",
-   "configurations": {
-     "ios.sim.debug": {
-       "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/MyApp.app",
--      "build": "xcodebuild -project ios/MyApp.xcodeproj -scheme MyApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
-+      "build": "ENVFILE=.env.detox xcodebuild -project ios/MyApp.xcodeproj -scheme MyApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseModernBuildSystem=NO",
-       "type": "ios.simulator",
-       "name": "iPhone 8"
-    }
-  }
-}
+ "configurations": {
+   "ios": {
+     "type": "ios.simulator",
+     "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/RNTestingSandbox.app",
+-    "build": "xcodebuild -workspace ios/RNTestingSandbox.xcworkspace -scheme RNTestingSandbox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
++    "build": "ENVFILE=.env.detox xcodebuild -workspace ios/RNTestingSandbox.xcworkspace -scheme RNTestingSandbox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+     "device": {
+       "type": "iPhone 11"
+     }
+   },
 ```
 
 Note that, unlike JS files, you can't just reload the app when you change a `.env` file; you need to rebuild the app.
