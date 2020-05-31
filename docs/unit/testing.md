@@ -18,7 +18,7 @@ function formatAddress(address) {
   }
   addressLines.push(`${address.city}, ${address.state} ${address.zip}`);
 
-  return addressLines.join("\n");
+  return addressLines.join('\n');
 }
 
 export default formatAddress;
