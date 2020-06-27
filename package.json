@@ -14,6 +14,6 @@
     "minimist": "^1.2.5",
     "serialize-javascript": "^4.0.0",
     "set-value": "^3.0.2",
-    "vuepress": "^1.5.0"
+    "vuepress": "^1.5.2"
   }
 }
