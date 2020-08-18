@@ -112,7 +112,7 @@ The `value` prop of the `TextInput` is what it displays, so we can check that pr
 
 ## Verifying Actions
 
-The other thing we want to confirm is that the `onSend` action is called. We can do this using a Sinon spy. A spy allows us to inspect whether it has been called, and with what arguments.
+The other thing we want to confirm is that the `onSend` action is called. We can do this using a Jest mock function. A mock allows us to inspect whether it has been called, and with what arguments.
 
 ```jsx
 it('calls the send handler', () => {

@@ -17,14 +17,14 @@ const WidgetContainer = () => {
   const [widgets, setWidgets] = useState([]);
 
   useEffect(() => {
-    api.get('/widgets').then(response => {
+    api.get('/widgets').then((response) => {
       setWidgets(response.data);
     });
   }, []);
 
   return (
     <View>
-      {widgets.map(widget => (
+      {widgets.map((widget) => (
         <Text key={widget.id}>{widget.name}</Text>
       ))}
     </View>
@@ -58,7 +58,7 @@ We can confirm this by adding console.log statements:
 ```diff
  useEffect(() => {
 +  console.log('sent request');
-   api.get('/widgets').then(response => {
+   api.get('/widgets').then((response) => {
 +    console.log('got response');
      setWidgets(response.data);
    });
@@ -93,7 +93,7 @@ The test passes. There is a React `act()` warning that we would want to find a w
 Warning: An update to WidgetContainer inside a test was not wrapped in act(...).
 ```
 
-But *do* we want to keep this test appraoch? There are a few other downsides to it as well:
+But *do* we want to keep this test approach? There are a few other downsides to it as well:
 
 - If the request takes too long, the test can fail sometimes.
 - To get around this, you have to set the delay to a longer time, which slows down your whole test suite.
@@ -138,7 +138,7 @@ TypeError: Cannot read property 'then' of undefined
 
    8 |   useEffect(() => {
    9 |     console.log('sent request');
-> 10 |     api.get('/widgets').then(response => {
+> 10 |     api.get('/widgets').then((response) => {
      |     ^
 ```
 
@@ -157,7 +157,7 @@ Now our test no longer errors out, but we still get expectation failures that ou
 TypeError:
 Cannot read property 'data' of undefined
 
-  10 |     api.get('/widgets').then(response => {
+  10 |     api.get('/widgets').then((response) => {
   11 |       console.log('got response');
 > 12 |       setWidgets(response.data);
      |                           ^
@@ -168,7 +168,10 @@ So we want to resolve to data that the component expects.
 ```diff
 -api.get.mockResolvedValue();
 +api.get.mockResolvedValue({
-+  data: [{id: 1, name: 'Widget 1'}, {id: 2, name: 'Widget 2'}],
++  data: [
++    {id: 1, name: 'Widget 1'},
++    {id: 2, name: 'Widget 2'},
++  ],
 +});
 ```
 
@@ -216,13 +219,15 @@ To use `await` we also need to change the test function to be an `async` functio
      api.get.mockResolvedValue({
 ```
 
-Now the tests passes. And we can see the output.
+Now the tests passes.
 
-Now that our test is passing we can remove debug and log statements to keep our test output clean.
+Now we can remove debug and log statements to keep our test output clean.
 
 ```diff
--const {findByText, debug} = render(<WidgetContainer />);
 +const {findByText} = render(<WidgetContainer />);
+-const {findByText, debug} = render(<WidgetContainer />);
+-
+-debug();
 
  await findByText('Widget 1');
 ```
