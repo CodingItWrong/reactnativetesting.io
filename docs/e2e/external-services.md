@@ -23,7 +23,7 @@ Say our app has an `api.js` file that configures an instance of [Axios][axios], 
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api.reactnativetesting.io',
+  baseURL: 'https://api.reactnativetesting.io/',
 });
 
 export default api;
@@ -72,7 +72,10 @@ Now let's add some fake data to it:
    get() {
 -    return Promise.resolve();
 +    return Promise.resolve({
-+      data: [{id: 1, name: 'Widget 1'}, {id: 2, name: 'Widget 2'}],
++      data: [
++        {id: 1, name: 'Widget 1'},
++        {id: 2, name: 'Widget 2'},
++      ],
 +    });
    },
  };
@@ -170,7 +173,12 @@ When running your app, the `.env` file will be used by default, which will load 
    },
 ```
 
-Note that, unlike JS files, you can't just reload the app when you change a `.env` file; you need to rebuild the app.
+Note that, unlike JS files, you can't just reload the app when you change a `.env` file; you need to rebuild the app:
+
+```bash
+$ detox build -c ios
+$ detox test -c ios
+```
 
 [axios]: https://github.com/axios/axios
 [react-native-config]: https://github.com/luggit/react-native-config

@@ -11,15 +11,16 @@ These instructions will cover setting up Detox with React Native CLI. [Detox doe
 First, let's install the global Detox CLI tool:
 
 ```bash
+$ xcode-select --install
 $ brew tap wix/brew
 $ brew install applesimutils
 $ npm install -g detox-cli
 ```
 
-Next, we need to add Detox as a dependency to our project.
+Next, we need to add Detox as a dependency to our project, as well as `jest-circus`, a test runner.
 
 ```bash
-$ yarn add --dev detox
+$ yarn add --dev detox jest-circus
 ```
 
 Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner. If you're using Mocha in place of Jest, Detox can also be used with Mocha instead.
@@ -72,9 +73,16 @@ Then add the detox plugin and environment to your ESLint config:
    root: true,
    extends: '@react-native-community',
 +  plugins: ['detox'],
-+  env: {
-+    'detox/detox': true,
-+  },
++  overrides: [
++    {
++      files: ['*.e2e.js'],
++      env: {
++        'detox/detox': true,
++        jest: true,
++        'jest/globals': true,
++      },
++    },
++  ],
  };
 ```
 
@@ -94,7 +102,7 @@ First, add a `testID` prop to an element in `App.js` so Detox can find it:
     <Text style={styles.sectionDescription}>
 ```
 
-Then open the `firstTest.spec.js` that `detox init` generated. Replace the contents with the following:
+Then open the `firstTest.e2e.js` that `detox init` generated. Replace the contents with the following:
 
 ```javascript
 describe('App', () => {
@@ -108,7 +116,7 @@ describe('App', () => {
 });
 ```
 
-To run this test, start the Metro packager as usual:
+To run this test, start the Metro bundler as usual:
 
 ```bash
 $ yarn start
@@ -127,7 +135,7 @@ You should see the following output:
 detox[5950] INFO:  App: should show the step one message
 detox[5950] INFO:  App: should show the step one message [OK]
 
- PASS  e2e/firstTest.spec.js (12.943s)
+ PASS  e2e/firstTest.e2e.js (12.943s)
   App
     ✓ should show the step one message (1813ms)
 ```
