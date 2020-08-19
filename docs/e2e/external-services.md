@@ -23,7 +23,7 @@ Say our app has an `api.js` file that configures an instance of [Axios][axios], 
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api.reactnativetesting.io/',
+  baseURL: 'https://rn-testing-api.herokuapp.com/',
 });
 
 export default api;
