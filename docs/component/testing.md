@@ -4,7 +4,7 @@ title: Testing Components
 
 # Testing Components
 
-Let's talk about the different features react-native-testing-library offers for testing components.
+Let's talk about the different features `react-native-testing-library` offers for testing components.
 
 ## Testing Text
 
@@ -27,7 +27,7 @@ Let's test that it displays the right message when a name is passed in as a prop
 
 ```jsx
 import React from 'react';
-import {render} from 'react-native-testing-library';
+import {render} from '@testing-library/react-native';
 import Hello from '../Hello';
 
 describe('Hello', () => {
@@ -81,7 +81,7 @@ Let's start by simulating entering text and pressing the button:
 
 ```jsx
 import React from 'react';
-import {render, fireEvent} from 'react-native-testing-library';
+import {render, fireEvent} from '@testing-library/react-native';
 import NewMessageForm from '../NewMessageForm';
 
 describe('NewMessageForm', () => {
@@ -112,7 +112,7 @@ The `value` prop of the `TextInput` is what it displays, so we can check that pr
 
 ## Verifying Actions
 
-The other thing we want to confirm is that the `onSend` action is called. We can do this using a Jest mock function. A mock allows us to inspect whether it has been called, and with what arguments.
+The other thing we want to confirm is that the `onSend` action is called. We can do this using a [Jest mock function](https://jestjs.io/docs/mock-functions). A mock allows us to inspect whether it has been called, and with what arguments.
 
 ```jsx
 it('calls the send handler', () => {
@@ -124,6 +124,7 @@ it('calls the send handler', () => {
   fireEvent.press(getByTestId('sendButton'));
 
   expect(sendHandler).toHaveBeenCalledWith(messageText);
+  expect(sendHandler).toHaveBeenCalledTimes(1);
 });
 ```
 
@@ -131,7 +132,7 @@ There's a good amount of duplication between our two tests. Let's extract the co
 
 ```jsx
 import React from 'react';
-import {render, fireEvent} from 'react-native-testing-library';
+import {render, fireEvent} from '@testing-library/react-native';
 import NewMessageForm from '../NewMessageForm';
 
 describe('NewMessageForm', () => {
@@ -154,6 +155,7 @@ describe('NewMessageForm', () => {
 
     it('calls the send handler', () => {
       expect(sendHandler).toHaveBeenCalledWith(messageText);
+      expect(sendHandler).toHaveBeenCalledTimes(1);
     });
   });
 });
