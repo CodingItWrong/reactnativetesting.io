@@ -11,7 +11,7 @@ We'll be using react-native-testing-library with the Jest test runner. If you ha
 Now we'll add react-native-testing-library:
 
 ```bash
-$ yarn add --dev react-native-testing-library
+$ yarn add --dev @testing-library/react-native
 ```
 
 ## Smoke Test
@@ -33,7 +33,7 @@ Next, create a `__tests__` folder if there isn't one already, then add a `Hello.
 
 ```jsx
 import React from 'react';
-import {render} from 'react-native-testing-library';
+import {render} from '@testing-library/react-native';
 import Hello from '../Hello';
 
 describe('Hello', () => {

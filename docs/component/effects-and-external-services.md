@@ -38,7 +38,7 @@ Here's our initial attempt at a test:
 
 ```js
 import React from 'react';
-import {render} from 'react-native-testing-library';
+import {render} from '@testing-library/react-native';
 import WidgetContainer from '../WidgetContainer';
 
 describe('WidgetContainer', () => {
@@ -107,7 +107,7 @@ First let's restore our test to before we added the Promise:
 
 ```js
 import React from 'react';
-import {render} from 'react-native-testing-library';
+import {render} from '@testing-library/react-native';
 import WidgetContainer from '../WidgetContainer';
 
 describe('WidgetContainer', () => {
