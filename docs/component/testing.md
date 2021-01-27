@@ -154,7 +154,6 @@ describe('NewMessageForm', () => {
 
     it('calls the send handler', () => {
       expect(sendHandler).toHaveBeenCalledWith(messageText);
-      expect(sendHandler).toHaveBeenCalledTimes(1);
     });
   });
 });
