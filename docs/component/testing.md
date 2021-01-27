@@ -4,7 +4,7 @@ title: Testing Components
 
 # Testing Components
 
-Let's talk about the different features `react-native-testing-library` offers for testing components.
+Let's talk about the different features react-native-testing-library offers for testing components.
 
 ## Testing Text
 
@@ -124,7 +124,6 @@ it('calls the send handler', () => {
   fireEvent.press(getByTestId('sendButton'));
 
   expect(sendHandler).toHaveBeenCalledWith(messageText);
-  expect(sendHandler).toHaveBeenCalledTimes(1);
 });
 ```
 
