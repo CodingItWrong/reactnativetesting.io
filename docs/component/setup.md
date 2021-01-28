@@ -1,14 +1,14 @@
 ---
-title: Setting Up React-Native-Testing-Library
+title: Setting Up React Native Testing Library
 ---
 
-# Setting Up React-Native-Testing-Library
+# Setting Up React Native Testing Library
 
-## Installing React-Native-Testing-Library
+## Installing React Native Testing Library
 
-We'll be using react-native-testing-library with the Jest test runner. If you haven't already, [set up Jest](/unit/setup.html).
+We'll be using React Native Testing Library with the Jest test runner. If you haven't already, [set up Jest](/unit/setup.html).
 
-Now we'll add react-native-testing-library:
+Now we'll add React Native Testing Library:
 
 ```bash
 $ yarn add --dev @testing-library/react-native

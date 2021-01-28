@@ -4,7 +4,7 @@ title: Testing Components
 
 # Testing Components
 
-Let's talk about the different features react-native-testing-library offers for testing components.
+Let's talk about the different features React Native Testing Library offers for testing components.
 
 ## Testing Text
 
