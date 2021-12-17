@@ -17,8 +17,8 @@ $ yarn add --dev jest jest-expo
 Add the following to `package.json`:
 
 ```diff
-     "android": "expo start --android",
      "ios": "expo start --ios",
+     "web": "expo start --web",
 +    "test": "jest",
      "eject": "expo eject"
    },
