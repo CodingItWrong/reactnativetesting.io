@@ -91,8 +91,8 @@ Then add a `.prettierrc.js` file with the following:
 
 ```js
 module.exports = {
+  arrowParens: 'avoid',
   bracketSpacing: false,
-  jsxBracketSameLine: true,
   singleQuote: true,
   trailingComma: 'all',
 };
