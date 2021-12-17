@@ -74,8 +74,7 @@ If you're using a different ESLint config, check out [`eslint-plugin-jest`](http
 If you aren't already using ESLint in your project, it's easy to install in a React Native project. Add the following packages:
 
 ```sh
-yarn add --dev eslint \
-               babel-eslint \
+yarn add --dev eslint@"^7.0" \
                @react-native-community/eslint-config
 ```
 
