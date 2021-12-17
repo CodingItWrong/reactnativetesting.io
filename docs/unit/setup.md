@@ -4,7 +4,7 @@ title: Setting Up Jest
 
 # Setting Up Jest
 
-React Native CLI installs the [Jest][jest] testing framework by default, but if you're using [Expo][expo] or have an older project created by React Native CLI before Jest was added, we need to install it manually.
+React Native CLI installs the [Jest][jest] testing framework by default, but if you're using [Expo][expo] or have an older project created by React Native CLI before Jest was added, you'll need to install it manually.
 
 ## Installing Jest
 
