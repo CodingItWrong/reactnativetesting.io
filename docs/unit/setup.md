@@ -8,10 +8,10 @@ React Native CLI installs the [Jest][jest] testing framework by default, but if 
 
 ## Expo: Installing Jest
 
-There is an Expo-specific Jest package we can use:
+Install the Jest package, as well as an Expo-specific Jest preset package:
 
 ```bash
-$ yarn add --dev jest-expo
+$ yarn add --dev jest jest-expo
 ```
 
 Add the following to `package.json`:
