@@ -6,7 +6,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "deploy": "yarn build && netlify deploy --prod"
   },
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.8.2",
