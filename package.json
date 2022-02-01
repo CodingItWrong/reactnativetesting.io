@@ -10,7 +10,7 @@
     "deploy": "yarn build && netlify deploy --prod"
   },
   "devDependencies": {
-    "@vuepress/plugin-google-analytics": "^1.9.5",
+    "@vuepress/plugin-google-analytics": "^1.9.7",
     "kind-of": "^6.0.3",
     "minimist": "^1.2.5",
     "serialize-javascript": "^6.0.0",
