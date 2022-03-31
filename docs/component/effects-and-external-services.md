@@ -13,7 +13,7 @@ import React, {useState, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import api from './api';
 
-const WidgetContainer = () => {
+export default function WidgetContainer() {
   const [widgets, setWidgets] = useState([]);
 
   useEffect(() => {
@@ -29,9 +29,7 @@ const WidgetContainer = () => {
       ))}
     </View>
   );
-};
-
-export default WidgetContainer;
+}
 ```
 
 Here's our initial attempt at a test:

@@ -24,9 +24,9 @@ At the root of your project, create a `Hello.js` file and enter the following co
 import React from 'react';
 import {Text} from 'react-native';
 
-const Hello = () => <Text>Hello, world!</Text>;
-
-export default Hello;
+export default function Hello() {
+  return <Text>Hello, world!</Text>;
+}
 ```
 
 Next, create a `__tests__` folder if there isn't one already, then add a `Hello.spec.js` file in it with the following contents:

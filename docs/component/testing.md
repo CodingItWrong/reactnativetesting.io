@@ -14,13 +14,13 @@ Create a file `Hello.js` in the root of your project and enter the following:
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const Hello = ({name}) => (
-  <View>
-    <Text testID="greeting">Hello, {name}!</Text>
-  </View>
-);
-
-export default Hello;
+export default function Hello({name}) {
+  return (
+    <View>
+      <Text>Hello, {name}!</Text>
+    </View>
+  );
+}
 ```
 
 Let's test that it displays the right message when a name is passed in as a prop. Create a file `__tests__/Hello.spec.js` and add the following:
@@ -52,7 +52,7 @@ We've tested the rendering of a component; now let's test out interacting with a
 import React, {useState} from 'react';
 import {Button, TextInput, View} from 'react-native';
 
-const NewMessageForm = ({onSend}) => {
+export default function NewMessageForm({onSend}) {
   const [inputText, setInputText] = useState('');
 
   const handleSend = () => {
@@ -72,9 +72,7 @@ const NewMessageForm = ({onSend}) => {
       <Button title="Send" testID="sendButton" onPress={handleSend} />
     </View>
   );
-};
-
-export default NewMessageForm;
+}
 ```
 
 Let's start by simulating entering text and pressing the button:
