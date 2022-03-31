@@ -59,8 +59,8 @@ Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
 Time:        3.662s
-Ran all test suites matching /__tests__\/smoke.spec.js/i.
-✨  Done in 9.35s.
+Ran all test suites.
+✨  Done in 2.09s.
 ```
 
 ## Configuring ESLint
