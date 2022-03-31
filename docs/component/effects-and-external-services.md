@@ -194,19 +194,21 @@ The logged component tree we get is simply:
 <View />
 ```
 
-Why would that be? Our API is being called and is responding. This is because our test runs on the same tick of the event loop, so React doesn't have time to get the response and render. We need to wait for the rerender for the element to be displayed on the screen. We can do this by using the asynchronous `findByText()` instead:
+Why would that be? Our API is being called and is responding. This is because our test runs on the same tick of the event loop, so React doesn't have time to get the response and render. We need to wait for the rerender for the element to be displayed on the screen. We can do this by changing the first check to the asynchronous `findByText()`:
 
 ```diff
 -const {queryByText, debug} = render(<WidgetContainer />);
-+const {findByText, debug} = render(<WidgetContainer />);
++const {findByText, queryByText, debug} = render(<WidgetContainer />);
 
  debug();
 
 -expect(queryByText('Widget 1')).not.toBeNull();
 -expect(queryByText('Widget 2')).not.toBeNull();
 +await findByText('Widget 1');
-+await findByText('Widget 2');
++expect(queryByText('Widget 2')).not.toBeNull();
 ```
+
+Why do we only change the first check to `findByText`, leaving the second as `queryByText`? This is because React will give us a warning if we `await` a `findByText` when it's available right away. As soon as "Widget 1" is visible, "Widget 2" will also be visible, so we can use a normal `expect(queryByText(…)).not.toBeNull()` to check for it.
 
 To use `await` we also need to change the test function to be an `async` function:
 
@@ -222,8 +224,8 @@ Now the tests passes.
 Now we can remove debug and log statements to keep our test output clean.
 
 ```diff
-+const {findByText} = render(<WidgetContainer />);
--const {findByText, debug} = render(<WidgetContainer />);
++const {findByText, queryByText} = render(<WidgetContainer />);
+-const {findByText, queryByText, debug} = render(<WidgetContainer />);
 -
 -debug();
 
