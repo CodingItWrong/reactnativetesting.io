@@ -117,52 +117,16 @@ The `value` prop of the `TextInput` is what it displays, so we can check that pr
 The other thing we want to confirm is that the `onSend` action is called. We can do this using a [Jest mock function](https://jestjs.io/docs/mock-functions). A mock allows us to inspect whether it has been called, and with what arguments.
 
 ```jsx
-it('calls the send handler', () => {
+it('calls the onSend prop', () => {
   const messageText = 'Hello world';
   const sendHandler = jest.fn();
-  const {getByTestId} = render(<NewMessageForm onSend={sendHandler} />);
+  const {getByPlaceholderText, getByText} = render(
+    <NewMessageForm onSend={sendHandler} />,
+  );
 
-  fireEvent.changeText(getByTestId('messageText'), messageText);
-  fireEvent.press(getByTestId('sendButton'));
+  fireEvent.changeText(getByPlaceholderText('Message'), 'Hello world');
+  fireEvent.press(getByText('Send'));
 
   expect(sendHandler).toHaveBeenCalledWith(messageText);
 });
 ```
-
-There's a good amount of duplication between our two tests. Let's extract the common setup to a `beforeEach()`. Here's the complete file:
-
-```jsx
-import React from 'react';
-import {render, fireEvent} from '@testing-library/react-native';
-import NewMessageForm from '../NewMessageForm';
-
-describe('NewMessageForm', () => {
-  describe('clicking send', () => {
-    const messageText = 'Hello world';
-    let sendHandler;
-    let getByTestId;
-
-    beforeEach(() => {
-      sendHandler = jest.fn();
-      ({getByTestId} = render(<NewMessageForm onSend={sendHandler} />));
-
-      fireEvent.changeText(getByTestId('messageText'), 'Hello world');
-      fireEvent.press(getByTestId('sendButton'));
-    });
-
-    it('clears the message field', () => {
-      expect(getByTestId('messageText').props.value).toEqual('');
-    });
-
-    it('calls the send handler', () => {
-      expect(sendHandler).toHaveBeenCalledWith(messageText);
-    });
-  });
-});
-```
-
-Notice a few things:
-
-- We create a few `let` variables so they can be set in the `beforeEach()` and accessed in the `it()`s.
-- We reassign the `sendHandler` and `getByTestId` function for each test. Although that doesn't seem too necessary in this case, it's important for test isolation, so that one test doesn't affect state that another test relies on.
-- We could just add two expectations to a single test. But it's good test practice to expect one thing per test case. This doesn't necessarily mean that there has to be only one `expect()` statement (although it often does). It just means that each `it()` should test for something very specific. Test names can help with this: if you can't write a clear and simple test description, you're probably testing for too much. In our case, there are two fairly unrelated things that happen as part of tapping the send button: the text field is cleared, and the send handler is called.
