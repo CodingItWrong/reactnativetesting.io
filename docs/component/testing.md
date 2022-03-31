@@ -41,7 +41,7 @@ describe('Hello', () => {
 Here's what's going on:
 
 - `render()` renders the component to an in-memory representation that doesn't require an iOS or Android environment.
-- `queryByText()` finds a child component that contains the passed-in text.
+- `queryByText()` finds a child component that contains the passed-in text, or null if it's not found
 - `expect()` creates a Jest expectation to check a condition. `.not.toBeNull()` checks that the value is not null, which means that an element with that text was found.
 
 ## Interaction
