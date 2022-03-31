@@ -17,10 +17,10 @@ $ brew install applesimutils
 $ npm install -g detox-cli
 ```
 
-Next, we need to add Detox as a dependency to our project, as well as `jest-circus`, a test runner.
+Next, we need to add Detox as a dependency to our project.
 
 ```bash
-$ yarn add --dev detox jest-circus
+$ yarn add --dev detox
 ```
 
 Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner. If you're using Mocha in place of Jest, Detox can also be used with Mocha instead.
