@@ -50,7 +50,7 @@ We've tested the rendering of a component; now let's test out interacting with a
 
 ```jsx
 import React, {useState} from 'react';
-import {Button, TextInput, View} from 'react-native';
+import {Pressable, Text, TextInput, View} from 'react-native';
 
 export default function NewMessageForm({onSend}) {
   const [inputText, setInputText] = useState('');
@@ -65,11 +65,13 @@ export default function NewMessageForm({onSend}) {
   return (
     <View>
       <TextInput
+        placeholder="Message"
         value={inputText}
-        testID="messageText"
         onChangeText={setInputText}
       />
-      <Button title="Send" testID="sendButton" onPress={handleSend} />
+      <Pressable onPress={handleSend}>
+        <Text>Send</Text>
+      </Pressable>
     </View>
   );
 }
@@ -85,24 +87,26 @@ import NewMessageForm from '../NewMessageForm';
 describe('NewMessageForm', () => {
   describe('clicking send', () => {
     it('clears the message field', () => {
-      const {getByTestId} = render(<NewMessageForm />);
+      const {getByPlaceholderText, getByText} = render(<NewMessageForm />);
 
-      fireEvent.changeText(getByTestId('messageText'), 'Hello world');
-      fireEvent.press(getByTestId('sendButton'));
+      fireEvent.changeText(getByPlaceholderText('Message'), 'Hello world');
+      fireEvent.press(getByText('Send'));
     });
   });
 });
 ```
 
-`getByTestId()` lets us retrieve an element by the `testID` prop. `fireEvent` lets us fire an event on an element; specifically here we want the `changeText` event on the text field, and the `press` event on the button.
+The two `getBy` functions let us retrieve elements: `getByText` looking for `Text` components, and `getByPlaceholderText` looking for a placeholder within a `TextInput`.
+
+`fireEvent` lets us fire an event on an element; specifically here we want the `changeText` event on the text field, and the `press` event on the button.
 
 Now we need to actually check that the message field is cleared.
 
 ```diff
-     fireEvent.changeText(getByTestId('messageText'), 'Hello world');
-     fireEvent.press(getByTestId('sendButton'));
+     fireEvent.changeText(getByPlaceholderText('Message'), 'Hello world');
+     fireEvent.press(getByText('Send'));
 +
-+    expect(getByTestId('messageText').props.value).toEqual('');
++    expect(getByPlaceholderText('Message').props.value).toEqual('');
    });
 ```
 
