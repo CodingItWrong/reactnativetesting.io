@@ -12,7 +12,7 @@
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.9.7",
     "kind-of": "^6.0.3",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "serialize-javascript": "^6.0.0",
     "set-value": "^4.1.0",
     "vuepress": "^1.9.7"
