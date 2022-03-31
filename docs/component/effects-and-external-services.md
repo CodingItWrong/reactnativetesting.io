@@ -17,14 +17,14 @@ export default function WidgetContainer() {
   const [widgets, setWidgets] = useState([]);
 
   useEffect(() => {
-    api.get('/widgets').then((response) => {
+    api.get('/widgets').then(response => {
       setWidgets(response.data);
     });
   }, []);
 
   return (
     <View>
-      {widgets.map((widget) => (
+      {widgets.map(widget => (
         <Text key={widget.id}>{widget.name}</Text>
       ))}
     </View>
