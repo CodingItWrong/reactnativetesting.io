@@ -24,10 +24,10 @@ function formatAddress(address) {
 export default formatAddress;
 ```
 
-Create a `__tests__/formatAddress.spec.js` file and add the following:
+Create a `formatAddress.spec.js` file at the root of your project and add the following:
 
 ```javascript
-import formatAddress from '../formatAddress';
+import formatAddress from './formatAddress';
 
 describe('formatAddress', () => {
   it('returns the formatted address', () => {

@@ -37,7 +37,7 @@ Here's our initial attempt at a test:
 ```js
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import WidgetContainer from '../WidgetContainer';
+import WidgetContainer from './WidgetContainer';
 
 describe('WidgetContainer', () => {
   it('loads widgets upon mount', () => {
@@ -106,7 +106,7 @@ First let's restore our test to before we added the Promise:
 ```js
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import WidgetContainer from '../WidgetContainer';
+import WidgetContainer from './WidgetContainer';
 
 describe('WidgetContainer', () => {
   it('loads widgets upon mount', () => {
@@ -122,9 +122,9 @@ Next, mock the API module that the `WidgetContainer` uses:
 
 ```diff
  import WidgetContainer from '../WidgetContainer';
-+import api from '../api';
++import api from './api';
 +
-+jest.mock('../api');
++jest.mock('./api');
 +
  describe('WidgetContainer', () => {
 ```

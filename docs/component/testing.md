@@ -23,12 +23,12 @@ export default function Hello({name}) {
 }
 ```
 
-Let's test that it displays the right message when a name is passed in as a prop. Create a file `__tests__/Hello.spec.js` and add the following:
+Let's test that it displays the right message when a name is passed in as a prop. Create a file `Hello.spec.js` at the root of your project and add the following:
 
 ```jsx
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import Hello from '../Hello';
+import Hello from './Hello';
 
 describe('Hello', () => {
   it('displays the passed-in name', () => {
@@ -82,7 +82,7 @@ Let's start by simulating entering text and pressing the button:
 ```jsx
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
-import NewMessageForm from '../NewMessageForm';
+import NewMessageForm from './NewMessageForm';
 
 describe('NewMessageForm', () => {
   describe('clicking send', () => {

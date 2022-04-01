@@ -35,7 +35,11 @@ With this, our setup should be done.
 
 ## Smoke Test
 
-To confirm Jest is working, create a `__tests__` folder if it doesn't already exist. If it does exist, delete any existing files in it. Then create a `__tests__/smoke.spec.js` file. Add the following contents:
+To confirm Jest is working, we'll create a smoke test.
+
+First, if a `__tests__` folder exists, delete it--instead, we'll store our tests alongside our components.
+
+Next, create a `smoke.spec.js` file at the root of the project. Add the following contents:
 
 ```javascript
 describe('truth', () => {
@@ -51,7 +55,7 @@ Run the tests with `yarn test`. You should see output like the following:
 # yarn test
 yarn run v1.13.0
 $ jest
- PASS  __tests__/smoke.spec.js
+ PASS  ./smoke.spec.js
   truth
     ✓ is true (3ms)
 
