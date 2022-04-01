@@ -46,5 +46,4 @@ $ detox test -c ios.sim.debug
 A few popular CI services that support React Native are:
 
 - [GitHub Actions](/ci/github-actions) - macOS builds are available on the free tier.
-- [Travis CI](/ci/travis-ci) - Free builds for open source projects, including access to macOS. For closed source, the lowest plan is $63/month.
 - [CircleCI](/ci/circleci) - To get macOS builds for E2E tests, need at least the $30/month plan.

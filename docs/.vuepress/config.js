@@ -42,7 +42,6 @@ module.exports = {
         children: [
           '/ci/intro',
           '/ci/github-actions',
-          '/ci/travis-ci',
           '/ci/circleci',
         ],
       },
