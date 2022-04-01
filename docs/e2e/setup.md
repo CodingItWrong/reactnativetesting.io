@@ -37,24 +37,20 @@ After this, we need to add some extra config to `.detoxrc.json`. Add the followi
  {
    "testRunner": "jest",
    "runnerConfig": "e2e/config.json",
-   "configurations": {
+   "skipLegacyWorkersInjection": true,
+   "apps": {
      "ios": {
        "type": "ios.simulator",
 -      "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY",
 +      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YourAppName.app",
-+      "build": "xcodebuild -workspace ios/YourAppName.xcworkspace -scheme YourAppName -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
-       "device": {
-         "type": "iPhone 11"
-       }
++      "build": "xcodebuild -workspace ios/YourAppName.xcworkspace -scheme YourAppName -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build"
      },
      "android": {
-       "type": "android.emulator",
-       "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY",
-       "device": {
-         "avdName": "Pixel_2_API_29"
-       }
+       "type": "android.apk",
+       "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY"
      }
-   }
+   },
+   ...
  }
 ```
 
