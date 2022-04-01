@@ -1,8 +1,8 @@
 ---
-title: Setting Up React Native Testing Library
+title: Setting Up React Native Testing Library and jest-native
 ---
 
-# Setting Up React Native Testing Library
+# Setting Up React Native Testing Library and jest-native
 
 ## Installing React Native Testing Library
 
@@ -12,6 +12,33 @@ Now we'll add React Native Testing Library:
 
 ```bash
 $ yarn add --dev @testing-library/react-native
+```
+
+## Installing jest-native
+
+We'll be adding jest-native to add some additional test matchers. First, add the dependency:
+
+```bash
+$ yarn add --dev @testing-library/jest-native
+```
+
+Next, if you don't already have a `setupFilesAfterEnv` file configured for Jest, add one to your Jest config in `package.json`:
+
+```diff
+ "jest": {
+   "preset": "[react-native or jest-expo]",
++  "setupFilesAfterEnv": ["./jest-setup-after-env.js"]
+ }
+```
+
+(Note that if you already have a `setupFiles` entry, `setupFilesAfterEnv` is different.)
+
+If the setup file doesn't already exist, create an empty file at that location.
+
+Add the following line to the file pointed to by `setupFilesAfterEnv`:
+
+```js
+import '@testing-library/jest-native/extend-expect';
 ```
 
 ## Smoke Test

@@ -106,11 +106,13 @@ Now we need to actually check that the message field is cleared.
      fireEvent.changeText(getByPlaceholderText('Message'), 'Hello world');
      fireEvent.press(getByText('Send'));
 +
-+    expect(getByPlaceholderText('Message').props.value).toEqual('');
++    expect(getByPlaceholderText('Message')).toHaveProp('value', '');
    });
 ```
 
 The `value` prop of the `TextInput` is what it displays, so we can check that prop to see that it is currently displaying the empty string.
+
+If you get the error `TypeError: expect(...).toHaveProp is not a function`, check your [setup](./setup) to make sure you've correctly configured a `setupFilesAfterEnv` file that sets up jest-native.
 
 ## Verifying Actions
 
