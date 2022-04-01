@@ -40,9 +40,7 @@ module.exports = {
       {
         title: 'Continuous Integration',
         children: [
-          '/ci/intro',
-          '/ci/github-actions',
-          '/ci/circleci',
+          '/ci/note',
         ],
       },
       {
