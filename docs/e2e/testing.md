@@ -33,20 +33,22 @@ Finding an element by text can result in fragile tests that break when you chang
 await expect(element(by.id('welcome'))).toBeVisible();
 ```
 
-## Interacting with Buttons
+## Tapping
 
-To tap a `Button` or other Touchable, find the element using some matcher, then `.tap()` it:
+To tap an element, find it using some matcher, then `.tap()` it:
 
 ```jsx
-<Button title="Press Me" testID="mybutton" onPress={() => {}} />
+<Pressable testID="mybutton" onPress={() => {}}>
+  <Text>Press Me</Text>
+</Pressable>
 ```
 
 ```js
 await element(by.id('mybutton')).tap();
 
 // also work:
-await element(by.label('Press Me')).tap();
 await element(by.text('Press Me')).tap();
+await element(by.label('Press Me')).tap();
 ```
 
 ## Typing Into TextInputs
