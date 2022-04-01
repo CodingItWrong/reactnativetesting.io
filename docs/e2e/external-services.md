@@ -36,7 +36,7 @@ import React, {useState, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import api from './api';
 
-const WidgetContainer = () => {
+export default function WidgetContainer() {
   const [widgets, setWidgets] = useState([]);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const WidgetContainer = () => {
   }, []);
 
   //...
-};
+}
 ```
 
 How can we fake out this client? We just create another module that exposes the same interface to the rest of the app, but uses hard-coded in-memory data instead. Let's see how.
