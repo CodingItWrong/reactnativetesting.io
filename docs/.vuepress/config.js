@@ -7,6 +7,9 @@ module.exports = {
     }],
   ],
   themeConfig: {
+    nav: [
+      {text: 'See an issue?', link: 'https://github.com/CodingItWrong/reactnativetesting.io/blob/main/README.md#contributing'}
+    ],
     sidebar: [
       {
         title: 'Unit Tests',
