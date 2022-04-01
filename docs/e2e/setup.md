@@ -86,28 +86,31 @@ Then add the detox plugin and environment to your ESLint config:
 
 Detox installs a sample test for you that you can tweak. If you are installing Detox into a brand-new React Native app, you can make a passing test doing the following.
 
-First, add a `testID` prop to an element in `App.js` so Detox can find it:
+First, add a `Text` component with a `testID` prop in `App.js` so Detox can find it:
 
 ```diff
- <View style={styles.body}>
-   <View style={styles.sectionContainer}>
--    <Text style={styles.sectionTitle}>Step One</Text>
-+    <Text style={styles.sectionTitle} testID="stepOne">
-+      Step One
-+    </Text>
-    <Text style={styles.sectionDescription}>
+ <View
+   style={{
+     backgroundColor: isDarkMode ? Colors.black : Colors.white,
+   }}>
++  <Text testID="hello">Hello, Detox!</Text>
+   <Section title="Step One">
 ```
 
-Then open the `firstTest.e2e.js` that `detox init` generated. Replace the contents with the following:
+Then open the `e2e/firstTest.e2e.js` that `detox init` generated. Replace the contents with the following:
 
 ```javascript
 describe('App', () => {
+  beforeAll(async () => {
+    await device.launchApp();
+  });
+
   beforeEach(async () => {
     await device.reloadReactNative();
   });
 
-  it('should show the step one message', async () => {
-    await expect(element(by.id('stepOne'))).toBeVisible();
+  it('should show the hello message', async () => {
+    await expect(element(by.id('hello'))).toBeVisible();
   });
 });
 ```
@@ -133,5 +136,5 @@ detox[5950] INFO:  App: should show the step one message [OK]
 
  PASS  e2e/firstTest.e2e.js (12.943s)
   App
-    ✓ should show the step one message (1813ms)
+    ✓ should show the steps (1813ms)
 ```
