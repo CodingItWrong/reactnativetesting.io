@@ -91,7 +91,7 @@ Cons:
 - Labor-intensive to manually retest your whole app on every PR
 - Unless you're a dedicated quality analyst, it's hard to maintain the discipline to thoroughly test without accidentally missing steps or giving into the temptation to skip things that "shouldn't break"
 
-Use Cases: recommended
+Use Cases: recommended for checking that there is nothing broken that your automated tests have missed, for checking visuals and aesthetics, and checking that the right thing was built.
 
 ## Designing a Project Approach
 
