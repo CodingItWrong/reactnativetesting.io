@@ -7,7 +7,7 @@ sidebar_position: 2
 
 ## Installing React Native Testing Library
 
-We'll be using React Native Testing Library with the Jest test runner. If you haven't already, [set up Jest](/unit/setup.html).
+We'll be using React Native Testing Library with the Jest test runner. If you haven't already, [set up Jest](/docs/unit/setup).
 
 Now we'll add React Native Testing Library:
 

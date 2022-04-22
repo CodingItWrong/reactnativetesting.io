@@ -16,7 +16,7 @@ But there are some downsides to snapshot tests as well:
 - Snapshot tests make writing tests quicker, but this happens at the expense of recording intent into the test. This means that when you review a diff, you need to understand the changes and decide if they match the intent of the component. This is one sense in which traditional tests serve as documentation: they describe to future developers how the component is intended to work.
 - Snapshot tests cannot be used in a Test-Driven Development style, so they don't provide the benefits of design feedback and providing a definition of done.
 
-In place of snapshot testing, I recommend using [end-to-end tests](/e2e) and [component tests](/component) to confirm important functionality of your application.
+In place of snapshot testing, I recommend using [end-to-end tests](/docs/e2e/intro) and [component tests](/docs/component/intro) to confirm important functionality of your application.
 
 ## Learning More
 
