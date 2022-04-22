@@ -53,11 +53,10 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'unit/intro',
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/CodingItWrong/reactnativetesting.io/blob/main/README.md#contributing',
             label: 'See an issue?',
@@ -73,7 +72,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/docs/unit/intro',
               },
             ],
           },

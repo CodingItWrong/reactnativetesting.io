@@ -1,6 +1,12 @@
-# Website
+# ReactNativeTesting.io
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+Source code for the web site [ReactNativeTesting.io](https://reactnativetesting.io)
+
+## Contributing
+
+See an error? Something out of date? Have a suggestion? We'd love your input!
+
+To contribute, [Open a GitHub Issue](https://github.com/CodingItWrong/reactnativetesting.io/issues/new), or fork the repo and open a pull request.
 
 ### Installation
 
@@ -39,3 +45,7 @@ $ GIT_USER=<Your GitHub username> yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+## Copyright
+
+(c) 2018-present Josh Justice
