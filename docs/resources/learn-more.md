@@ -11,5 +11,5 @@ Here are some more links to references where you can learn more about React Nati
 :::tip
 **Looking for something else?**
 
-If there's something you'd like to learn about testing React Native and you don't see it listed here, [let me know!](mailto:hello@testdrivenreact.com) I'm always working on new resources and would love to know what folks would like to see.
+If there's something you'd like to learn about testing React Native and you don't see it listed here, [let me know!](mailto:rntesting@codingitwrong.com) I'm always working on new resources and would love to know what folks would like to see.
 :::
