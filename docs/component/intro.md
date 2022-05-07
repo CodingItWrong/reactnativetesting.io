@@ -1,5 +1,5 @@
 ---
-title: Intro to Component Tests
+title: Component Tests
 sidebar_position: 1
 ---
 

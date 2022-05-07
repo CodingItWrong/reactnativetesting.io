@@ -1,5 +1,5 @@
 ---
-title: Intro to End-to-End Tests
+title: End-to-End Tests
 sidebar_position: 1
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Intro to Unit Tests
+title: Unit Tests
 sidebar_position: 1
 ---
 
