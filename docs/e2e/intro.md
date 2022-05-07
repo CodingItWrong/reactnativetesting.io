@@ -59,7 +59,7 @@ Cons:
 
 Use Cases: recommended for React Native CLI projects for tests written by developers that run on pull requests and block CI, especially for projects that have significant native integrations
 
-### [React Native Testing Library](/docs/component/intro)
+### [React Native Testing Library](/component/intro)
 
 We previously discussed React Native Testing Library as a component testing framework. Since your `App` is just a component, in some cases you may be able to test your _entire_ app "end-to-end" in RNTL.
 
