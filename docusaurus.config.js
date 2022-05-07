@@ -27,6 +27,7 @@ const config = {
           anonymizeIP: true,
         },
         docs: {
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // editUrl:
@@ -76,7 +77,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/unit/intro',
+                to: '/unit/intro',
               },
             ],
           },
