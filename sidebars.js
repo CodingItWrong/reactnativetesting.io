@@ -47,6 +47,10 @@ const sidebars = {
       ],
     },
     {
+      type: 'doc',
+      id: 'ci',
+    },
+    {
       type: 'category',
       label: 'Resources',
       items: [
