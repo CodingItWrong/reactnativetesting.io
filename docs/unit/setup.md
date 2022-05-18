@@ -2,6 +2,7 @@
 title: Setting Up Jest
 sidebar_position: 2
 ---
+import Chat from '../_chat.mdx'
 
 # Setting Up Jest
 
@@ -115,6 +116,8 @@ Most code editors can be configured to run ESLint rules as you edit. You can als
    "eject": "expo eject"
  },
 ```
+
+<Chat />
 
 [eslint]: https://eslint.org/
 [expo]: https://expo.io/

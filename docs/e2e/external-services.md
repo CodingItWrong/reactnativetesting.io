@@ -2,6 +2,7 @@
 title: External Services
 sidebar_position: 4
 ---
+import Chat from '../_chat.mdx'
 
 # E2E Testing with External Services
 
@@ -180,6 +181,8 @@ Note that, unlike JS files, you can't just reload the app when you change a `.en
 $ detox build -c ios
 $ detox test -c ios
 ```
+
+<Chat />
 
 [axios]: https://github.com/axios/axios
 [react-native-config]: https://github.com/luggit/react-native-config

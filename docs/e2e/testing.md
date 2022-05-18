@@ -2,6 +2,7 @@
 title: Testing
 sidebar_position: 3
 ---
+import Chat from '../_chat.mdx'
 
 # Testing
 
@@ -76,3 +77,5 @@ A shortcut for doing both is to use `.replaceText()`:
 ```js
 await element(by.id('mytextinput')).replaceText('A third thing I typed');
 ```
+
+<Chat />

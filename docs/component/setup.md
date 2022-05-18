@@ -2,6 +2,7 @@
 title: Setting Up React Native Testing Library and jest-native
 sidebar_position: 2
 ---
+import Chat from '../_chat.mdx'
 
 # Setting Up React Native Testing Library and jest-native
 
@@ -87,3 +88,5 @@ Time:        3.781s
 Ran all test suites.
 ✨  Done in 4.70s.
 ```
+
+<Chat />

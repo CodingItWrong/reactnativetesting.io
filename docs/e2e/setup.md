@@ -2,6 +2,7 @@
 title: Setting Up Detox
 sidebar_position: 2
 ---
+import Chat from '../_chat.mdx'
 
 # Setting Up Detox
 
@@ -139,3 +140,5 @@ detox[5950] INFO:  App: should show the step one message [OK]
   App
     ✓ should show the steps (1813ms)
 ```
+
+<Chat />

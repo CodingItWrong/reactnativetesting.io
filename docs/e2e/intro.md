@@ -2,6 +2,7 @@
 title: End-to-End Tests
 sidebar_position: 1
 ---
+import Chat from '../_chat.mdx'
 
 # End-to-End Tests
 
@@ -128,6 +129,8 @@ On a project with multiple developers, quality engineers, and business stakehold
   - The most important flows in the app
   - Things that can't easily be tested by automation, such as reading physical payment cards, checking paper receipts, checking data entered into legacy external systems, and evaluating animation smoothness
   - Exploratory testing to look for issues not specifically covered by a test plan, such as visual regressions
+
+<Chat />
 
 [appium]: https://appium.io
 [detox]: https://wix.github.io/Detox/

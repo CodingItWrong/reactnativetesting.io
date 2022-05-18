@@ -2,6 +2,7 @@
 title: Effects and External Services
 sidebar_position: 4
 ---
+import Chat from '../_chat.mdx'
 
 # Testing with useEffect
 
@@ -232,3 +233,5 @@ Now we can remove debug and log statements to keep our test output clean.
 
  await findByText('Widget 1');
 ```
+
+<Chat />

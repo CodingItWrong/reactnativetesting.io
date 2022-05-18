@@ -2,6 +2,7 @@
 title: What About Snapshot Tests?
 sidebar_position: 2
 ---
+import Chat from '../_chat.mdx'
 
 # What About Snapshot Tests?
 
@@ -21,3 +22,5 @@ In place of snapshot testing, I recommend using [end-to-end tests](../e2e/intro.
 ## Learning More
 
 - [The Case Against React Snapshot Testing](https://engineering.ezcater.com/the-case-against-react-snapshot-testing), blog post
+
+<Chat />

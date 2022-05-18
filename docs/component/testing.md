@@ -2,6 +2,7 @@
 title: Testing Components
 sidebar_position: 3
 ---
+import Chat from '../_chat.mdx'
 
 # Testing Components
 
@@ -133,3 +134,5 @@ it('calls the onSend prop', () => {
   expect(sendHandler).toHaveBeenCalledWith(messageText);
 });
 ```
+
+<Chat />

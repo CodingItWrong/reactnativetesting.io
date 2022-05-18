@@ -85,12 +85,12 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/react-native+testing',
+                label: '#react-native-testing on Discord',
+                href: 'https://discord.gg/jVXCxZPF6f',
               },
               {
-                label: 'Reactiflux',
-                href: 'https://www.reactiflux.com/',
+                label: 'Stack Overflow',
+                href: 'https://stackoverflow.com/questions/tagged/react-native+testing',
               },
             ],
           },

@@ -2,6 +2,7 @@
 title: Continuous Integration
 sidebar_position: 4
 ---
+import Chat from './_chat.mdx'
 
 # Continuous Integration
 
@@ -17,3 +18,5 @@ A few popular CI services that some have had success with React Native include:
 
 - [GitHub Actions](https://github.com/features/actions) - macOS builds are available on the free tier.
 - [CircleCI](https://circleci.com) - To get macOS builds for E2E tests, a paid plan is required.
+
+<Chat />
