@@ -56,6 +56,17 @@ After this, we need to add some extra config to `.detoxrc.json`. Add the followi
  }
 ```
 
+Finally, we need to ensure the version of Jest we're using is 27.x. Detox requires at least Jest 27.x, and React Native doesn't yet support the latest Jest 28.x release. Make the following change in `package.json`:
+
+```diff
+ "eslint": "^7.32.0",
+-"jest": "^26.6.3",
++"jest": "^27.5.1",
+ "metro-react-native-babel-preset": "^0.67.0",
+```
+
+Then run `yarn install`.
+
 ## Configuring ESLint
 
 If you're using ESLint (and you probably should be!), here are steps to set it up to recognize Detox code.
