@@ -29,13 +29,13 @@ Let's test that it displays the right message when a name is passed in as a prop
 
 ```jsx
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import {render, screen} from '@testing-library/react-native';
 import Hello from './Hello';
 
 describe('Hello', () => {
   it('displays the passed-in name', () => {
-    const {queryByText} = render(<Hello name="Josh" />);
-    expect(queryByText('Hello, Josh!')).not.toBeNull();
+    render(<Hello name="Josh" />);
+    expect(screen.queryByText('Hello, Josh!')).toBeTruthy();
   });
 });
 ```
@@ -44,7 +44,7 @@ Here's what's going on:
 
 - `render()` renders the component to an in-memory representation that doesn't require an iOS or Android environment.
 - `queryByText()` finds a child component that contains the passed-in text, or null if it's not found
-- `expect()` creates a Jest expectation to check a condition. `.not.toBeNull()` checks that the value is not null, which means that an element with that text was found.
+- `expect()` creates a Jest expectation to check a condition. `.toBeTruthy()` checks that the value is truthy, which will be the case when an element is found and not when one is not found.
 
 ## Interaction
 
@@ -83,16 +83,16 @@ Let's start by simulating entering text and pressing the button:
 
 ```jsx
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react-native';
+import {fireEvent, render, screen} from '@testing-library/react-native';
 import NewMessageForm from './NewMessageForm';
 
 describe('NewMessageForm', () => {
   describe('clicking send', () => {
     it('clears the message field', () => {
-      const {getByPlaceholderText, getByText} = render(<NewMessageForm />);
+      render(<NewMessageForm />);
 
-      fireEvent.changeText(getByPlaceholderText('Message'), 'Hello world');
-      fireEvent.press(getByText('Send'));
+      fireEvent.changeText(screen.getByPlaceholderText('Message'), 'Hello world');
+      fireEvent.press(screen.getByText('Send'));
     });
   });
 });
@@ -105,11 +105,11 @@ The two `getBy` functions let us retrieve elements: `getByText` looking for `Tex
 Now we need to actually check that the message field is cleared.
 
 ```diff
-     fireEvent.changeText(getByPlaceholderText('Message'), 'Hello world');
-     fireEvent.press(getByText('Send'));
+   fireEvent.changeText(screen.getByPlaceholderText('Message'), 'Hello world');
+   fireEvent.press(screen.getByText('Send'));
 +
-+    expect(getByPlaceholderText('Message')).toHaveProp('value', '');
-   });
++  expect(screen.getByPlaceholderText('Message')).toHaveProp('value', '');
+ });
 ```
 
 The `value` prop of the `TextInput` is what it displays, so we can check that prop to see that it is currently displaying the empty string.
@@ -124,12 +124,10 @@ The other thing we want to confirm is that the `onSend` action is called. We can
 it('calls the onSend prop', () => {
   const messageText = 'Hello world';
   const sendHandler = jest.fn();
-  const {getByPlaceholderText, getByText} = render(
-    <NewMessageForm onSend={sendHandler} />,
-  );
+  render(<NewMessageForm onSend={sendHandler} />);
 
-  fireEvent.changeText(getByPlaceholderText('Message'), 'Hello world');
-  fireEvent.press(getByText('Send'));
+  fireEvent.changeText(screen.getByPlaceholderText('Message'), 'Hello world');
+  fireEvent.press(screen.getByText('Send'));
 
   expect(sendHandler).toHaveBeenCalledWith(messageText);
 });

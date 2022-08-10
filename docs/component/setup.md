@@ -62,13 +62,13 @@ Next, add a `Hello.spec.js` file at the root of your project with the following 
 
 ```jsx
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import {render, screen} from '@testing-library/react-native';
 import Hello from './Hello';
 
 describe('Hello', () => {
   it('renders the correct message', () => {
-    const {queryByText} = render(<Hello />);
-    expect(queryByText('Hello, world!')).not.toBeNull();
+    render(<Hello />);
+    expect(screen.queryByText('Hello, world!')).toBeTruthy();
   });
 });
 ```

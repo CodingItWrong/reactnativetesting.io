@@ -38,15 +38,15 @@ Here's our initial attempt at a test:
 
 ```js
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import {render, screen} from '@testing-library/react-native';
 import WidgetContainer from './WidgetContainer';
 
 describe('WidgetContainer', () => {
   it('loads widgets upon mount', () => {
-    const {queryByText} = render(<WidgetContainer />);
+    render(<WidgetContainer />);
 
-    expect(queryByText('Widget 1')).not.toBeNull();
-    expect(queryByText('Widget 2')).not.toBeNull();
+    expect(screen.queryByText('Widget 1')).toBeTruthy();
+    expect(screen.queryByText('Widget 2')).toBeTruthy();
   });
 });
 ```
@@ -73,14 +73,14 @@ One way is to make the test wait for some time before it checks:
 
 ```diff
  it('loads widgets upon mount', () => {
-   const {queryByText, debug} = render(<WidgetContainer />);
+   render(<WidgetContainer />);
 
--  expect(queryByText('Widget 1')).not.toBeNull();
--  expect(queryByText('Widget 2')).not.toBeNull();
+-  expect(screen.queryByText('Widget 1')).toBeTruthy();
+-  expect(screen.queryByText('Widget 2')).toBeTruthy();
 +  return new Promise((resolve, reject) => {
 +    setTimeout(() => {
-+      expect(queryByText('Widget 1')).not.toBeNull();
-+      expect(queryByText('Widget 2')).not.toBeNull();
++      expect(screen.queryByText('Widget 1')).toBeTruthy();
++      expect(screen.queryByText('Widget 2')).toBeTruthy();
 +      resolve();
 +    }, 1000);
 +  });
@@ -107,15 +107,15 @@ First let's restore our test to before we added the Promise:
 
 ```js
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import {render, screen} from '@testing-library/react-native';
 import WidgetContainer from './WidgetContainer';
 
 describe('WidgetContainer', () => {
   it('loads widgets upon mount', () => {
-    const {queryByText} = render(<WidgetContainer />);
+    render(<WidgetContainer />);
 
-    expect(queryByText('Widget 1')).not.toBeNull();
-    expect(queryByText('Widget 2')).not.toBeNull();
+    expect(screen.queryByText('Widget 1')).toBeTruthy();
+    expect(screen.queryByText('Widget 2')).toBeTruthy();
   });
 });
 ```
@@ -148,7 +148,7 @@ So our call to `api.get()` returns undefined. This is because `jest.mock()` repl
  it('loads widgets upon mount', () => {
 +  api.get.mockResolvedValue();
 +
-   const {queryByText} = render(<WidgetContainer />);
+   render(<WidgetContainer />);
 ```
 
 Now our test no longer errors out, but we still get expectation failures that our results are `null`. This is because `api.get()` is now returning a promise that resolves. We also get a warning about an unhandled promise rejection:
@@ -182,12 +182,11 @@ Now the promise is no longer rejecting. There's the `act()` warning again that w
 We can find out by using `debug()`, which will output a representation of our component tree to the test logs:
 
 ```diff
--const {queryByText} = render(<WidgetContainer />);
-+const {queryByText, debug} = render(<WidgetContainer />);
+ render(<WidgetContainer />);
 +
-+debug();
++screen.debug();
 
- expect(queryByText('Widget 1')).not.toBeNull();
+ expect(screen.queryByText('Widget 1')).toBeTruthy();
 ```
 
 The logged component tree we get is simply:
@@ -199,18 +198,17 @@ The logged component tree we get is simply:
 Why would that be? Our API is being called and is responding. This is because our test runs on the same tick of the event loop, so React doesn't have time to get the response and render. We need to wait for the rerender for the element to be displayed on the screen. We can do this by changing the first check to the asynchronous `findByText()`:
 
 ```diff
--const {queryByText, debug} = render(<WidgetContainer />);
-+const {findByText, queryByText, debug} = render(<WidgetContainer />);
+ render(<WidgetContainer />);
 
  debug();
 
--expect(queryByText('Widget 1')).not.toBeNull();
--expect(queryByText('Widget 2')).not.toBeNull();
-+await findByText('Widget 1');
-+expect(queryByText('Widget 2')).not.toBeNull();
+-expect(screen.queryByText('Widget 1')).toBeTruthy();
+-expect(screen.queryByText('Widget 2')).toBeTruthy();
++await screen.findByText('Widget 1');
++expect(screen.queryByText('Widget 2')).toBeTruthy();
 ```
 
-Why do we only change the first check to `findByText`, leaving the second as `queryByText`? This is because React will give us a warning if we `await` a `findByText` when it's available right away. As soon as "Widget 1" is visible, "Widget 2" will also be visible, so we can use a normal `expect(queryByText(…)).not.toBeNull()` to check for it.
+Why do we only change the first check to `findByText`, leaving the second as `queryByText`? This is because React will give us a warning if we `await` a `findByText` when it's available right away. As soon as "Widget 1" is visible, "Widget 2" will also be visible, so we can use a normal `expect(screen.queryByText(…)).toBeTruthy()` to check for it.
 
 To use `await` we also need to change the test function to be an `async` function:
 
@@ -226,12 +224,11 @@ Now the tests passes.
 Now we can remove debug and log statements to keep our test output clean.
 
 ```diff
-+const {findByText, queryByText} = render(<WidgetContainer />);
--const {findByText, queryByText, debug} = render(<WidgetContainer />);
+ render(<WidgetContainer />);
 -
 -debug();
 
- await findByText('Widget 1');
+ await screen.findByText('Widget 1');
 ```
 
 <Chat />
