@@ -17,6 +17,6 @@ Running JavaScript tests on CI services is fairly straightforward. Unfortunately
 A few popular CI services that some have had success with React Native include:
 
 - [GitHub Actions](https://github.com/features/actions) - macOS builds are available on the free tier.
-- [CircleCI](https://circleci.com) - To get macOS builds for E2E tests, a paid plan is required.
+- [CircleCI](https://circleci.com) - macOS builds are available on the free tier.
 
 <Chat />
