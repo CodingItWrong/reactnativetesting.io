@@ -8,6 +8,10 @@ by Josh Justice
 
 Presented at React Native EU 2022
 
+## Extended Exercise
+
+This repo contains an extended version of the exercise presented at React Native EU 2022: [getting-better-expo](https://github.com/CodingItWrong/getting-better-expo).
+
 ## Resources for Testing and TDD in React Native
 
 - [CodingItWrong's Discord](https://discord.gg/fYcpqvnksK) - discuss this talk, React Native, testing, and TDD
@@ -18,6 +22,12 @@ Presented at React Native EU 2022
 
 ## Contact Josh
 
-- Email: josh [at] reactnativetesting [dot] io
-- [LinkedIn](https://www.linkedin.com/in/jjustice/)
-- [Mastodon](https://mastodon.technology/@CodingItWrong)
+- Email: [josh@reactnativetesting.io](mailto:josh@reactnativetesting.io)
+- LinkedIn: [Josh Justice](https://www.linkedin.com/in/jjustice/)
+- Home page: [CodingItWrong.com](https://codingitwrong.com)
+
+## Contact Big Nerd Ranch
+
+React Native, native, and web development training and consulting.
+
+Learn more at [bignerdranch.com](https://bignerdranch.com/)
