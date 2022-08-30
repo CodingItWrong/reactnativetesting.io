@@ -20,9 +20,173 @@ The server is a bit slow. When we add a restaurant, the Add button is visibly de
 
 But there is no corresponding loading state for the Delete buttons; while they run, they are still active.
 
-Let's take a look at the code we have to work with. [assessment here]
+Let's take a look at the code we have to work with. This'll take a little scrolling:
 
-Luckily, this screen is thoroughly covered by test. That means we can make small changes to the code to make it better and easier to work with for our current story.
+
+```jsx
+import {useState} from 'react';
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import api from './api';
+
+export default function RestaurantList({
+  restaurants,
+  loading,
+  loadError,
+  reloadRestaurants,
+}) {
+  const [name, setName] = useState('');
+  const [adding, setAdding] = useState(false);
+  const [updateErrorMessage, setUpdateErrorMessage] = useState(null);
+
+  if (loading) {
+    return <Text style={styles.message}>Loading…</Text>;
+  }
+
+  if (loadError) {
+    return (
+      <Text style={[styles.message, styles.error]}>
+        An error occurred while loading the restaurants
+      </Text>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.addRow}>
+        <TextInput
+          placeholder="New restaurant name"
+          value={name}
+          onChangeText={setName}
+          style={styles.newRestaurantNameField}
+        />
+        <Pressable
+          testID="add-button"
+          disabled={adding}
+          style={[styles.button, styles.addButton]}
+          onPress={() => {
+            setAdding(true);
+            api
+              .post('/restaurants', {name})
+              .then(() => reloadRestaurants())
+              .then(() => {
+                setName('');
+                setAdding(false);
+              })
+              .catch(() =>
+                setUpdateErrorMessage(
+                  'An error occurred adding the restaurant',
+                ),
+              );
+          }}
+        >
+          <Text style={adding && styles.buttonTextDisabled}>
+            {adding ? 'Adding…' : 'Add'}
+          </Text>
+        </Pressable>
+      </View>
+      {updateErrorMessage && (
+        <Text style={[styles.message, styles.error]}>{updateErrorMessage}</Text>
+      )}
+      <FlatList
+        data={restaurants}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <View style={styles.restaurantRow}>
+            <Text style={styles.restaurantName}>{item.name}</Text>
+            <Pressable
+              style={styles.button}
+              onPress={() =>
+                api
+                  .delete(`/restaurants/${item.id}`)
+                  .then(() => reloadRestaurants())
+                  .catch(() =>
+                    setUpdateErrorMessage(
+                      'An error occurred deleting the restaurant',
+                    ),
+                  )
+              }
+            >
+              <Text>Delete</Text>
+            </Pressable>
+          </View>
+        )}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  button: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    backgroundColor: '#eee',
+  },
+  buttonTextDisabled: {
+    color: '#999',
+  },
+  container: {
+    flex: 1,
+  },
+  addRow: {
+    flexDirection: 'row',
+    padding: 8,
+  },
+  newRestaurantNameField: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 4,
+  },
+  addButton: {
+    marginLeft: 8,
+  },
+  message: {
+    fontSize: 18,
+    padding: 8,
+  },
+  error: {
+    color: 'red',
+    fontSize: 18,
+    padding: 8,
+  },
+  restaurantRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    padding: 8,
+  },
+  restaurantName: {
+    flex: 1,
+    fontSize: 18,
+  },
+});
+```
+
+What do we think of this code? Here are some of my thoughts:
+
+- There's a state item called `name`, but what name is that? We could guess it's the state of the new restaurant name text field but it's not obvious from the variable name.
+- There's an `updateErrorMessage` state item, but it's not clear what it refers to. This screen doesn't really do any "updating", just "adding" and "deleting".
+- The JSX structure is nested pretty deeply. Everything is using low-level RN core components, so you can't get a sense of higher-level concepts, even under the `FlatList`'s inline `renderItem` prop function.
+- There are multi-line logic functions directly in the JSX, including nontrivial Promise chains. This means that presentation and *asynchronous* business logic are mixed in one place, making it hard to parse. And let's assume my team has standardized on using `async`/`await` over Promise chains when possible; this makes it even less familiar for us.
+- The `FlatList`'s `keyExtractor` and `renderItem` functions both use `item` as an argument name, but it's not clear what an "item" is.
+- There's a nontrivial amount of `StyleSheet` styles, because all of this screen's JSX tree is in this one file. This increases the effort it takes to find the styles that apply to a given component.
+
+Now, we chose a file that is 150 lines long to make it manageable for a blog post. (it was already pretty long to scroll through!) A file of that length is probably manageable to figure out and work with it. But even in a file this short there are already all of the above problems. Think about when you've seen problems like these in files much longer. They can make the code very hard to work with, even to the point that you despair of ever fully understanding it.
+
+Luckily, this screen is thoroughly covered by tests. That means we can make small changes to the code to make it better and easier to work with for our current story.
 
 ## Refactoring
 
