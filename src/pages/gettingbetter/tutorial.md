@@ -1,12 +1,12 @@
 ---
-title: "Getting Better All the Time: How to Escape Bad Code tutorial"
+title: "Getting Better All the Time - Tutorial"
 ---
 
-# Getting Better All the Time: How to Escape Bad Code tutorial
+# Getting Better All the Time - Tutorial
 
 by Josh Justice
 
-An extended version of the code exercise presented at React Native EU 2022.
+*An extended version of the code exercise presented at React Native EU 2022.*
 
 ## The Story
 
@@ -2090,3 +2090,10 @@ Save and the test should pass.
 
 Why is `waitForElementToBeRemoved` needed here but not in `RestaurantList.spec.js`? In both cases we need to wait for a Promise to resolve. In the test of `RestaurantList`, we can wait for the error message to display. But the error message isn't part of `RestaurantRow`; it's outside of it. Within a test of `RestaurantRow` in isolation, then, we need something else to wait for. What *does* change in the JSX tree that we can wait on? We could wait for the text "Delete" to appear again, but instead we wait for "Deleting…" to disappear. `waitForElementToBeRemoved` is the simplest API to do that.
 
+## More to Come
+
+The following are already present in [this tutorial's GitHub repo](https://github.com/CodingItWrong/getting-better-expo), and will be added to this tutorial as time allows:
+
+- A lower-level direct test of `NewRestaurantForm`
+- Refactoring the visuals of the app to use [React Native Paper](https://reactnativepaper.com/) instead of custom styling
+- Updating the data loading to use [React Query](https://tanstack.com/query/v4) instead of `useEffect`, without needing to change the screen's implementation or tests
