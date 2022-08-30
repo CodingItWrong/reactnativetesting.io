@@ -12,15 +12,13 @@ by Josh Justice
 
 Say we have this screen that displays a list of restaurants from a server, and allows us to add a new restaurant to the list:
 
-[screenshot here]
+![A list of restaurants with a "new restaurant name" field and an active "Add" button at the top](./1.png)
 
 The server is a bit slow. When we add a restaurant, the Add button is visibly deactivated, showing us that the add is in progress:
 
-[screenshot]
+![Text field with the restaurant name "Ice Cream Place" filled in. Instead of an active "Add" button, the button is deactivated and labeled "Adding…"](./2.png)
 
-But there is no corresponding loading state for the Delete buttons; while they run, they are still active:
-
-[screenshot]
+But there is no corresponding loading state for the Delete buttons; while they run, they are still active.
 
 Let's take a look at the code we have to work with. [assessment here]
 
@@ -382,7 +380,7 @@ With this, we have a `deleting` boolean we can use to implement the deleting sta
 
 With this, we should have our deleting button working. Let's try it in the simulator:
 
-[screenshot]
+![A list of restaurants with active "Delete" buttons next to them. The final restaurant, "Ice Cream Place", instead has a deactivated button labeled "Deleting…"](./3.png)
 
 The deleting state looks great, but after the delete completes we get a warning:
 
