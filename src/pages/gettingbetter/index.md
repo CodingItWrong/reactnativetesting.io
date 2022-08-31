@@ -17,7 +17,7 @@ This repo contains an extended version of the exercise presented at React Native
 
 ## Resources for Testing and TDD in React Native
 
-- [CodingItWrong's Discord](https://discord.gg/gR8SVWkAHY) - discuss this talk, React Native, testing, and TDD
+- [CodingItWrong's Discord](https://discord.gg/sFAJJRwW98) - discuss this talk, React Native, testing, and TDD
 - [CodingItWrong Twitch Streams](https://codingitwrong.com/stream) - doing a series on React Native testing starting September 2022.
 - [ReactNativeTesting.io](/) - setting up and using Jest, React Native Testing Library, and Detox.
 - [Learn TDD in React Native](https://learntdd.in/react-native) - a brief tutorial
