@@ -8,6 +8,8 @@ by Josh Justice
 
 Presented at React Native EU 2022
 
+- [Presentation slides](https://www.slideshare.net/JoshJustice1/getting-better-all-the-time-how-to-escape-bad-code)
+
 ## Extended Tutorial
 
 - [**Getting Better All the Time Tutorial**](/gettingbetter/tutorial) - an extended step-by-step version of the tutorial in the presentation
