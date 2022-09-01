@@ -29,6 +29,6 @@ Presented at React Native EU 2022
 
 ## Contact Big Nerd Ranch
 
-React Native, native, and web development training and consulting.
+React Native, native, and web development consulting and training.
 
 Learn more at [bignerdranch.com](https://bignerdranch.com/)
