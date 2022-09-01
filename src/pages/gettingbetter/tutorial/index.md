@@ -2256,7 +2256,7 @@ Why is `waitForElementToBeRemoved` needed here but not in `RestaurantList.spec.j
 
 ## More to Come
 
-The following are already present in [this tutorial's GitHub repo](https://github.com/CodingItWrong/getting-better-expo), and will be added to this tutorial as time allows:
+The following will be added to this tutorial as time allows:
 
 - A lower-level direct test of `NewRestaurantForm`
 - Refactoring the visuals of the app to use [React Native Paper](https://reactnativepaper.com/) instead of custom styling
