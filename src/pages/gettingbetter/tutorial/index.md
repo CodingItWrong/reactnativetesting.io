@@ -8,6 +8,8 @@ by Josh Justice
 
 *An extended version of the code exercise presented at React Native EU 2022.*
 
+*The code for this tutorial is available in a [GitHub repo](https://github.com/CodingItWrong/getting-better-expo) if you'd like to follow along or play with it yourself.*
+
 ## The Story
 
 Say we have this screen that displays a list of restaurants from a server, and allows us to add a new restaurant to the list:
