@@ -13,8 +13,6 @@ Presented at React Native EU 2022
 - [**Getting Better All the Time Tutorial**](/gettingbetter/tutorial) - an extended step-by-step version of the tutorial in the presentation
 - [GitHub Repo](https://github.com/CodingItWrong/getting-better-expo) - the code used in the above tutorial, including the additional TDD and refactoring steps
 
-This repo contains an extended version of the exercise presented at React Native EU 2022: [getting-better-expo](https://github.com/CodingItWrong/getting-better-expo).
-
 ## Resources for Testing and TDD in React Native
 
 - [CodingItWrong's Discord](https://discord.gg/sFAJJRwW98) - discuss this talk, React Native, testing, and TDD
