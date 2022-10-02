@@ -21,7 +21,7 @@ Presented at React Native EU 2022
 - [CodingIt.Live on Twitch](https://codingit.live) - doing a series on React Native testing since September 2022.
 - [ReactNativeTesting.io](/) - setting up and using Jest, React Native Testing Library, and Detox.
 - [Learn TDD in React Native](https://learntdd.in/react-native) - a brief tutorial
-- *Outside-In React Development: A TDD Primer* ([ebook](https://leanpub.com/outside-in-react-development/c/gettingbetter) or [paperback](https://www.amazon.com/dp/B0BBQ18DTL)) - a book teaching TDD for React for the web; the approach and principles apply just as well to React Native. $10 off for React Native EU with the above links.
+- *Outside-In React Development: A TDD Primer* - a book teaching TDD for React for the web; the approach and principles apply just as well to React Native. [Paperback](https://www.amazon.com/dp/B0BBQ18DTL), or [$10 off ebook](https://leanpub.com/outside-in-react-development/c/gettingbetter) for React Native EU with this link.
 
 ## Contact Josh
 
