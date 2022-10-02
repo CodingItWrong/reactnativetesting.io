@@ -88,10 +88,6 @@ const config = {
                 label: '#react-native-testing on Discord',
                 href: 'https://discord.gg/jVXCxZPF6f',
               },
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/react-native+testing',
-              },
             ],
           },
           {
