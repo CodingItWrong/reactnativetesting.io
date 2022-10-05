@@ -68,7 +68,7 @@ import Hello from './Hello';
 describe('Hello', () => {
   it('renders the correct message', () => {
     render(<Hello />);
-    expect(screen.queryByText('Hello, world!')).toBeTruthy();
+    expect(screen.getByText('Hello, world!')).toBeTruthy();
   });
 });
 ```

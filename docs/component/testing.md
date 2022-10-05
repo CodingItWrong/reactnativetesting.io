@@ -35,7 +35,7 @@ import Hello from './Hello';
 describe('Hello', () => {
   it('displays the passed-in name', () => {
     render(<Hello name="Josh" />);
-    expect(screen.queryByText('Hello, Josh!')).toBeTruthy();
+    expect(screen.getByText('Hello, Josh!')).toBeTruthy();
   });
 });
 ```
@@ -43,8 +43,8 @@ describe('Hello', () => {
 Here's what's going on:
 
 - `render()` renders the component to an in-memory representation that doesn't require an iOS or Android environment.
-- `queryByText()` finds a child component that contains the passed-in text, or null if it's not found
-- `expect()` creates a Jest expectation to check a condition. `.toBeTruthy()` checks that the value is truthy, which will be the case when an element is found and not when one is not found.
+- `getByText()` finds a child component that contains the passed-in text, or raises an error if it's not found
+- `expect()` creates a Jest expectation to check a condition. We don't *technically* need it here, as just calling `screen.getByText(…)` would cause the test to fail if not found and pass if found. But wrapping it in an `expect().toBeTruthy()` is a Testing Library convention to help readers of the test know that this is intended as an expectation.
 
 ## Interaction
 
