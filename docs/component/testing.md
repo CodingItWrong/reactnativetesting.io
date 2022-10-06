@@ -46,6 +46,95 @@ Here's what's going on:
 - `getByText()` finds a child component that contains the passed-in text, or raises an error if it's not found
 - `expect()` creates a Jest expectation to check a condition. We don't *technically* need it here, as just calling `screen.getByText(…)` would cause the test to fail if not found and pass if found. But wrapping it in an `expect().toBeTruthy()` is a Testing Library convention to help readers of the test know that this is intended as an expectation.
 
+## Testing Images
+
+What about when you want to confirm the presence of an image or icon that doesn't have any associated text?
+
+In this case, accessibility comes to the rescue. For visually impaired users to be able to use your app, it's a good idea for every image and icon to have *some* associated text. If there isn't any text visible on the screen, you can provide an `accessibilityLabel`. This has two benefits:
+
+- It gives screen reader software the ability to read out a description of the image or icon to visually-impaired users, and
+- It gives you something to query against in your tests.
+
+Say we have an `Image` in our `Hello` component:
+
+```jsx
+import {Image, Text, View} from 'react-native';
+
+export default function Hello({name = 'World'}) {
+  return (
+    <View>
+      <Text>Hello, {name}!</Text>
+      <Image source={require('./assets/squirrel.jpg')} />
+    </View>
+  );
+}
+```
+
+How can we confirm that the `Image` is displayed? First, we add an `accessibilityLabel` to it:
+
+```diff
+ <View>
+   <Text>Hello, {name}!</Text>
+   <Image
+     source={require('./assets/squirrel.jpg')}
++    accessibilityLabel="squirrel waving"
+   />
+ </View>
+```
+
+Next, we search for it in our test using the `getByLabelText` matcher:
+
+```js
+it('displays the squirrel image', () => {
+  expect(screen.getByLabelText('squirrel waving')).toBeTruthy();
+});
+```
+
+This test will pass.
+
+What about SVGs? A common way to use SVGs in React Native is with [`react-native-svg-transformer`](https://github.com/kristerkari/react-native-svg-transformer), which allows you to import `.svg` files as components. Using it looks like this:
+
+```jsx
+import {Image, Text, View} from 'react-native';
+import WavingHand from './assets/waving-hand.svg';
+
+export default function Hello({name = 'World'}) {
+  return (
+    <View>
+      <Text>Hello, {name}!</Text>
+      <WavingHand
+        fill="gray"
+        width={100}
+        height={100}
+      />
+    </View>
+  );
+}
+```
+
+SVGs can be tested in the same way: by adding an `accessibilityLabel`:
+
+```diff
+ <WavingHand
+   fill="gray"
+   width={100}
+   height={100}
++  accessibilityLabel="waving hand"
+ />
+```
+
+The test looks like this:
+
+```js
+it('displays the waving hand icon', () => {
+  expect(screen.getByLabelText('waving hand')).toBeTruthy();
+});
+```
+
+Although `getByLabelText` helps with accessibility, note that *it does not confirm your app is fully accessible to screen readers!* In the examples above, the image and SVG won't be interactable by iOS VoiceOver unless you also add the `accessible` prop. Be sure to test your app with screen reader software; the `getByLabelText` matcher can just serve as a helpful reminder to make your images and SVGs accessible.
+
+To learn more about accessibility in React Native, check out [Ankita Kulkarni's talk "Make your React Native Apps Accessible from Chain React 2019"](https://youtu.be/3LLQ5AshtNc).
+
 ## Interaction
 
 We've tested the rendering of a component; now let's test out interacting with a component. Here's a simple form component for sending a message to a chat system:
