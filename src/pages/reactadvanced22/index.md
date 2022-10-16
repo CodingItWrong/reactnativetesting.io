@@ -84,7 +84,7 @@ Watch Usage
 ```
 
 - Launch the app on a device: either your physical phone, Android Emulator, or iOS Simulator. For instructions, see [Expo: Opening the app on your phone/tablet](https://docs.expo.dev/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet)
-- Once the app is launched, make sure you can see the example movies "Space Wars" and "Cowboy Wars" listed.
+- Once the app is launched, make sure you can see the example movies "Vertigo" and "The Sound of Music" listed.
 - Type in a movie title and click Save. Confirm the movie is added to the list, with a yellow icon appearing to the right of it
 
 ## You're Ready!
