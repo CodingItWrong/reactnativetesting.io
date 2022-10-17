@@ -48,17 +48,17 @@ Get an API key:
 
 Do the following to make sure your local installation is working:
 
-- Run `yarn test`. You should see output like the following, including "Tests: 3 todo, 3 total":
+- Run `yarn test`. You should see output like the following, including "Tests: 1 todo, 1 total":
 
 ```text
  PASS  src/MovieRow.spec.js
- PASS  src/NewMovieForm.spec.js
- PASS  src/MovieList.spec.js
+  MovieRow
+    ✎ todo EXERCISE 1
 
-Test Suites: 3 passed, 3 total
-Tests:       3 todo, 3 total
+Test Suites: 1 passed, 1 total
+Tests:       1 todo, 1 total
 Snapshots:   0 total
-Time:        0.704 s, estimated 1 s
+Time:        0.83 s
 Ran all test suites.
 
 Watch Usage
@@ -89,6 +89,6 @@ Watch Usage
 
 ## You're Ready!
 
-If you reached this point and everything is working, congratulations: you are ready for the workshop! On Friday, October 28th in the workshop we will take it from here. See you then!
+If you reached this point and were able to see both the test output and the running app, congratulations: you are ready for the workshop! On Friday, October 28th in the workshop we will take it from here. See you then!
 
 <Contact />
