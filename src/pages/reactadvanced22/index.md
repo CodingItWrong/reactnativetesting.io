@@ -29,7 +29,7 @@ We will be adding tests to a pre-existing exercise GitHub repo, [intro-to-rntl-e
 Clone the repo locally:
 
 ```bash
-$ git clone https://github.com/CodingItWrong/intro-to-rntl-exercises.git
+git clone https://github.com/CodingItWrong/intro-to-rntl-exercises.git
 ```
 
 Install the dependencies:
