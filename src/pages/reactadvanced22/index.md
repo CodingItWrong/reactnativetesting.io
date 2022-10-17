@@ -15,7 +15,7 @@ Thank you for signing up for the workshop! Here are the steps you can go through
 
 - [git](https://git-scm.com/)
 - [Node](https://nodejs.org/) 16.x or above
-- [Yarn 1.x](https://classic.yarnpkg.com/en/docs/install)
+- [Yarn 1.x](https://classic.yarnpkg.com/en/docs/install) - 1.22.19 or above recommended
 - At least one of the following ways to run a React Native app:
   - A physical Android or iOS device
   - [Android Studio](https://developer.android.com/studio/) for the Android Emulator
