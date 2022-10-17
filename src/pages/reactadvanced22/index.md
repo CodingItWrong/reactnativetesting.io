@@ -24,7 +24,7 @@ Thank you for signing up for the workshop! Here are the steps you can go through
 
 ## Setting Up the Repo
 
-We will be adding tests to a pre-existing exercise GitHub repo [intro-to-rntl-exercises](https://github.com/CodingItWrong/intro-to-rntl-exercises).
+We will be adding tests to a pre-existing exercise GitHub repo, [intro-to-rntl-exercises](https://github.com/CodingItWrong/intro-to-rntl-exercises).
 
 Clone the repo locally:
 
@@ -35,7 +35,7 @@ $ git clone https://github.com/CodingItWrong/intro-to-rntl-exercises.git
 Install the dependencies:
 
 ```bash
-$ cd rn-testing-workshop-exercises
+$ cd intro-to-rntl-exercises
 $ yarn install
 ```
 
