@@ -231,4 +231,14 @@ Now we can remove debug and log statements to keep our test output clean.
  await screen.findByText('Widget 1');
 ```
 
+```diff
+ useEffect(() => {
+-  console.log('sent request');
+   api.get('/widgets').then((response) => {
+-    console.log('got response');
+     setWidgets(response.data);
+   });
+ }, []);
+```
+
 <Chat />
