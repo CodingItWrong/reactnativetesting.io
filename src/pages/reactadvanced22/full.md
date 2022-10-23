@@ -2,27 +2,21 @@
 title: "Intro to React Native Testing Library - React Advanced London 2022"
 ---
 
+import Header from './_header.mdx'
+import Contact from './_contact.mdx'
+
 <Header />
 
 ## Workshop Resources
 
+- [Exercise repo](https://github.com/CodingItWrong/intro-to-rntl-exercises)
 - Lecture slides - COMING SOON!
 - Workshop video - COMING SOON!
 
 ## More Resources for Testing and TDD in React Native
 
-- [ReactNativeTesting.io](/) - more extensive instructions on setting up and using Jest, React Native Testing Library, and Detox.
+- [ReactNativeTesting.io](/) - a more extensive tutorial on setting up and using Jest, React Native Testing Library, and Detox.
 - [CodingItWrong's Discord](https://discord.gg/jVXCxZPF6f) - discuss this workshop, React Native, and testing.
-- [CodingIt.Live on Twitch](https://codingit.live) - explore more advanced React Native testing topics, including working on open-source projects together.
+- [CodingIt.Live on Twitch](https://codingit.live) - a live stream about React Native testing, including more advanced topics and working on open-source projects together.
 
-## Contact Josh
-
-- Email: [josh@reactnativetesting.io](mailto:josh@reactnativetesting.io)
-- LinkedIn: [Josh Justice](https://www.linkedin.com/in/jjustice/)
-- Home page: [CodingItWrong.com](https://codingitwrong.com)
-
-## Contact Test Double
-
-React Native, React, and web development consulting.
-
-Learn more at [testdouble.com](https://testdouble.com/)
+<Contact />

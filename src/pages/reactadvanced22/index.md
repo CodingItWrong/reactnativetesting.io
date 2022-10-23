@@ -7,6 +7,8 @@ import Contact from './_contact.mdx'
 
 <Header />
 
+Oct 28, 2022, 3-6 BST
+
 ## Pre-Workshop Setup
 
 Thank you for signing up for the workshop! Here are the steps you can go through in advance to ensure your local development environment is ready.
