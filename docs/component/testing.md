@@ -35,7 +35,7 @@ import Hello from './Hello';
 describe('Hello', () => {
   it('displays the passed-in name', () => {
     render(<Hello name="Josh" />);
-    expect(screen.getByText('Hello, Josh!')).toBeTruthy();
+    expect(screen.getByText('Hello, Josh!')).toBeVisible();
   });
 });
 ```
@@ -43,8 +43,9 @@ describe('Hello', () => {
 Here's what's going on:
 
 - `render()` renders the component to an in-memory representation that doesn't require an iOS or Android environment.
-- `getByText()` finds a child component that contains the passed-in text, or raises an error if it's not found
-- `expect()` creates a Jest expectation to check a condition. We don't *technically* need it here, as just calling `screen.getByText(…)` would cause the test to fail if not found and pass if found. But wrapping it in an `expect().toBeTruthy()` is a Testing Library convention to help readers of the test know that this is intended as an expectation.
+- `screen.getByText()` finds a child component that contains the passed-in text, or raises an error if it's not found.
+- `expect()` creates a Jest expectation to check a condition.
+- `.toBeVisible()` confirms that the element was not only found, but is also visible to users. This provides extra realism.
 
 ## Testing Images
 
@@ -86,7 +87,7 @@ Next, we search for it in our test using the `getByLabelText` matcher:
 
 ```js
 it('displays the squirrel image', () => {
-  expect(screen.getByLabelText('squirrel waving')).toBeTruthy();
+  expect(screen.getByLabelText('squirrel waving')).toBeVisible();
 });
 ```
 
@@ -127,7 +128,7 @@ The test looks like this:
 
 ```js
 it('displays the waving hand icon', () => {
-  expect(screen.getByLabelText('waving hand')).toBeTruthy();
+  expect(screen.getByLabelText('waving hand')).toBeVisible();
 });
 ```
 

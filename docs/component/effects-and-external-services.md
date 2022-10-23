@@ -45,8 +45,8 @@ describe('WidgetContainer', () => {
   it('loads widgets upon mount', () => {
     render(<WidgetContainer />);
 
-    expect(screen.getByText('Widget 1')).toBeTruthy();
-    expect(screen.getByText('Widget 2')).toBeTruthy();
+    expect(screen.getByText('Widget 1')).toBeVisible();
+    expect(screen.getByText('Widget 2')).toBeVisible();
   });
 });
 ```
@@ -75,12 +75,12 @@ One way is to make the test wait for some time before it checks:
  it('loads widgets upon mount', () => {
    render(<WidgetContainer />);
 
--  expect(screen.getByText('Widget 1')).toBeTruthy();
--  expect(screen.getByText('Widget 2')).toBeTruthy();
+-  expect(screen.getByText('Widget 1')).toBeVisible();
+-  expect(screen.getByText('Widget 2')).toBeVisible();
 +  return new Promise((resolve, reject) => {
 +    setTimeout(() => {
-+      expect(screen.getByText('Widget 1')).toBeTruthy();
-+      expect(screen.getByText('Widget 2')).toBeTruthy();
++      expect(screen.getByText('Widget 1')).toBeVisible();
++      expect(screen.getByText('Widget 2')).toBeVisible();
 +      resolve();
 +    }, 1000);
 +  });
@@ -114,8 +114,8 @@ describe('WidgetContainer', () => {
   it('loads widgets upon mount', () => {
     render(<WidgetContainer />);
 
-    expect(screen.getByText('Widget 1')).toBeTruthy();
-    expect(screen.getByText('Widget 2')).toBeTruthy();
+    expect(screen.getByText('Widget 1')).toBeVisible();
+    expect(screen.getByText('Widget 2')).toBeVisible();
   });
 });
 ```
@@ -186,7 +186,7 @@ We can find out by using `debug()`, which will output a representation of our co
 +
 +screen.debug();
 
- expect(screen.getByText('Widget 1')).toBeTruthy();
+ expect(screen.getByText('Widget 1')).toBeVisible();
 ```
 
 The logged component tree we get is simply:
@@ -202,13 +202,13 @@ Why would that be? Our API is being called and is responding. This is because ou
 
  debug();
 
--expect(screen.getByText('Widget 1')).toBeTruthy();
--expect(screen.getByText('Widget 2')).toBeTruthy();
+-expect(screen.getByText('Widget 1')).toBeVisible();
+-expect(screen.getByText('Widget 2')).toBeVisible();
 +await screen.findByText('Widget 1');
-+expect(screen.getByText('Widget 2')).toBeTruthy();
++expect(screen.getByText('Widget 2')).toBeVisible();
 ```
 
-Why do we only change the first check to `findByText`, leaving the second as `getByText`? This is because React will give us a warning if we `await` a `findByText` when it's available right away. As soon as "Widget 1" is visible, "Widget 2" will also be visible, so we can use a normal `expect(screen.getByText(…)).toBeTruthy()` to check for it.
+Why do we only change the first check to `findByText`, leaving the second as `getByText`? This is because React will give us a warning if we `await` a `findByText` when it's available right away. As soon as "Widget 1" is present, "Widget 2" will also be present, so we can use a normal `expect(screen.getByText(…)).toBeVisible()` to check for it.
 
 To use `await` we also need to change the test function to be an `async` function:
 
