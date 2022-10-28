@@ -9,6 +9,7 @@ import Contact from './_contact.mdx'
 
 ## Workshop Resources
 
+- [Discussion During Workshop: Discord](https://discord.gg/TKR6JYXk4T)
 - [Exercise repo](https://github.com/CodingItWrong/intro-to-rntl-exercises)
 - Lecture slides - COMING SOON!
 - Workshop video - COMING SOON!
