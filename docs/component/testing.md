@@ -134,7 +134,7 @@ it('displays the waving hand icon', () => {
 
 Although `getByLabelText` helps with accessibility, note that *it does not confirm your app is fully accessible to screen readers!* In the examples above, the image and SVG won't be interactable by iOS VoiceOver unless you also add the `accessible` prop. Be sure to test your app with screen reader software; the `getByLabelText` matcher can just serve as a helpful reminder to make your images and SVGs accessible.
 
-To learn more about accessibility in React Native, check out [Ankita Kulkarni's talk "Make your React Native Apps Accessible from Chain React 2019"](https://youtu.be/3LLQ5AshtNc).
+To learn more about accessibility in React Native, check out [Ankita Kulkarni's talk "Make your React Native Apps Accessible"](https://youtu.be/3LLQ5AshtNc) from Chain React 2019.
 
 ## Interaction
 
