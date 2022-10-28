@@ -11,7 +11,7 @@ import Contact from './_contact.mdx'
 
 - [Discussion During Workshop: Discord](https://discord.gg/TKR6JYXk4T)
 - [Exercise repo](https://github.com/CodingItWrong/intro-to-rntl-exercises)
-- Lecture slides - COMING SOON!
+- [Lecture slides](https://www.slideshare.net/JoshJustice1/intro-to-react-native-testing-library-253860341)
 - Workshop video - COMING SOON!
 
 ## More Resources for Testing and TDD in React Native
@@ -19,5 +19,7 @@ import Contact from './_contact.mdx'
 - [ReactNativeTesting.io](/) - a more extensive tutorial on setting up and using Jest, React Native Testing Library, and Detox.
 - [CodingItWrong's Discord](https://discord.gg/jVXCxZPF6f) - discuss this workshop, React Native, and testing.
 - [CodingIt.Live on Twitch](https://codingit.live) - a live stream about React Native testing, including more advanced topics and working on open-source projects together.
+- Ankita Kulkarni's talk ["Make your React Native Apps Accessible"](https://youtu.be/3LLQ5AshtNc) (video)
+- Kent C. Dodds' blog post, [Fix the "not wrapped in act(...)" warning](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning)
 
 <Contact />
