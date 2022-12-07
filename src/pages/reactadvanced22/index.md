@@ -12,7 +12,7 @@ import Contact from './_contact.mdx'
 - [Discussion During Workshop: Discord](https://discord.gg/TKR6JYXk4T)
 - [Exercise repo](https://github.com/CodingItWrong/intro-to-rntl-exercises)
 - [Lecture slides](https://www.slideshare.net/JoshJustice1/intro-to-react-native-testing-library-253860341)
-- Workshop video - COMING SOON!
+- [Workshop video](https://portal.gitnation.org/contents/introduction-to-react-native-testing-library) (conference ticket required)
 
 ## More Resources for Testing and TDD in React Native
 
