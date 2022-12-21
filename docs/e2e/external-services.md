@@ -25,7 +25,7 @@ Say our app has an `api.js` file that configures an instance of [Axios][axios], 
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://rn-testing-api.herokuapp.com/',
+  baseURL: 'https://sample-api-url.reactnativetesting.io/',
 });
 
 export default api;
