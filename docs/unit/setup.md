@@ -19,13 +19,17 @@ $ expo install jest-expo jest
 Add the following to `package.json`:
 
 ```diff
+   "scripts": {
+     "start": "expo start",
+     "android": "expo start --android",
      "ios": "expo start --ios",
-     "web": "expo start --web",
-+    "test": "jest",
-     "eject": "expo eject"
+-    "web": "expo start --web"
++    "web": "expo start --web",
++    "test": "jest"
    },
 ...
-     "jest-expo": "^31.0.0"
+   "devDependencies": {
+     "@babel/core": "^7.12.9"
    },
 +  "jest": {
 +    "preset": "jest-expo"
@@ -55,18 +59,18 @@ Run the tests with `yarn test`. You should see output like the following:
 
 ```bash
 # yarn test
-yarn run v1.13.0
+yarn run v1.22.19
 $ jest
  PASS  ./smoke.spec.js
   truth
-    ✓ is true (3ms)
+    ✓ is true (1 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
-Time:        3.662s
+Time:        0.129 s, estimated 1 s
 Ran all test suites.
-✨  Done in 2.09s.
+✨  Done in 0.73s.
 ```
 
 ## Configuring ESLint
@@ -80,7 +84,7 @@ If you're using a different ESLint config, check out [`eslint-plugin-jest`](http
 If you aren't already using ESLint in your project, it's easy to install in a React Native project. Add the following packages:
 
 ```bash
-$ yarn add --dev eslint@"^7.0" \
+$ yarn add --dev eslint \
                  prettier \
                  @react-native-community/eslint-config
 ```
@@ -105,7 +109,7 @@ module.exports = {
 };
 ```
 
-Most code editors can be configured to run ESLint rules as you edit. You can also add an NPM script to do so:
+Most code editors can be configured to run ESLint rules as you edit. React Native CLI projects are also preconfigured with an NPM script to do so. You can add this script to Expo projects:
 
 ```diff
  "scripts": {
@@ -113,9 +117,10 @@ Most code editors can be configured to run ESLint rules as you edit. You can als
    "android": "expo start --android",
    "ios": "expo start --ios",
    "web": "expo start --web",
-+  "lint": "eslint .",
-   "eject": "expo eject"
- },
+-  "test": "jest",
++  "test": "jest",
++  "lint": "eslint ."
+  },
 ```
 
 <Chat />

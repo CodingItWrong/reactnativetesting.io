@@ -49,7 +49,7 @@ describe('formatAddress', () => {
 });
 ```
 
-Run the tests again and they should pass.
+Run the tests with `yarn test`. They should pass.
 
 For more practice, try writing another `it()` that specifies what happens when there is no street2 value. Try writing another for what the function _should_ do if there is no street1 _or_ street2, to see the tests fail. Update the code to handle that case, rerun the tests, and watch them pass.
 
