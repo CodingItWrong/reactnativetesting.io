@@ -10,7 +10,7 @@ Let's talk about the different features React Native Testing Library offers for 
 
 ## Testing Text
 
-Create a file `Hello.js` in the root of your project and enter the following:
+Create a file `Hello.js` in the root of your project and enter the following (if you created the `Hello.js` file on the previous page, replace its contents with the following):
 
 ```jsx
 import React from 'react';
@@ -25,7 +25,7 @@ export default function Hello({name}) {
 }
 ```
 
-Let's test that it displays the right message when a name is passed in as a prop. Create a file `Hello.spec.js` at the root of your project and add the following:
+Let's test that it displays the right message when a name is passed in as a prop. Create a file `Hello.spec.js` at the root of your project and add the following (if you created the `Hello.spec.js` file on the previous page, replace its contents with the following):
 
 ```jsx
 import React from 'react';

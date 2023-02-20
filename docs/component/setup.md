@@ -73,8 +73,6 @@ describe('Hello', () => {
 });
 ```
 
-(Note that `jest-native` 5.1.0 or above is required to have the `.toBeVisible()` matcher.)
-
 Run your tests with `yarn test`. If you added the unit smoke test as well as the component smoke test, you should see the following output:
 
 ```bash
