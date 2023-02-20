@@ -31,41 +31,19 @@ Now, initialize Detox in your app to get some config files set up. We specify th
 $ detox init -r jest
 ```
 
-This creates several files, including `.detoxrc.json`.
+This creates several files, including `.detoxrc.js`.
 
-After this, we need to add some extra config to `.detoxrc.json`. Add the following, replacing `YourAppName` with the name of the app you entered:
-
-```diff
- {
-   "testRunner": "jest",
-   "runnerConfig": "e2e/config.json",
-   "skipLegacyWorkersInjection": true,
-   "apps": {
-     "ios": {
-       "type": "ios.simulator",
--      "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY",
-+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YourAppName.app",
-+      "build": "xcodebuild -workspace ios/YourAppName.xcworkspace -scheme YourAppName -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build"
-     },
-     "android": {
-       "type": "android.apk",
-       "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY"
-     }
-   },
-   ...
- }
-```
-
-Finally, we need to ensure the version of Jest we're using is 27.x. Detox requires at least Jest 27.x, and React Native doesn't yet support the latest Jest 28.x release. Make the following change in `package.json`:
+After this, we need to add some extra config to `.detoxrc.js`. Add the following, replacing `YourAppName` with the name of the app you entered:
 
 ```diff
- "eslint": "^7.32.0",
--"jest": "^26.6.3",
-+"jest": "^27.5.1",
- "metro-react-native-babel-preset": "^0.67.0",
+ apps: {
+   'ios.debug': {
+     type: 'ios.app',
+-      binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/YOUR_APP.app',
++      binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/RNTestingSandbox.app',
+-      build: 'xcodebuild -workspace ios/YOUR_APP.xcworkspace -scheme YOUR_APP -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build'
++      build: 'xcodebuild -workspace ios/RNTestingSandbox.xcworkspace -scheme RNTestingSandbox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build'
 ```
-
-Then run `yarn install`.
 
 ## Configuring ESLint
 
@@ -84,7 +62,7 @@ Then add the detox plugin and environment to your ESLint config:
 +  plugins: ['detox'],
 +  overrides: [
 +    {
-+      files: ['*.e2e.js'],
++      files: ['e2e/*.test.js'],
 +      env: {
 +        'detox/detox': true,
 +        jest: true,
@@ -99,7 +77,7 @@ Then add the detox plugin and environment to your ESLint config:
 
 Detox installs a sample test for you that you can tweak. If you are installing Detox into a brand-new React Native app, you can make a passing test doing the following.
 
-First, add a `Text` component with a `testID` prop in `App.js` so Detox can find it:
+First, add a `Text` component with a `testID` prop in your `App` component so Detox can find it:
 
 ```diff
  <View
@@ -110,7 +88,7 @@ First, add a `Text` component with a `testID` prop in `App.js` so Detox can find
    <Section title="Step One">
 ```
 
-Then open the `e2e/firstTest.e2e.js` that `detox init` generated. Replace the contents with the following:
+Then open the `e2e/starter.test.js` that `detox init` generated. Replace the contents with the following:
 
 ```javascript
 describe('App', () => {
@@ -137,8 +115,8 @@ $ yarn start
 In another terminal window, build the Detox version of the binary, and run the tests:
 
 ```bash
-$ detox build -c ios
-$ detox test -c ios
+$ detox build -c ios.sim.debug
+$ detox test -c ios.sim.debug
 ```
 
 You should see the following output:
