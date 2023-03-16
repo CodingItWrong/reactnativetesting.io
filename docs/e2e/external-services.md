@@ -10,7 +10,7 @@ import Chat from '../_chat.mdx'
 
 It seems like hitting external services would give you more confidence, and that using fake services isn't really testing your app. But hitting external services opens your tests up to flakiness due to network unreliability and outages in different systems--especially if the services aren't owned by you. Also, setting up test data against a real external service can make your tests much harder to write and maintain, making it less likely that you'll write and maintain them.
 
-So how can you gain confidence that your app works against the real service? Here's what I'd recommend, from preferred first:
+So how can you gain confidence that your app works against the real service? Here's what I'd recommend, in order of preference:
 
 1. You are almost certainly doing *some* manual testing your app. Let that manual testing be the test that the external service connectivity works.
 2. If you feel the need to automate testing of the external service connection, write just one or a few tests as part of a separate test suite. That way you can run it whenever you like, but it won't cause CI failures. Keep your main test suite using a fake external service.
@@ -51,9 +51,9 @@ export default function WidgetContainer() {
 }
 ```
 
-How can we fake out this client? We just create another module that exposes the same interface to the rest of the app, but uses hard-coded in-memory data instead. Let's see how.
+How can we fake out this client? We'll do this by creating another module that exposes the same interface as `api.js`, but is implemented using hard-coded in-memory data instead of web service calls. Then we'll configure our app to use this fake module when running our Detox tests.
 
-First let's create a fake, then wire it up. Make an `api` folder and create a `fake.js` in it. Add the following:
+First let's create the fake; then we'll work on wiring it up. In the same folder as `api.js`, make an `api.mock.js` file. Add the following:
 
 ```js
 const api = {
@@ -85,104 +85,140 @@ Now let's add some fake data to it:
  export default api;
 ```
 
-OK, now if we hook up this fake service it will return hard-coded data instead of hitting a web service. If your app makes `post()` or `patch()` requests you can add methods for those. If there are several different `get()` requests sent throughout your app, you can check the passed-in URL to decide which hard-coded data to send back. You can even add statefulness, storing an array of records in `fake.js`, appending to it when data is `post()`ed, etc.
+Now if we hook up this fake service it will return hard-coded data instead of hitting a web service. If your app makes `post()` or `patch()` requests you can add methods for those. If there are several different `get()` requests sent throughout your app, you can check the arguments passed to `get()` to decide which hard-coded data to send back. You can even add statefulness, storing an array of records in `api.mock.js`, appending to it when data is `post()`ed, etc.
 
-Next, how can we hook our fake up to our app? We need some way to use our real service during development and production, but our fake service during testing. Let's set up the plumbing for that first, then figure out how to set that flag.
+Next, how can we hook our fake up to our app? We need some way to use our real service in development and production, but our fake service when end-to-end testing.
 
-Move `api.js` into the api folder and rename it to `remote.js`. Now in api create an `index.js` in it. Metro Bundler handles index files the way many other bundlers do: the import path `./api` will match either `./api.js` or `./api/index.js`. This means you don't even need to make changes to the import statements in the rest of your app; you can just expand the one `api.js` file into a directory.
+[Detox's documentation on mocking](https://wix.github.io/Detox/docs/guide/mocking) recommends customizing Metro bundler to use `.mock.js` files when a certain flag is set. We'll do this by customizing `metro.config.js`.
 
-In `api/index.js`, add the following:
+React Native CLI projects should have a `metro.config.js` file at the root of the project. By default it contains the following, although you may have added some customizations:
 
 ```js
-import fake from './fake';
-import remote from './remote';
+/**
+ * Metro configuration for React Native
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
 
-const apiDriver = 'fake';
-let api;
-
-switch (apiDriver) {
-  case 'remote':
-    api = remote;
-    break;
-  case 'fake':
-    api = fake;
-    break;
-}
-
-export default api;
+module.exports = {
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true,
+      },
+    }),
+  },
+};
 ```
 
-If the driver variable is set to "remote" we export the real Axios client; if it's set to "fake" we export the fake one.
-
-Now, how can we switch without having to edit this file? A package called `react-native-config` will help us set config values.
-
-## react-native-config
-
-Install `react-native-config`:
-
-```sh
-$ yarn add react-native-config
-$ (cd ios; pod install)
-```
-
-Create an `.env` file at the root of your project:
-
-```sh
-API_DRIVER=remote
-```
-
-And an `.env.detox` file:
-
-```sh
-API_DRIVER=fake
-```
-
-Now update your `api/index.js` file to read the config value:
-
-```diff
-+import env from 'react-native-config';
- import fake from './fake';
- import remote from './remote';
-
--const apiDriver = 'fake';
-+const apiDriver = env.API_DRIVER;
- let api;
-
- switch (apiDriver) {
-   case 'remote':
-     api = remote;
-     break;
-   case 'fake':
-     api = fake;
-     break;
- }
-
- export default api;
-```
-
-When running your app, the `.env` file will be used by default, which will load the real API client. We can update the detox command to tell it to load `.env.detox` instead by adding `ENVFILE=.env.detox` to the front of the detox `build` config property in `.detoxrc.json`:
-
-```diff
- "configurations": {
-   "ios": {
-     "type": "ios.simulator",
-     "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/RNTestingSandbox.app",
--    "build": "xcodebuild -workspace ios/RNTestingSandbox.xcworkspace -scheme RNTestingSandbox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
-+    "build": "ENVFILE=.env.detox xcodebuild -workspace ios/RNTestingSandbox.xcworkspace -scheme RNTestingSandbox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
-     "device": {
-       "type": "iPhone 11"
-     }
-   },
-```
-
-Note that, unlike JS files, you can't just reload the app when you change a `.env` file; you need to rebuild the app:
+Expo projects might not have a `metro.config.js` file. If not, run the following:
 
 ```bash
-$ detox build -c ios
-$ detox test -c ios
+$ npx expo customize metro.config.js
 ```
+
+This will add a simple `metro.config.js` file to the root of your project with the following contents:
+
+```js
+// Learn more https://docs.expo.io/guides/customizing-metro
+const {getDefaultConfig} = require('expo/metro-config');
+
+module.exports = getDefaultConfig(__dirname);
+```
+
+Before we start, add an object-spread to give us an object to add customizations to:
+
+```diff
+-module.exports = getDefaultConfig(__dirname);
++module.exports = {
++  ...getDefaultConfig(__dirname),
++};
+```
+
+Now, whether you're using React Native CLI or Expo, add the following `resolver` key to the exported object:
+
+```diff
++const defaultSourceExts =
++  require('metro-config/src/defaults/defaults').sourceExts;
++
+ module.exports = {
+   //...
++  resolver: {
++    sourceExts:
++      process.env.MOCK_API === 'true'
++        ? ['mock.js', ...defaultSourceExts]
++        : defaultSourceExts,
++  },
+ }
+```
+
+`sourceExts` allows us to configure which file extensions Metro bundler users when importing modules. In our case, if a `MOCK_ENV` environment variable is set to `'true'`, we add `'mock.js'` to the front of the list, so that if a `.mock.js` file is present it will be preferred. If `MOCK_ENV` is not set to `'true'`, we use the default `sourceExts` config, so `.mock.js` files will be ignored. This will allow us to run our app with our without mocks.
+
+When running your app, mocking will be off by default. How can we sure it runs when we run the app?
+
+## Mocking Debug Mode
+
+First, if you're using React Native CLI, let's set up a way to use mocks in debug mode. This might be your common workflow while writing your Detox tests locally. When running in debug mode, your app will load its JavaScript bundle from a running Metro bundler server. So, we can add a `package.json` command to pass the `MOCK_ENV=true` flag to Metro:
+
+```diff
+ "start": "react-native start",
++"start:mock": "MOCK_API=true npm run start",
+ "test": "jest"
+```
+
+(If your need to support development on Windows machines, use the [cross-env](https://github.com/kentcdodds/cross-env) package as part of this command.)
+
+Start Metro using this new command:
+
+```bash
+$ yarn start:mock
+```
+
+Now, when you run your app for development you should see the mocked data. It will also be used when running your Detox test:
+
+```bash
+$ detox test -c ios.sim.debug
+```
+
+## Mocking Release Mode
+
+Now, how about release mode? This might be your common workflow when running your Detox tests on CI, and it's also the only way I've gotten Detox working with Expo.
+
+In release mode, the Metro bundler runs when we build our app, so we want to ensure the `MOCK_API=true` environment variable is set at that time. We can do that by prepending `export MOCK_API=true &&` to our build command in `.detoxrc.js`.
+
+Here's the change for React Native CLI:
+
+```diff
+ 'ios.release': {
+   type: 'ios.app',
+   binaryPath: 'ios/build/Build/Products/Release-iphonesimulator/MyCoolApp.app',
+-  build: 'xcodebuild -workspace ios/MyCoolApp.xcworkspace -scheme MyCoolApp -configuration Release -sdk iphonesimulator -derivedDataPath ios/build'
++  build: 'export MOCK_API=true && xcodebuild -workspace ios/MyCoolApp.xcworkspace -scheme MyCoolApp -configuration Release -sdk iphonesimulator -derivedDataPath ios/build'
+ },
+```
+
+And here it is for Expo:
+
+```diff
+ 'ios.release': {
+   type: 'ios.app',
+   binaryPath: 'expotestingsandbox.app',
+-  build: 'eas build --local --profile development-detox --platform ios && tar -xvzf build-*.tar.gz && rm build-*.tar.gz'
++  build: 'export MOCK_API=true && eas build --local --profile development-detox --platform ios && tar -xvzf build-*.tar.gz && rm build-*.tar.gz'
+ },
+```
+
+After making this change, build and run your release tests again:
+
+```bash
+$ detox build -c ios.sim.release
+$ detox test -c ios.sim.release
+```
+
+You should see your mocked data being used.
 
 <Chat />
 
 [axios]: https://github.com/axios/axios
-[react-native-config]: https://github.com/luggit/react-native-config

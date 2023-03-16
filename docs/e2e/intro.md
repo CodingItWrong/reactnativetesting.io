@@ -56,9 +56,9 @@ Cons:
 
 - More limited integration with physical devices and test lab services like Sauce Labs
 - Getting it running on CI can be challenging
-- Expo is not officially supported, only React Native CLI apps
+- Expo is not officially supported. It seems to work if you build a non-development client (e.g. the JS bundle is built-in)
 
-Use Cases: recommended for React Native CLI projects for tests written by developers that run on pull requests and block CI, especially for projects that have significant native integrations
+Use Cases: recommended for React Native projects for tests written by developers that run on pull requests and block CI, especially for projects that have significant native integrations. For Expo projects, fewer tests, as the feedback loop is slower.
 
 ### [React Native Testing Library](../component/intro.md)
 
