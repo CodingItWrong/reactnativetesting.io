@@ -84,7 +84,7 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 - Run `detox test -c ios.sim.debug`. You should see output like the following:
 
 ```text
- FAIL  e2e/managing-movies.e2e.js (8.382 s)
+ FAIL  e2e/managing-movies.test.js (8.382 s)
   managing movies
     ✕ allows viewing and creating movies (1737 ms)
 
@@ -100,7 +100,7 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
       13 | });
       14 |
 
-      at Object.<anonymous> (e2e/managing-movies.e2e.js:11:11)
+      at Object.<anonymous> (e2e/managing-movies.test.js:11:11)
       at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:24)
       at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:9)
       at node_modules/@babel/runtime/helpers/asyncToGenerator.js:27:7

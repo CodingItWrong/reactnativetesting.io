@@ -37,18 +37,17 @@ At the root of your project, this will create a `.detoxrc.js` file and `e2e` fol
 
 The first change we need relates to the fact that, although our Detox tests will be written in Jest, they need to run through the `detox` CLI tool instead of the normal `jest` command. Detox's test files by default end in `*.test.js`, but files with this extension will be picked up by the normal Jest command, resulting in failures.
 
-One way to ensure that your Detox tests are only run by Detox is to use a different file extension, like `.e2e.js`. You can configure Detox to look for files with this extension by making the following change in `e2e/jest.config.js`:
+We can ensure our Detox tests are only run by Detox by telling Jest to skip them when run by itself. We can configure this in the `"jest"` key in `package.json`:
 
 ```diff
- module.exports = {
-   rootDir: '..',
--  testMatch: ['<rootDir>/e2e/**/*.test.js'],
-+  testMatch: ['<rootDir>/e2e/**/*.e2e.js'],
-   testTimeout: 120000,
-   maxWorkers: 1,
+ {
+   ...
+   "jest": {
+     "preset": "...",
++    "modulePathIgnorePatterns": ["e2e"]
+   }
+ }
 ```
-
-Detox generated an `e2e/starter.test.js` file; rename it to `e2e/starter.e2e.js` so it will still be included in the test suite.
 
 After this, we need to add some extra config to `.detoxrc.js`. The config to add depends on whether you're using React Native CLI or Expo.
 
@@ -165,7 +164,7 @@ Then add the detox plugin and environment to your ESLint config:
 +  plugins: ['detox'],
 +  overrides: [
 +    {
-+      files: ['e2e/**/*.e2e.js'],
++      files: ['e2e/**/*.test.js'],
 +      env: {
 +        'detox/detox': true,
 +        jest: true,
@@ -191,7 +190,7 @@ First, add a `Text` component with a `testID` prop in your `App` component so De
    <Section title="Step One">
 ```
 
-Then open the `e2e/starter.e2e.js` (our renamed version of `starter.test.js` that `detox init` generated). Replace the contents with the following:
+Then open the `e2e/starter.test.js` file that `detox init` generated). Replace the contents with the following:
 
 ```javascript
 describe('App', () => {
@@ -252,7 +251,7 @@ Whether you are using RN CLI or Expo, the test should show you the following out
 detox[5950] INFO:  App: should show the hello message
 detox[5950] INFO:  App: should show the hello message [OK]
 
- PASS  e2e/starter.e2e.js (12.943s)
+ PASS  e2e/starter.test.js (12.943s)
   App
     ✓ should show the hello message (1813ms)
 ```
