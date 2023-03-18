@@ -48,9 +48,9 @@ Get an API key:
 
 ## Trying It Out
 
-Do the following to make sure your local installation is working:
+Do the following to make sure your local installation is working. If you run into any issues, feel free to ask for help in [my react-native-testing Discord channel](https://discord.gg/jVXCxZPF6f).
 
-- Run `yarn test`. You should see output like the following, including "Tests: 1 todo, 1 total":
+- Run `yarn test`. You should see output like the following:
 
 ```text
  FAIL  src/MovieRow.spec.js
@@ -78,6 +78,36 @@ Time:        0.193 s, estimated 1 s
 Ran all test suites.
 error Command failed with exit code 1.
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+```
+
+- Run `detox build -c ios.sim.debug`
+- Run `detox test -c ios.sim.debug`. You should see output like the following:
+
+```text
+ FAIL  e2e/managing-movies.e2e.js (8.382 s)
+  managing movies
+    ✕ allows viewing and creating movies (1737 ms)
+
+  ● managing movies › allows viewing and creating movies
+
+    Replace this exception with your first test!
+
+       9 |
+      10 |   it('allows viewing and creating movies', async () => {
+    > 11 |     throw new Error('Replace this exception with your first test!');
+         |           ^
+      12 |   });
+      13 | });
+      14 |
+
+      at Object.<anonymous> (e2e/managing-movies.e2e.js:11:11)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:24)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:27:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:19:12)
+
+07:54:49.038 detox[32840] E Command failed with exit code = 1:
+jest --config e2e/jest.config.js
 ```
 
 - Run `yarn start`. You should see the following prompt (maybe with some warnings after it):
