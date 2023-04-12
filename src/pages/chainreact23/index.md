@@ -76,12 +76,30 @@ Tests:       1 failed, 1 total
 Snapshots:   0 total
 Time:        0.193 s, estimated 1 s
 Ran all test suites.
-error Command failed with exit code 1.
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
 
-- Run `detox build -c ios.sim.debug`
-- Run `detox test -c ios.sim.debug`. You should see output like the following:
+- Try running the app with `yarn start`. You should see the following prompt (maybe with some warnings after it):
+
+```
+  Welcome to Metro v0.73.8
+Fast - Scalable - Integrated
+
+r - reload the app
+d - open developer menu
+i - run on iOS
+a - run on Android
+```
+
+- Press `i` to build and run the app on an iOS Simulator, or `a` to build and run it on an Android Emulator
+- If it is not working, see React Native's [Setting up the development environment](https://reactnative.dev/docs/environment-setup) page for help.
+- Once the app is launched, make sure you can see the example movies "Vertigo" and "The Sound of Music" listed.
+- Type in a movie title and click Save. Confirm the movie is added to the list, with a yellow icon appearing to the right of it
+
+- Try out Detox:
+  - If you're using iOS, run `detox build -c ios.sim.debug` then `detox test -c ios.sim.debug`.
+  - If you're using Andoroid, run `detox build -c android.emu.debug` then `detox test -c android.emu.debug`
+
+You should see output like the following:
 
 ```text
  FAIL  e2e/managing-movies.test.js (8.382 s)
@@ -109,23 +127,6 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 07:54:49.038 detox[32840] E Command failed with exit code = 1:
 jest --config e2e/jest.config.js
 ```
-
-- Run `yarn start`. You should see the following prompt (maybe with some warnings after it):
-
-```
-  Welcome to Metro v0.73.8
-Fast - Scalable - Integrated
-
-r - reload the app
-d - open developer menu
-i - run on iOS
-a - run on Android
-```
-
-- Press `i` to build and run the app on an iOS Simulator, or `a` to build and run it on an Android Emulator
-- If it is not working, see React Native's [Setting up the development environment](https://reactnative.dev/docs/environment-setup) page for help.
-- Once the app is launched, make sure you can see the example movies "Vertigo" and "The Sound of Music" listed.
-- Type in a movie title and click Save. Confirm the movie is added to the list, with a yellow icon appearing to the right of it
 
 ## You're Ready!
 
