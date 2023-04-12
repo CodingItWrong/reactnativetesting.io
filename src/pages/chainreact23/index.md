@@ -7,7 +7,7 @@ import Contact from './_contact.mdx'
 
 <Header />
 
-May 17, 2022, full day
+May 17, 2023, full day
 
 ## Pre-Workshop Setup
 
