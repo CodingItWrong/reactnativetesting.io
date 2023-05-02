@@ -7,9 +7,11 @@ import Contact from './_contact.mdx'
 
 <Header />
 
-## SURVEY
+## Survey
 
-ADD HERE
+Please take 2 minutes to help future attendees of this workshop by letting me know how I did!
+
+[Take the Survey](https://docs.google.com/forms/d/e/1FAIpQLSczlQXiVpQzLWYokLYb7e8NDeftltZvmJQx5eM5uZ0DTPgYMQ/viewform?usp=sf_link)
 
 ## Workshop Resources
 
