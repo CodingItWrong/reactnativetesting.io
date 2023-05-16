@@ -22,6 +22,7 @@ Follow the instructions in React Native's [Setting up the development environmen
 - [Ruby](https://www.ruby-lang.org/)
 - [Cocoapods](https://cocoapods.org/)
 - [Android Studio](https://developer.android.com/studio) and/or [Xcode](https://developer.apple.com/xcode/)
+- [detox-cli](https://wix.github.io/Detox/docs/introduction/getting-started/#detox-prerequisites) and related dependencies
 
 ## Setting Up the Repo
 
@@ -50,6 +51,27 @@ Get an API key:
 
 Do the following to make sure your local installation is working. If you run into any issues, feel free to ask for help in [my react-native-testing Discord channel](https://discord.gg/jVXCxZPF6f).
 
+### Running the App
+
+- Run `yarn start`. You should see the following prompt (maybe with some warnings after it):
+
+```text
+  Welcome to Metro v0.73.8
+Fast - Scalable - Integrated
+
+r - reload the app
+d - open developer menu
+i - run on iOS
+a - run on Android
+```
+
+- Press `i` to build and run the app on an iOS Simulator, or `a` to build and run it on an Android Emulator
+- If it is not working, see React Native's [Setting up the development environment](https://reactnative.dev/docs/environment-setup) page for help.
+- Once the app is launched, make sure you can see the example movies "Vertigo" and "The Sound of Music" listed.
+- Type in a movie title and click Save. Confirm the movie is added to the list, with a yellow icon appearing to the right of it
+
+### Component Tests
+
 - Run `yarn test`. You should see output like the following:
 
 ```text
@@ -76,28 +98,16 @@ Tests:       1 failed, 1 total
 Snapshots:   0 total
 Time:        0.193 s, estimated 1 s
 Ran all test suites.
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
 
-- Try running the app with `yarn start`. You should see the following prompt (maybe with some warnings after it):
+### E2E Tests
 
-```
-  Welcome to Metro v0.73.8
-Fast - Scalable - Integrated
-
-r - reload the app
-d - open developer menu
-i - run on iOS
-a - run on Android
-```
-
-- Press `i` to build and run the app on an iOS Simulator, or `a` to build and run it on an Android Emulator
-- If it is not working, see React Native's [Setting up the development environment](https://reactnative.dev/docs/environment-setup) page for help.
-- Once the app is launched, make sure you can see the example movies "Vertigo" and "The Sound of Music" listed.
-- Type in a movie title and click Save. Confirm the movie is added to the list, with a yellow icon appearing to the right of it
-
-- Try out Detox:
-  - If you're using iOS, run `detox build -c ios.sim.debug` then `detox test -c ios.sim.debug`.
-  - If you're using Andoroid, run `detox build -c android.emu.debug` then `detox test -c android.emu.debug`
+- Make sure `yarn start` is running (you may have started it when running the app above)
+- If you're using iOS, run `detox build -c ios.sim.debug` then `detox test -c ios.sim.debug`.
+- If you're using Android, run `detox build -c android.emu.debug` then `detox test -c android.emu.debug`
+  - You may get an error "Cannot boot Android Emulator with the name: 'Pixel 3a API 30'". If so, see if another emulator name is listed in the command output. If so, open `.detoxrc.js`, and update `devices.emulator.device.avdName` to that emulator name. If no emulator name is listed, [create a new AVD in Android Studio](https://developer.android.com/studio/run/managing-avds) and then rerun the `detox test -c android.emu.debug` command.
 
 You should see output like the following:
 
