@@ -16,7 +16,7 @@ Please take 2 minutes to help future attendees of this workshop by letting me kn
 ## Workshop Resources
 
 - [Exercise repo](https://github.com/CodingItWrong/rn-testing-exercises)
-- Lecture slides - ADD HERE
+- [Lecture slides](https://www.slideshare.net/JoshJustice1/testing-react-native-apps-chain-react-2023)
 
 ## More Resources for Testing and TDD in React Native
 
