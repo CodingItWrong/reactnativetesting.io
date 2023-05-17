@@ -213,7 +213,7 @@ The other thing we want to confirm is that the `onSend` action is called. We can
 ```jsx
 it('calls the onSend prop', () => {
   const messageText = 'Hello world';
-  const sendHandler = jest.fn();
+  const sendHandler = jest.fn().mockName('sendHandler');
   render(<NewMessageForm onSend={sendHandler} />);
 
   fireEvent.changeText(screen.getByPlaceholderText('Message'), 'Hello world');
