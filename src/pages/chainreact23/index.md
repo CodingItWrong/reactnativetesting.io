@@ -13,6 +13,9 @@ May 17, 2023, full day
 
 Thank you for signing up for the workshop! Here are the steps you can go through in advance to ensure your local development environment is ready.
 
+Feel free to chat during the workshop at [Infinite Red Slack](https://community.infinite.red/) in the `#chain-react-testing-workshop-2023` room
+
+
 ## Requirements
 
 Follow the instructions in React Native's [Setting up the development environment](https://reactnative.dev/docs/environment-setup) for "React Native CLI Quickstart". This should include setting up:

@@ -15,6 +15,7 @@ Please take 2 minutes to help future attendees of this workshop by letting me kn
 
 ## Workshop Resources
 
+- [Infinite Red Slack](https://community.infinite.red/) - join the `#chain-react-testing-workshop-2023` room
 - [Exercise repo](https://github.com/CodingItWrong/rn-testing-exercises)
 - [Lecture slides](https://www.slideshare.net/JoshJustice1/testing-react-native-apps-chain-react-2023)
 
