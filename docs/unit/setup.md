@@ -13,7 +13,7 @@ React Native CLI installs the [Jest][jest] testing framework by default, but if 
 Install the Jest package, as well as an Expo-specific Jest preset package:
 
 ```bash
-$ expo install jest-expo jest
+expo install jest-expo jest
 ```
 
 Add the following to `package.json`:
@@ -84,9 +84,9 @@ If you're using a different ESLint config, check out [`eslint-plugin-jest`](http
 If you aren't already using ESLint in your project, it's easy to install in a React Native project. Add the following packages:
 
 ```bash
-$ yarn add --dev eslint \
-                 prettier \
-                 @react-native-community/eslint-config
+yarn add --dev eslint \
+               prettier \
+               @react-native-community/eslint-config
 ```
 
 Then create an `.eslintrc.js` file at the root of your project and add the following:

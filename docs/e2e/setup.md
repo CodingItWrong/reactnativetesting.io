@@ -15,22 +15,22 @@ Although [Detox does not officially support Expo](https://github.com/wix/Detox/b
 First, let's install the global Detox CLI tool:
 
 ```bash
-$ xcode-select --install
-$ brew tap wix/brew
-$ brew install applesimutils
-$ npm install -g detox-cli
+xcode-select --install
+brew tap wix/brew
+brew install applesimutils
+npm install -g detox-cli
 ```
 
 Next, we need to add Detox as a dependency to our project.
 
 ```bash
-$ yarn add --dev detox
+yarn add --dev detox
 ```
 
 Now, initialize Detox in your app to get some config files set up. We specify that we'll be using Jest as the test runner.
 
 ```bash
-$ detox init -r jest
+detox init -r jest
 ```
 
 At the root of your project, this will create a `.detoxrc.js` file and `e2e` folder containing several files. We will need to do a little configuration with these.
@@ -82,19 +82,19 @@ Let's see how to set that up. We'll use EAS to build our Expo app.
 First, make sure you have EAS CLI installed:
 
 ```bash
-$ npm install --global eas-cli
+npm install --global eas-cli
 ```
 
 Next, log in with your Expo account:
 
 ```bash
-$ eas login
+eas login
 ```
 
 Then, initialize your project to work with EAS Build:
 
 ```bash
-$ eas build:configure
+eas build:configure
 ```
 
 Follow the prompts to set up an EAS project. When you're done, an `eas.json` file will be created.
@@ -152,7 +152,7 @@ Here's what's going on in the `build` command:
 Whether you're using React Native CLI or Expo, if you're using ESLint (and you probably should be!), here are steps to set it up to recognize Detox code.
 
 ```bash
-$ yarn add --dev eslint-plugin-detox
+yarn add --dev eslint-plugin-detox
 ```
 
 Then add the detox plugin and environment to your ESLint config:
@@ -215,19 +215,19 @@ To run the test, the steps are slightly different for React Native CLI and Expo.
 To run this test, start the Metro bundler as usual:
 
 ```bash
-$ yarn start
+yarn start
 ```
 
 In another terminal window, build the Detox version of the binary (you should only need to do this when native dependencies change):
 
 ```bash
-$ detox build -c ios.sim.debug
+detox build -c ios.sim.debug
 ```
 
 Then, run the tests:
 
 ```bash
-$ detox test -c ios.sim.debug
+detox test -c ios.sim.debug
 ```
 
 When you save changes to your code, Metro will pick them up, and they'll be available in your app the text time you run `detox test`. This allows for a fast-feedback workflow.
@@ -237,8 +237,8 @@ When you save changes to your code, Metro will pick them up, and they'll be avai
 To build and run in Expo, run these commands:
 
 ```bash
-$ detox build -c ios.sim.release
-$ detox test -c ios.sim.release
+detox build -c ios.sim.release
+detox test -c ios.sim.release
 ```
 
 Note that the release build builds in the bundled JavaScript into the app, so if you make changes to the app JavaScript, you will need to rerun `detox build`. Unfortunately this makes for a slow development process. If I can find a way to get Detox working with Expo debug builds, I will update these instructions.
