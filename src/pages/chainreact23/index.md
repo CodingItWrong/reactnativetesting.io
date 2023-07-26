@@ -22,7 +22,6 @@ Please take 2 minutes to help future attendees of this workshop by letting me kn
 ## More Resources for Testing and TDD in React Native
 
 - [ReactNativeTesting.io](/) - a more extensive tutorial on setting up and using Jest, React Native Testing Library, and Detox.
-- [CodingItWrong's Discord](https://discord.gg/jVXCxZPF6f) - discuss this workshop, React Native, and testing.
 - Ankita Kulkarni's talk ["Make your React Native Apps Accessible"](https://youtu.be/3LLQ5AshtNc) (video)
 - Kent C. Dodds' blog post, [Fix the "not wrapped in act(...)" warning](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning)
 

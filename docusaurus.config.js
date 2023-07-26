@@ -82,15 +82,6 @@ const config = {
             ],
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: '#react-native-testing on Discord',
-                href: 'https://discord.gg/jVXCxZPF6f',
-              },
-            ],
-          },
-          {
             title: 'More',
             items: [
               {
