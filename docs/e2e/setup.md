@@ -111,7 +111,6 @@ Follow the prompts to set up an EAS project. When you're done, an `eas.json` fil
       "channel": "development",
       "ios": {
         "simulator": true
-        // "resourceClass": "m-medium"
       }
     }
   }
