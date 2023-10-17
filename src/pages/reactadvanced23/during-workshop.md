@@ -13,9 +13,10 @@ import Contact from './_contact.mdx'
 - Lecture slides
 - Workshop video - COMING SOON!
 
-## More Resources for Testing and TDD in React Native
+## More Resources for Testing
 
-- [ReactNativeTesting.io](/) - an extensive tutorial on setting up and using Detox, Jest, and React Native Testing Library.
 - [Detox home page](https://wix.github.io/Detox/)
+- [*XUnit Test Patterns*](http://xunitpatterns.com/)
+- [ReactNativeTesting.io](/) - an extensive tutorial on setting up and using Detox, Jest, and React Native Testing Library.
 
 <Contact />
