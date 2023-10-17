@@ -9,7 +9,8 @@ import Contact from './_contact.mdx'
 
 ## Workshop Resources
 
-- [Exercise repo](https://github.com/CodingItWrong/intro-to-rntl-exercises)
+- [Surely](https://github.com/CodingItWrong/surely-expo/blob/main/REACT_ADVANCED_WORKSHOP.md) - Expo iOS app in the App Store with Detox tests
+- [RNCLITestingSandbox](https://github.com/CodingItWrong/RNCLITestingSandbox) - working Detox GitHub Actions configuration
 - Lecture slides
 - Workshop video - COMING SOON!
 
