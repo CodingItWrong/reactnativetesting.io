@@ -19,5 +19,6 @@ import Contact from './_contact.mdx'
 - [Detox home page](https://wix.github.io/Detox/)
 - [*XUnit Test Patterns*](http://xunitpatterns.com/)
 - [ReactNativeTesting.io](/) - an extensive tutorial on setting up and using Detox, Jest, and React Native Testing Library.
+- ["Getting Better All the Time: How to Escape Bad Code"](https://youtu.be/XKiE4AFjk9s) - conference talk about React Native TDD
 
 <Contact />
