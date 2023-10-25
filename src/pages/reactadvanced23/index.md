@@ -1,5 +1,5 @@
 ---
-title: "Effective Detox Testing - React Advanced London 2023"
+title: "Intro to React Native Testing Library - React Advanced London 2022"
 ---
 
 import Header from './_header.mdx'
@@ -7,18 +7,18 @@ import Contact from './_contact.mdx'
 
 <Header />
 
-Oct 25, 2023, 15:00-18:00 BST
+## Workshop Resources
 
-## Pre-Workshop Setup
+- [Surely](https://github.com/CodingItWrong/surely-expo/blob/main/REACT_ADVANCED_WORKSHOP.md) - Expo iOS app in the App Store with Detox tests
+- [RNCLITestingSandbox](https://github.com/CodingItWrong/RNCLITestingSandbox) - working Detox GitHub Actions configuration
+- [Lecture slides](https://www.slideshare.net/JoshJustice1/effective-detox-testing-react-advanced-2023)
+- Workshop video - COMING SOON!
 
-Thank you for signing up for the workshop! Here are the steps you can go through in advance to ensure your local development environment is ready.
+## More Resources for Testing
 
-In part of this workshop we will be looking at Detox tests in Surely, an open-source React Native app. If you would like, you can set it up locally so you can run the existing tests and try writing your own.
-
-To run Surely's Detox tests locally, follow the instructions in [REACT_ADVANCED_WORKSHOP.md](https://github.com/CodingItWrong/surely-expo/blob/main/REACT_ADVANCED_WORKSHOP.md)
-
-## You're Ready!
-
-If you reached this point and were able to see both the running app and the passing Detox tests, congratulations: you are ready for the workshop! On Wednesday, October 25th in the workshop we will take it from here. See you then!
+- [Detox home page](https://wix.github.io/Detox/)
+- [*XUnit Test Patterns*](http://xunitpatterns.com/)
+- [ReactNativeTesting.io](/) - an extensive tutorial on setting up and using Detox, Jest, and React Native Testing Library.
+- ["Getting Better All the Time: How to Escape Bad Code"](https://youtu.be/XKiE4AFjk9s) - conference talk about React Native TDD
 
 <Contact />
