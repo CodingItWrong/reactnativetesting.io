@@ -12,7 +12,7 @@ import Contact from './_contact.mdx'
 - [Surely](https://github.com/CodingItWrong/surely-expo/blob/main/REACT_ADVANCED_WORKSHOP.md) - Expo iOS app in the App Store with Detox tests
 - [RNCLITestingSandbox](https://github.com/CodingItWrong/RNCLITestingSandbox) - working Detox GitHub Actions configuration
 - [Lecture slides](https://www.slideshare.net/JoshJustice1/effective-detox-testing-react-advanced-2023)
-- Workshop video - COMING SOON!
+- [Workshop video](https://portal.gitnation.org/contents/effective-detox-testing)
 
 ## More Resources for Testing
 
