@@ -15,7 +15,6 @@ Thank you for signing up for the workshop! Here are the steps you can go through
 
 Feel free to chat during the workshop at [Infinite Red Slack](https://community.infinite.red/) in the `#chain-react-testing-workshop-2023` room
 
-
 ## Requirements
 
 Follow the instructions in React Native's [Setting up the development environment](https://reactnative.dev/docs/environment-setup) for "React Native CLI Quickstart". This should include setting up:
@@ -40,9 +39,9 @@ git clone https://github.com/CodingItWrong/rn-testing-exercises.git
 Install the dependencies:
 
 ```bash
-$ cd rn-testing-exercises
-$ yarn install
-$ npx pod-install
+cd rn-testing-exercises
+yarn install
+npx pod-install
 ```
 
 Get an API key:
