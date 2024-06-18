@@ -13,7 +13,7 @@ We'll be using React Native Testing Library with the Jest test runner. If you ha
 Now we'll add React Native Testing Library:
 
 ```bash
-$ yarn add --dev @testing-library/react-native
+yarn add --dev @testing-library/react-native
 ```
 
 ## Installing jest-native
@@ -21,7 +21,7 @@ $ yarn add --dev @testing-library/react-native
 We'll be adding jest-native to add some additional test matchers. First, add the dependency:
 
 ```bash
-$ yarn add --dev @testing-library/jest-native
+yarn add --dev @testing-library/jest-native
 ```
 
 Next, if you don't already have a `setupFilesAfterEnv` file configured for Jest, add one to your Jest config in `package.json`:
