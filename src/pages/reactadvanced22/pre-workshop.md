@@ -37,8 +37,8 @@ git clone https://github.com/CodingItWrong/intro-to-rntl-exercises.git
 Install the dependencies:
 
 ```bash
-$ cd intro-to-rntl-exercises
-$ yarn install
+cd intro-to-rntl-exercises
+yarn install
 ```
 
 Get an API key:
@@ -52,7 +52,7 @@ Do the following to make sure your local installation is working:
 
 - Run `yarn test`. You should see output like the following, including "Tests: 1 todo, 1 total":
 
-```text
+```bash
  PASS  src/MovieRow.spec.js
   MovieRow
     ✎ todo EXERCISE 1
@@ -74,7 +74,7 @@ Watch Usage
 
 - Run `yarn start`. You should see the following prompt:
 
-```
+```bash
 › Press a │ open Android
 › Press i │ open iOS simulator
 › Press w │ open web
