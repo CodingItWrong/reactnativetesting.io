@@ -1,5 +1,5 @@
 ---
-title: "Getting Better All the Time: How to Escape Bad Code"
+title: 'Getting Better All the Time: How to Escape Bad Code'
 ---
 
 # Getting Better All the Time: How to Escape Bad Code
@@ -18,8 +18,7 @@ Presented at React Native EU 2022
 ## Resources for Testing and TDD in React Native
 
 - [ReactNativeTesting.io](/) - setting up and using Jest, React Native Testing Library, and Detox.
-- [Learn TDD in React Native](https://learntdd.in/react-native) - a brief tutorial
-- *Outside-In React Development: A TDD Primer* - a book teaching TDD for React for the web; the approach and principles apply just as well to React Native. [Paperback](https://www.amazon.com/dp/B0BBQ18DTL), or [$10 off ebook](https://leanpub.com/outside-in-react-development/c/gettingbetter) for React Native EU with this link.
+- _Outside-In React Development: A TDD Primer_ - a book teaching TDD for React for the web; the approach and principles apply just as well to React Native. [Paperback](https://www.amazon.com/dp/B0BBQ18DTL), or [$10 off ebook](https://leanpub.com/outside-in-react-development/c/gettingbetter) for React Native EU with this link.
 
 ## Contact Josh
 
