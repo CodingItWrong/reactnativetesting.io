@@ -116,7 +116,7 @@ module.exports = {
 Expo projects might not have a `metro.config.js` file. If not, run the following:
 
 ```bash
-$ npx expo customize metro.config.js
+npx expo customize metro.config.js
 ```
 
 This will add a simple `metro.config.js` file to the root of your project with the following contents:
@@ -173,13 +173,13 @@ First, if you're using React Native CLI, let's set up a way to use mocks in debu
 Start Metro using this new command:
 
 ```bash
-$ yarn start:mock
+yarn start:mock
 ```
 
 Now, when you run your app for development you should see the mocked data. It will also be used when running your Detox test:
 
 ```bash
-$ detox test -c ios.sim.debug
+detox test -c ios.sim.debug
 ```
 
 ## Mocking Release Mode
@@ -213,8 +213,8 @@ And here it is for Expo:
 After making this change, build and run your release tests again:
 
 ```bash
-$ detox build -c ios.sim.release
-$ detox test -c ios.sim.release
+detox build -c ios.sim.release
+detox test -c ios.sim.release
 ```
 
 You should see your mocked data being used.
